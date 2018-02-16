@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: api-gateway
+
+    
+server:
+  port: 8401
+  session:
+    timeout: 10
+  tomcat:
+    uri-encoding: UTF-8
+         
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://www.lxdyun.com:7100/eureka/
