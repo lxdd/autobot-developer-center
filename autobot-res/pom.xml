@@ -14,7 +14,7 @@
 	<name>autobot-res</name>
 	<url>http://maven.apache.org</url>
 
-	<description>汽车人-数据层</description>
+	<description>汽车人-数据层 </description>
 
 	<dependencies>
 		<dependency>

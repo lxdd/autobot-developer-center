@@ -1,4 +1,4 @@
-package com.autobot.gateway.service;
+package com.autobot.api.gateway;
 
 /**
  * Hello world!

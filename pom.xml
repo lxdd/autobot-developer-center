@@ -93,5 +93,6 @@
 		<module>gateway-service</module>
 		<module>autobot-res</module>
 		<module>autobot</module>
+		<module>api-gateway</module>
 	</modules>
 </project>

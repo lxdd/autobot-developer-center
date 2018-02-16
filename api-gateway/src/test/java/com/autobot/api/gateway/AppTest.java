@@ -1,4 +1,4 @@
-package com.autobot.gateway.service;
+package com.autobot.api.gateway;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
