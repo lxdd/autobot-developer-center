@@ -15,3 +15,14 @@ eureka:
   client:
     service-url:
       defaultZone: http://www.lxdyun.com:7100/eureka/
+      
+zuul:
+  routes:
+    service-auto: 
+      path: /api-auto/**
+      service-id: auto-res
+    service-housing:
+      path: /api-housing/**
+      service-id: service-housing
+
+         
