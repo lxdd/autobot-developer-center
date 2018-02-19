@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/lxdd/config-center.git  # 配置git仓库的地址
+          username: lxdd # git仓库的账号
+          password: lxd870701 # git仓库的密码
+          search-paths:
+          - /autobot-developer-center 
+    
+server:
+  port: 8402
+  session:
+    timeout: 10
+  tomcat:
+    uri-encoding: UTF-8
+    
+     
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://www.lxdyun.com:7100/eureka/
