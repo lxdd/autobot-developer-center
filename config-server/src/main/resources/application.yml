@@ -4,12 +4,50 @@ spring:
   cloud:
     config:
       server:
+        overrides: # “属性覆盖 ” 特性 .为所有的应用提供配置属性
+#          from: shanghai
+          name: lxd
+        health: #健康检测器
+          repositories:
+            check: 
+              name: autobot-res
+              profiles: dev
+              label: master
         git:
           uri: https://github.com/lxdd/config-center.git  # 配置git仓库的地址
           username: lxdd # git仓库的账号
           password: lxd870701 # git仓库的密码
           search-paths:
           - /autobot-developer-center 
+#          basedir:      
+#是指定 一个固定的位置来存储这些重要信息
+
+#由于配置中心存储的内容比较敏感，做一定的安全处理是必需的.由于我们的微服务应用
+#和配置中心都构建于 Spring Boot 基础上，所以与 Spring Security 结合使用会更加方便
+
+#在配置文件中指定用户和密码
+security:
+  user:
+    name: user
+    password: 37cc5635-559b-4e6f-b633-7e932b813f73   
+    
+#配置密钥 我们可以通过 encrypt.key 属性在配置文件中直接指定密钥信息（对称性密钥）    
+#encrypt:
+#  key: lxdyun             
+#  key-store:
+#    location: classpath:config-server.jks
+#    password: 000000
+#    secret: 000000
+#    alias: config-server
+  
+encrypt:
+  key: lxdyun 
+  key-store:
+    location: classpath:/server.jks
+    password: letmein
+    alias: mytestkey
+    secret: changeme  
+  
     
 server:
   port: 8402

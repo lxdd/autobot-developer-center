@@ -1,0 +1,30 @@
+# 来指定获取配置文件的 config-server位置
+spring:
+  application:
+    name: autobot-res #对应配置文件规则中的{application} 部分
+  cloud:
+    config:
+      fail-fast: true #实现客户端优先判断ConfigServer获取是否正常， 并快速响应失败内容
+      discovery:
+        enabled: true  #开启通过服务来访间 Config Server 的功能
+        service-id: config-server #来指定Config Server 注册的服务名
+      profile: dev #对应配置文件规则中的 {profile} 部分
+      label: master #对应配置文件规则中的 {label} 部分
+#      uri: http://localhost:8402/ #配置中心 config-server 的地址
+      # 由于我们已经为 config-server 设置了安全保护.需要通过配置的方式在客户端中加入安全信息来通过校验
+      username: user
+      password: 37cc5635-559b-4e6f-b633-7e932b813f73
+      
+      
+management:
+  security:
+    enabled: false
+      
+      
+server:
+  port: 8400      
+    
+eureka:
+  client:
+    service-url:
+      defaultZone: http://www.lxdyun.com:7100/eureka/

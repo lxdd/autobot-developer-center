@@ -42,5 +42,15 @@
 			<version>2.8.0</version>
 		</dependency>
 
+		<!-- Config 客户端还提供了自动重试的功能.通过这样的重试机制， 可以避免一些间歇性问题引起的失败导致客户端应用无法启动的情况 -->
+		<dependency>
+			<groupId>org.springframework.retry</groupId>
+			<artifactId>spring-retry</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
 	</dependencies>
 </project>
