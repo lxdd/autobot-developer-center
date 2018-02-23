@@ -35,6 +35,24 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+			<!-- <dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-config</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-eureka</artifactId>
+			</dependency> -->
+
+			<!-- 链路追踪 sleuth -->
+			<!-- <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-sleuth</artifactId> 
+				</dependency> -->
+			<!-- <dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+			</dependency> -->
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -45,20 +63,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
-		</dependency>
 
-		<!-- 链路追踪 sleuth -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-sleuth</artifactId>
-		</dependency>
 
 		<!-- devtools可以实现页面热部署（即页面修改后会立即生效，这个可以直接在application.properties文件中配置spring.thymeleaf.cache=false来实现）， 
 			实现类文件热部署（类文件修改后不会立即生效），实现对属性文件的热部署。 即devtools会监听classpath下的文件变动，并且会立即重启应用（发生在保存时机），注意：因为其采用的虚拟机机制，该项重启是很快的 -->
@@ -102,5 +107,5 @@
 		<module>api-gateway</module>
 		<module>config-server</module>
 		<module>zipkin-server</module>
-</modules>
+	</modules>
 </project>

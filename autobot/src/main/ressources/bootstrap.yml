@@ -14,7 +14,10 @@ spring:
       # 由于我们已经为 config-server 设置了安全保护.需要通过配置的方式在客户端中加入安全信息来通过校验
       username: user
       password: 37cc5635-559b-4e6f-b633-7e932b813f73
-      
+  zipkin:
+    base-url: http://localhost:9411/
+    enabled: true
+  
       
 management:
   security:
@@ -28,3 +31,5 @@ eureka:
   client:
     service-url:
       defaultZone: http://www.lxdyun.com:7100/eureka/
+      
+      

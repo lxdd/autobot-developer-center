@@ -1,0 +1,8 @@
+# 来指定获取配置文件的 config-server位置
+spring:
+  application:
+    name: zipkin #对应配置文件规则中的{application} 部分
+      
+server:
+  port: 9411      
+    
