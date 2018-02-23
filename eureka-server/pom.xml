@@ -8,9 +8,9 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.autobot</groupId>
-  <artifactId>eureka-service</artifactId>
+  <artifactId>eureka-server</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>eureka-service</name>
+  <name>eureka-server</name>
   <url>http://maven.apache.org</url>
   
   <dependencies>
