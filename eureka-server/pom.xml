@@ -12,5 +12,14 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>eureka-service</name>
   <url>http://maven.apache.org</url>
+  
+  <dependencies>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka-server</artifactId>
+		</dependency>
+
+	</dependencies>
  
 </project>
