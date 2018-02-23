@@ -96,11 +96,11 @@
 
 
 	<modules>
-		<module>eureka-service</module>
-		<module>gateway-service</module>
+		<module>eureka-server</module>
 		<module>autobot-res</module>
 		<module>autobot</module>
 		<module>api-gateway</module>
 		<module>config-server</module>
-	</modules>
+		<module>zipkin-server</module>
+</modules>
 </project>
