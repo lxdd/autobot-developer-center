@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: autobot-res
+  datasource:
+    url: jdbc:mysql://rm-uf6p1li8923139633o.mysql.rds.aliyuncs.com:3306/autobot?useSSL=true
+    username: root
+#    password: lxd0701@
+    password: '{cipher}AQCEPI18XHTLlYs+OzNk643vQxu3c4hVenyAlsM9XI5P7OvaPrqkMA0iL4lxLW9ATUnipepknMUt8m0gInvgQu9Gx7elwevYUM4dMwbRyMzEUlxPGzBaFa/s3MYEWV4O129BhK0dd1VyMsX9lml1WDrCxVle2xoxwAZLGYvWmnr71IfDdpISZW2a69Z/5FUkEJs2DRou1UXvUdkwBKG1x0aBsqweczy9OopWuGxRaMrHmuAn4JZD4hvsdvatT9KhC7VjbYo7LBJySCIauy0w8uIl5Py4Dv01tfSmXWsucjzQYLMO1VGsqpkiqn6hfmZg1qS+GxqqHWXfBLUlEPJ8m+hl5YPe68ubHQDRBa0q/X2Ho3Q4BorZ8OCsWbG2tScGlkQ='
+    driver-class-name: com.mysql.jdbc.Driver
+    tomcat:
+      max-idle: 10
+      max-wait: 10000
+      min-idle: 5
+      initial-size: 5
+      max-active: 20
+    
+server:
+  port: 8400
+  session:
+    timeout: 10
+  tomcat:
+    uri-encoding: UTF-8
+    
+mybatis:
+  mapper-locations:
+  - classpath:mapping/*/*.xml      
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://www.lxdyun.com:7100/eureka/
+      
+from: git-dev-1.0.2
+to: '{cipher}AQDH3kZfSeyIdkhK8MdzlUPDRaAgbgYTZ+RwbJtr3kQ6CejctznhHDHZVE5EkmZBej8k+ke2d+DF7Wybz+NwrAKKy8hmNPbYdMltm92nquvEQZpRWAyYtjSt+gG49Ipd4F1b9yNMCogyFeaWBwYl1bbnRSsJJTpjaTGuxVFdWmhMhBncAVWC107tCNRYD7m+6b74kQpKyXlFFC14Lo1W4+l2+ycSxKJLCde16wlTjhT1YmHtP6jjo58/Dh6FzSNnPegVYeWGnjFuzfzBhNpFz4f4gi+DDvZx3GDO9CylEnkl071LSTvWCMSijT9/lq5kLcbrqhXqJw0yjYahAuvJi+PPJalFsyKoATuRJTvEb/Sgh3FC3wMReuV3ad5CAi/ZFZY='
+
+
+     

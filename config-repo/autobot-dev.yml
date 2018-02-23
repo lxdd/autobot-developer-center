@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: autobot
+  
+    
+server:
+  port: 8403
+  session:
+    timeout: 10
+  tomcat:
+    uri-encoding: UTF-8
+    
+    
+feign:
+  hystrix:
+    enabled: true    
+  
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://www.lxdyun.com:7100/eureka/
+      
+from: git-dev-1.0
