@@ -1,12 +1,17 @@
 package com.autobot.adc.service;
 
-import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.stereotype.Component;
 
 /**
  * @author li_xiaodong
  *
  */
-@FeignClient
-public class ClientFallbackService {
+@Component
+public class ClientFallbackService implements ClientService {
+
+	@Override
+	public String helloCustomer() {
+		return "error";
+	}
 
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @FeignClient(name="autobot-res",fallback=ClientFallbackService.class)
 public interface ClientService {
 	
-	@RequestMapping("/customer/hello")
+	@RequestMapping("/client/")
 	String helloCustomer();
 
 }
