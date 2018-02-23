@@ -14,11 +14,11 @@ spring:
               profiles: dev
               label: master
         git:
-          uri: https://github.com/lxdd/config-center.git  # 配置git仓库的地址
+          uri: https://github.com/lxdd/autobot-developer-center.git  # 配置git仓库的地址
           username: lxdd # git仓库的账号
           password: lxd870701 # git仓库的密码
           search-paths:
-          - /autobot-developer-center 
+          - /config-repo 
 #          basedir:      
 #是指定 一个固定的位置来存储这些重要信息
 
