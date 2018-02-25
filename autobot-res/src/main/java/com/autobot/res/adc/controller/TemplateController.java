@@ -5,6 +5,8 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,9 +38,9 @@ public class TemplateController {
 	@Autowired
 	private TemplateService templateService;
 
-	@ApiOperation("新增文章模板")
+	@ApiOperation("新增文档模板")
 	@PostMapping("")
-	public Template create(@Valid @ApiParam("客源商机") @RequestBody Template template) {
+	public Template create(@Valid @ApiParam("文档") @RequestBody Template template) {
 		logger.info("TemplateController.create : template={}", template.toString());
 		try {
 			templateService.insert(template);
@@ -46,6 +48,15 @@ public class TemplateController {
 			e.printStackTrace();
 		}
 		return template;
+	}
+
+	@ApiOperation("通过ID查询信息")
+	@GetMapping("/{id}")
+	public Template getById(@ApiParam(value = "id", required = true) @PathVariable("id") Integer id) {
+		logger.info("InquiryController.getById : id={}", id);
+		
+		
+		return templateService.getById(id);
 	}
 
 }

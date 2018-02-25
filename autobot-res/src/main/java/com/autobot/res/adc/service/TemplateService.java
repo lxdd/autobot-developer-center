@@ -26,7 +26,7 @@ public class TemplateService {
 	 * @return
 	 */
 
-	public Template getById(int id) throws Exception {
+	public Template getById(int id){
 		Template template = templateMapper.selectByPrimaryKey(id);
 		return template;
 	}

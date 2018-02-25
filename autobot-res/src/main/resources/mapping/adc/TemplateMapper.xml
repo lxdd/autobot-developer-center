@@ -16,7 +16,8 @@
 			property="templateContent" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, template_name, gmt_create, name_create, gmt_modified, name_modified,
+		id, template_name, gmt_create, name_create, gmt_modified,
+		name_modified,
 		is_deleted
 	</sql>
 	<sql id="Blob_Column_List">
@@ -32,25 +33,27 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from adc_template
+		delete from
+		adc_template
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.autobot.res.adc.model.Template">
-		insert into adc_template (id, template_name, gmt_create,
+		insert into adc_template (id,
+		template_name, gmt_create,
 		name_create, gmt_modified, name_modified,
 		is_deleted, template_content)
-		values (#{id,jdbcType=INTEGER}, #{templateName,jdbcType=VARCHAR},
+		values (#{id,jdbcType=INTEGER},
+		#{templateName,jdbcType=VARCHAR},
 		#{gmtCreate,jdbcType=TIMESTAMP},
-		#{nameCreate,jdbcType=VARCHAR}, #{gmtModified,jdbcType=TIMESTAMP}, #{nameModified,jdbcType=VARCHAR},
+		#{nameCreate,jdbcType=VARCHAR}, #{gmtModified,jdbcType=TIMESTAMP},
+		#{nameModified,jdbcType=VARCHAR},
 		#{isDeleted,jdbcType=TINYINT},
 		#{templateContent,jdbcType=LONGVARCHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.autobot.res.adc.model.Template">
+	<insert id="insertSelective" parameterType="com.autobot.res.adc.model.Template"
+		useGeneratedKeys="true" keyProperty="id">
 		insert into adc_template
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				id,
-			</if>
 			<if test="templateName != null">
 				template_name,
 			</if>
@@ -74,9 +77,6 @@
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=INTEGER},
-			</if>
 			<if test="templateName != null">
 				#{templateName,jdbcType=VARCHAR},
 			</if>
@@ -122,30 +122,43 @@
 				is_deleted = #{isDeleted,jdbcType=TINYINT},
 			</if>
 			<if test="templateContent != null">
-				template_content = #{templateContent,jdbcType=LONGVARCHAR},
+				template_content =
+				#{templateContent,jdbcType=LONGVARCHAR},
 			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.autobot.res.adc.model.Template">
-		update adc_template
+		update
+		adc_template
 		set template_name = #{templateName,jdbcType=VARCHAR},
 		gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-		name_create = #{nameCreate,jdbcType=VARCHAR},
-		gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-		name_modified = #{nameModified,jdbcType=VARCHAR},
-		is_deleted = #{isDeleted,jdbcType=TINYINT},
-		template_content = #{templateContent,jdbcType=LONGVARCHAR}
-		where id = #{id,jdbcType=INTEGER}
+		name_create =
+		#{nameCreate,jdbcType=VARCHAR},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		name_modified =
+		#{nameModified,jdbcType=VARCHAR},
+		is_deleted =
+		#{isDeleted,jdbcType=TINYINT},
+		template_content =
+		#{templateContent,jdbcType=LONGVARCHAR}
+		where id =
+		#{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.autobot.res.adc.model.Template">
-		update adc_template
+		update
+		adc_template
 		set template_name = #{templateName,jdbcType=VARCHAR},
 		gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-		name_create = #{nameCreate,jdbcType=VARCHAR},
-		gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-		name_modified = #{nameModified,jdbcType=VARCHAR},
-		is_deleted = #{isDeleted,jdbcType=TINYINT}
+		name_create =
+		#{nameCreate,jdbcType=VARCHAR},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		name_modified =
+		#{nameModified,jdbcType=VARCHAR},
+		is_deleted =
+		#{isDeleted,jdbcType=TINYINT}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 
