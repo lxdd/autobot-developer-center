@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.autobot.adc.bo.TemplateBO;
+import com.autobot.adc.service.TemplateService;
 import com.autobot.adc.vo.TemplateVO;
 import com.autobot.base.support.PageResult;
 import com.autobot.base.support.Result;
@@ -41,17 +43,19 @@ public class TemplateController {
 
 	private static final Logger logger = LoggerFactory.getLogger(TemplateController.class);
 
-	// @Autowired
-	// TemplateService templateService;
+	@Autowired
+	private TemplateService templateService;
 
 	@ApiOperation("新增文档模板")
 	@PostMapping("")
-	public Result<Integer> create(@Valid @ApiParam("文档模板信息") @RequestBody TemplateVO template) {
+	public Result<Integer> create(@Valid @ApiParam("文档模板信息") @RequestBody TemplateVO templateVO) {
 
-		logger.info("TemplateController.create : template={}", template.toString());
+		logger.info("TemplateController.create : template={}", templateVO.toString());
 
 		// 构建返回
 		Result<Integer> result = new Result<Integer>();
+
+		TemplateBO bo = templateService.create(templateVO);
 
 		result.setData(1);
 

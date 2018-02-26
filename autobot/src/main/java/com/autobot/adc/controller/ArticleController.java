@@ -74,7 +74,8 @@ public class ArticleController {
 
 	@ApiOperation("删除文档")
 	@DeleteMapping("/{articleId}")
-	public Result<Object> delete(@ApiParam(value = "文档模板id", required = true) @PathVariable(value = "articleId") Integer articleId) {
+	public Result<Object> delete(
+			@ApiParam(value = "文档模板id", required = true) @PathVariable(value = "articleId") Integer articleId) {
 
 		logger.info("ArticleController.delete : articleId={}", articleId);
 
@@ -87,7 +88,8 @@ public class ArticleController {
 
 	@ApiOperation("通过ID查询文档详情")
 	@GetMapping("/{articleId}")
-	public Result<ArticleBO> getById(@ApiParam(value = "articleId", required = true) @PathVariable("articleId") Integer articleId) {
+	public Result<ArticleBO> getById(
+			@ApiParam(value = "articleId", required = true) @PathVariable("articleId") Integer articleId) {
 		logger.info("ArticleController.getById : articleId={}", articleId);
 
 		// 构建返回

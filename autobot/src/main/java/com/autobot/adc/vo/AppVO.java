@@ -2,7 +2,7 @@ package com.autobot.adc.vo;
 
 import java.util.Date;
 
-public class App {
+public class AppVO {
     private Integer appId;
 
     private String appCode;

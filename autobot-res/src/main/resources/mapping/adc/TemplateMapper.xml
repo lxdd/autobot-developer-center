@@ -32,7 +32,7 @@
 		from adc_template
 		where id = #{id,jdbcType=INTEGER}
 	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+	<!-- <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		adc_template
 		where id = #{id,jdbcType=INTEGER}
@@ -161,7 +161,7 @@
 		#{isDeleted,jdbcType=TINYINT}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-
+ -->
 	<!-- 手动添加 begin -->
 
 	<!-- 逻辑删除 -->
@@ -175,5 +175,67 @@
 			id = #{id,jdbcType=INTEGER}
 		</where>
 	</delete>
+
+	<!-- 分页 -->
+	<!-- <select id="listTemplate" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from adc_template
+		<where>
+			is_deleted = 0
+			<if test="query.templateName != null">
+				template_name = #{query.templateName,jdbcType=VARCHAR},
+			</if>
+			<if test="query.gmtCreate != null">
+				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.nameCreate != null">
+				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="query.gmtModified != null">
+				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.nameModified != null">
+				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+			</if>
+			<if test="query.templateContent != null">
+				template_content =
+				#{query.templateContent,jdbcType=LONGVARCHAR},
+			</if>
+		</where>
+		order by gmt_create desc
+		<if test="offset!=null and limit!=null ">
+			LIMIT #{offset} , #{limit}
+		</if>
+	</select> -->
+
+	<!-- 分页 -->
+	<!-- <select id="count" resultType="java.lang.Integer">
+		select
+		count(*)
+		from adc_template
+		<where>
+			is_deleted = 0
+			<if test="query.templateName != null">
+				template_name = #{query.templateName,jdbcType=VARCHAR},
+			</if>
+			<if test="query.gmtCreate != null">
+				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.nameCreate != null">
+				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="query.gmtModified != null">
+				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.nameModified != null">
+				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+			</if>
+			<if test="query.templateContent != null">
+				template_content =
+				#{query.templateContent,jdbcType=LONGVARCHAR},
+			</if>
+		</where>
+	</select> -->
 
 </mapper>

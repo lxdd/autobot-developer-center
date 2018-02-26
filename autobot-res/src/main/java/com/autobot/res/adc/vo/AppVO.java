@@ -1,8 +1,8 @@
-package com.autobot.adc.bo;
+package com.autobot.res.adc.vo;
 
 import java.util.Date;
 
-public class App {
+public class AppVO {
     private Integer appId;
 
     private String appCode;

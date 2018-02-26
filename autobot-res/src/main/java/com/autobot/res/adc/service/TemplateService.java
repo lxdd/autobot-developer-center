@@ -1,11 +1,14 @@
 package com.autobot.res.adc.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.autobot.res.adc.dao.TemplateMapper;
 import com.autobot.res.adc.model.Template;
+import com.autobot.res.adc.vo.TemplateQuery;
 
 /**
  * 
@@ -49,7 +52,7 @@ public class TemplateService {
 	 * @return
 	 */
 
-	public int update(Template template) throws Exception {
+	public int update(Template template) {
 		int count = templateMapper.updateByPrimaryKeySelective(template);
 		return count;
 	}
@@ -61,9 +64,29 @@ public class TemplateService {
 	 * @return
 	 */
 
-	public int delete(int id) throws Exception {
+	public int delete(int id) {
 		int count = templateMapper.deleteById(id);
 		return count;
 	}
+
+	/**
+	 * 列表查询
+	 * 
+	 * @param query
+	 * @return
+	 */
+//	public List<Template> listTemplate(TemplateQuery query, Integer offset, Integer limit) {
+//		List<Template> templateList = templateMapper.listTemplate(query, offset, limit);
+//		return templateList;
+//	}
+
+	/**
+	 * @param query
+	 * @return
+	 */
+//	public int count(TemplateQuery query) {
+//		int count = templateMapper.count(query);
+//		return count;
+//	}
 
 }

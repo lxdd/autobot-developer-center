@@ -1,7 +1,10 @@
 package com.autobot.res.adc.dao;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.autobot.res.adc.model.Article;
 
+@Mapper
 public interface ArticleMapper {
     int deleteByPrimaryKey(Integer articleId);
 

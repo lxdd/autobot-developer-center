@@ -1,7 +1,10 @@
 package com.autobot.res.adc.dao;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.autobot.res.adc.model.Serve;
 
+@Mapper
 public interface ServeMapper {
     int deleteByPrimaryKey(Integer serveId);
 
