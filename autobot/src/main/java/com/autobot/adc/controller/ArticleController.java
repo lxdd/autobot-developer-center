@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.autobot.adc.bo.TemplateBO;
-import com.autobot.adc.vo.TemplateVO;
+import com.autobot.adc.bo.ArticleBO;
+import com.autobot.adc.vo.ArticleVO;
 import com.autobot.base.support.PageResult;
 import com.autobot.base.support.Result;
 
@@ -28,27 +28,27 @@ import io.swagger.annotations.ApiParam;
 
 /**
  * 
- * 文档模板
+ * 文档
  * 
  * 
  * @author li_xiaodong
  *
  */
 @RestController
-@RequestMapping("template")
-@Api(value = "文档模板", tags = "文档模板接口")
-public class TemplateController {
+@RequestMapping("article")
+@Api(value = "文档", tags = "文档接口")
+public class ArticleController {
 
-	private static final Logger logger = LoggerFactory.getLogger(TemplateController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ArticleController.class);
 
 	// @Autowired
 	// TemplateService templateService;
 
-	@ApiOperation("新增文档模板")
+	@ApiOperation("新增文档")
 	@PostMapping("")
-	public Result<Integer> create(@Valid @ApiParam("文档模板信息") @RequestBody TemplateVO template) {
+	public Result<Integer> create(@Valid @ApiParam("文档信息") @RequestBody ArticleVO articleVO) {
 
-		logger.info("TemplateController.create : template={}", template.toString());
+		logger.info("ArticleController.create : template={}", articleVO.toString());
 
 		// 构建返回
 		Result<Integer> result = new Result<Integer>();
@@ -59,11 +59,12 @@ public class TemplateController {
 
 	}
 
-	@ApiOperation("修改文档模板")
-	@PutMapping("/{id}")
-	public Result<Object> update(@ApiParam(value = "文档模板id", required = true) @PathVariable(value = "id") Integer id,
-			@ApiParam("文档模板信息") @RequestBody TemplateVO template) {
-		logger.info("TemplateController.update : template={}", template.toString());
+	@ApiOperation("修改文档")
+	@PutMapping("/{articleId}")
+	public Result<Object> update(
+			@ApiParam(value = "文档模板id", required = true) @PathVariable(value = "articleId") Integer articleId,
+			@ApiParam("文档信息") @RequestBody ArticleVO articleVO) {
+		logger.info("ArticleController.update : articleVO={}", articleVO.toString());
 
 		// 构建返回
 		Result<Object> result = new Result<>();
@@ -71,11 +72,11 @@ public class TemplateController {
 		return result;
 	}
 
-	@ApiOperation("删除文档模板")
-	@DeleteMapping("/{id}")
-	public Result<Object> delete(@ApiParam(value = "文档模板id", required = true) @PathVariable(value = "id") Integer id) {
+	@ApiOperation("删除文档")
+	@DeleteMapping("/{articleId}")
+	public Result<Object> delete(@ApiParam(value = "文档模板id", required = true) @PathVariable(value = "articleId") Integer articleId) {
 
-		logger.info("TemplateController.delete : id={}", id);
+		logger.info("ArticleController.delete : articleId={}", articleId);
 
 		// 构建返回
 		Result<Object> result = new Result<>();
@@ -84,32 +85,32 @@ public class TemplateController {
 
 	}
 
-	@ApiOperation("通过ID查询文档模板详情")
-	@GetMapping("/{id}")
-	public Result<TemplateBO> getById(@ApiParam(value = "id", required = true) @PathVariable("id") Integer id) {
-		logger.info("InquiryController.getById : id={}", id);
+	@ApiOperation("通过ID查询文档详情")
+	@GetMapping("/{articleId}")
+	public Result<ArticleBO> getById(@ApiParam(value = "articleId", required = true) @PathVariable("articleId") Integer articleId) {
+		logger.info("ArticleController.getById : articleId={}", articleId);
 
 		// 构建返回
-		Result<TemplateBO> result = new Result<TemplateBO>();
+		Result<ArticleBO> result = new Result<ArticleBO>();
 
-		TemplateBO bo = new TemplateBO();
+		ArticleBO bo = new ArticleBO();
 		result.setData(bo);
 
 		return result;
 
 	}
 
-	@ApiOperation("文档模板搜索")
+	@ApiOperation("文档搜索")
 	@PostMapping("/search")
-	public PageResult<List<TemplateBO>> getInquiryBySearch(@RequestBody TemplateVO TemplateVo,
+	public PageResult<List<ArticleBO>> getInquiryBySearch(@RequestBody ArticleVO ArticleVo,
 			@ApiParam(value = "每页显示条数", required = true) @RequestParam("current") Integer current,
 			@ApiParam(value = "页号", required = true) @RequestParam("pageIndex") Integer pageIndex) {
 
 		// 构建返回
-		PageResult<List<TemplateBO>> result = new PageResult<List<TemplateBO>>();
+		PageResult<List<ArticleBO>> result = new PageResult<List<ArticleBO>>();
 
-		List<TemplateBO> boList = new ArrayList<>();
-		TemplateBO bo = new TemplateBO();
+		List<ArticleBO> boList = new ArrayList<>();
+		ArticleBO bo = new ArticleBO();
 		boList.add(bo);
 
 		result.setData(boList);

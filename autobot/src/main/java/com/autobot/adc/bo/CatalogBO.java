@@ -1,8 +1,8 @@
-package com.autobot.adc.vo;
+package com.autobot.adc.bo;
 
 import java.util.Date;
 
-public class Catalog {
+public class CatalogBO {
     private Integer id;
 
     private Integer parentId;

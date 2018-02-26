@@ -2,7 +2,7 @@ package com.autobot.adc.bo;
 
 import java.util.Date;
 
-public class Serve {
+public class ServeBO {
     private Integer serveId;
 
     private String serveName;
