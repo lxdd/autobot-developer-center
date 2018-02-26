@@ -14,10 +14,9 @@ import com.autobot.res.adc.model.Template;
  */
 @Service("templateService")
 public class TemplateService {
-	
+
 	@Resource
 	private TemplateMapper templateMapper;
-	
 
 	/**
 	 * 查看
@@ -26,11 +25,11 @@ public class TemplateService {
 	 * @return
 	 */
 
-	public Template getById(int id){
+	public Template getById(int id) {
 		Template template = templateMapper.selectByPrimaryKey(id);
 		return template;
 	}
-	
+
 	/**
 	 * 创建
 	 * 
@@ -38,7 +37,7 @@ public class TemplateService {
 	 * @return
 	 */
 
-	public int insert(Template template) throws Exception {
+	public int insert(Template template) {
 		int count = templateMapper.insertSelective(template);
 		return count;
 	}
@@ -54,7 +53,7 @@ public class TemplateService {
 		int count = templateMapper.updateByPrimaryKeySelective(template);
 		return count;
 	}
-	
+
 	/**
 	 * 删除
 	 * 

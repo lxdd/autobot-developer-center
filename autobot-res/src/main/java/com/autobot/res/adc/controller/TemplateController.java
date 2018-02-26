@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.autobot.res.adc.model.Template;
@@ -41,12 +40,10 @@ public class TemplateController {
 	@ApiOperation("新增文档模板")
 	@PostMapping("")
 	public Template create(@Valid @ApiParam("文档") @RequestBody Template template) {
+		
 		logger.info("TemplateController.create : template={}", template.toString());
-		try {
-			templateService.insert(template);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		templateService.insert(template);
+
 		return template;
 	}
 
@@ -54,8 +51,7 @@ public class TemplateController {
 	@GetMapping("/{id}")
 	public Template getById(@ApiParam(value = "id", required = true) @PathVariable("id") Integer id) {
 		logger.info("InquiryController.getById : id={}", id);
-		
-		
+
 		return templateService.getById(id);
 	}
 
