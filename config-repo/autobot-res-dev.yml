@@ -4,8 +4,8 @@ spring:
   datasource:
     url: jdbc:mysql://rm-uf6p1li8923139633o.mysql.rds.aliyuncs.com:3306/autobot?useSSL=true
     username: root
-    password: lxd0701@
-#    password: '{cipher}AQCEPI18XHTLlYs+OzNk643vQxu3c4hVenyAlsM9XI5P7OvaPrqkMA0iL4lxLW9ATUnipepknMUt8m0gInvgQu9Gx7elwevYUM4dMwbRyMzEUlxPGzBaFa/s3MYEWV4O129BhK0dd1VyMsX9lml1WDrCxVle2xoxwAZLGYvWmnr71IfDdpISZW2a69Z/5FUkEJs2DRou1UXvUdkwBKG1x0aBsqweczy9OopWuGxRaMrHmuAn4JZD4hvsdvatT9KhC7VjbYo7LBJySCIauy0w8uIl5Py4Dv01tfSmXWsucjzQYLMO1VGsqpkiqn6hfmZg1qS+GxqqHWXfBLUlEPJ8m+hl5YPe68ubHQDRBa0q/X2Ho3Q4BorZ8OCsWbG2tScGlkQ='
+#    password: lxd0701@
+    password: '{cipher}AQAelpzn/tGihbTOaBticSBtfGWU5ryBmwQVSHCAk/FTVWlmhSY6Zewnt1MNUOBK5ZdHfVHmiCFvGnGzpxpotl4pr5QlcfI53LhWf2vT/In6beHaY5/CK5zGywTEWZdADpufVPS+EeXcUBgmYzwbRPDQtLmKyJ05S9jXtbKU4HtFaHSggaM15tJMo83sHpMG/+rxECWPTgjYzimUqm2aubqIi4qd2ejv7bcDB3kCUT4PnQ7v5f+ndqKn97eqRHGVHwVg5r5v7ZkVD6fFxXHfe02B5svBoDFe8O7cyrNau/LrCNqewPN0g1l4Hz3eM1hFkSuz+zrVFJojT3Jj3LV2L/WGi56MYZG8Q9NQAYJzBzKalGBfdD9U0usVdVe7tc8nDls='
     driver-class-name: com.mysql.jdbc.Driver
     tomcat:
       max-idle: 10
