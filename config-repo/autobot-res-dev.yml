@@ -23,7 +23,7 @@ server:
     
 mybatis:
   mapper-locations:
-  - classpath:mapping/adc/*.xml      
+  - classpath:mapping/*/*.xml     
   
 eureka:
   client:
