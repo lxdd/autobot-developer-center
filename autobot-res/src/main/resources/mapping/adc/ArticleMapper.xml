@@ -1,184 +1,305 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.autobot.res.adc.dao.ArticleMapper">
-  <resultMap id="BaseResultMap" type="com.autobot.res.adc.model.Article">
-    <id column="article_id" jdbcType="INTEGER" property="articleId" />
-    <result column="serve_id" jdbcType="INTEGER" property="serveId" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="type" jdbcType="TINYINT" property="type" />
-    <result column="interface_path" jdbcType="VARCHAR" property="interfacePath" />
-    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
-    <result column="name_create" jdbcType="VARCHAR" property="nameCreate" />
-    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
-    <result column="name_modified" jdbcType="VARCHAR" property="nameModified" />
-    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.autobot.res.adc.model.Article">
-    <result column="content" jdbcType="LONGVARCHAR" property="content" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    article_id, serve_id, title, `type`, interface_path, gmt_create, name_create, gmt_modified, 
-    name_modified, is_deleted
-  </sql>
-  <sql id="Blob_Column_List">
-    content
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from adc_article
-    where article_id = #{articleId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from adc_article
-    where article_id = #{articleId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.autobot.res.adc.model.Article">
-    insert into adc_article (article_id, serve_id, title, 
-      `type`, interface_path, gmt_create, 
-      name_create, gmt_modified, name_modified, 
-      is_deleted, content)
-    values (#{articleId,jdbcType=INTEGER}, #{serveId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
-      #{type,jdbcType=TINYINT}, #{interfacePath,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
-      #{nameCreate,jdbcType=VARCHAR}, #{gmtModified,jdbcType=TIMESTAMP}, #{nameModified,jdbcType=VARCHAR}, 
-      #{isDeleted,jdbcType=TINYINT}, #{content,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.autobot.res.adc.model.Article">
-    insert into adc_article
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="articleId != null">
-        article_id,
-      </if>
-      <if test="serveId != null">
-        serve_id,
-      </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="type != null">
-        `type`,
-      </if>
-      <if test="interfacePath != null">
-        interface_path,
-      </if>
-      <if test="gmtCreate != null">
-        gmt_create,
-      </if>
-      <if test="nameCreate != null">
-        name_create,
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified,
-      </if>
-      <if test="nameModified != null">
-        name_modified,
-      </if>
-      <if test="isDeleted != null">
-        is_deleted,
-      </if>
-      <if test="content != null">
-        content,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="articleId != null">
-        #{articleId,jdbcType=INTEGER},
-      </if>
-      <if test="serveId != null">
-        #{serveId,jdbcType=INTEGER},
-      </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=TINYINT},
-      </if>
-      <if test="interfacePath != null">
-        #{interfacePath,jdbcType=VARCHAR},
-      </if>
-      <if test="gmtCreate != null">
-        #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nameCreate != null">
-        #{nameCreate,jdbcType=VARCHAR},
-      </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nameModified != null">
-        #{nameModified,jdbcType=VARCHAR},
-      </if>
-      <if test="isDeleted != null">
-        #{isDeleted,jdbcType=TINYINT},
-      </if>
-      <if test="content != null">
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.autobot.res.adc.model.Article">
-    update adc_article
-    <set>
-      <if test="serveId != null">
-        serve_id = #{serveId,jdbcType=INTEGER},
-      </if>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        `type` = #{type,jdbcType=TINYINT},
-      </if>
-      <if test="interfacePath != null">
-        interface_path = #{interfacePath,jdbcType=VARCHAR},
-      </if>
-      <if test="gmtCreate != null">
-        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nameCreate != null">
-        name_create = #{nameCreate,jdbcType=VARCHAR},
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nameModified != null">
-        name_modified = #{nameModified,jdbcType=VARCHAR},
-      </if>
-      <if test="isDeleted != null">
-        is_deleted = #{isDeleted,jdbcType=TINYINT},
-      </if>
-      <if test="content != null">
-        content = #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where article_id = #{articleId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.autobot.res.adc.model.Article">
-    update adc_article
-    set serve_id = #{serveId,jdbcType=INTEGER},
-      title = #{title,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=TINYINT},
-      interface_path = #{interfacePath,jdbcType=VARCHAR},
-      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      name_create = #{nameCreate,jdbcType=VARCHAR},
-      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      name_modified = #{nameModified,jdbcType=VARCHAR},
-      is_deleted = #{isDeleted,jdbcType=TINYINT},
-      content = #{content,jdbcType=LONGVARCHAR}
-    where article_id = #{articleId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.autobot.res.adc.model.Article">
-    update adc_article
-    set serve_id = #{serveId,jdbcType=INTEGER},
-      title = #{title,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=TINYINT},
-      interface_path = #{interfacePath,jdbcType=VARCHAR},
-      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      name_create = #{nameCreate,jdbcType=VARCHAR},
-      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      name_modified = #{nameModified,jdbcType=VARCHAR},
-      is_deleted = #{isDeleted,jdbcType=TINYINT}
-    where article_id = #{articleId,jdbcType=INTEGER}
-  </update>
+	<resultMap id="BaseResultMap" type="com.autobot.res.adc.model.Article">
+		<id column="article_id" jdbcType="INTEGER" property="articleId" />
+		<result column="serve_id" jdbcType="INTEGER" property="serveId" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="type" jdbcType="TINYINT" property="type" />
+		<result column="interface_path" jdbcType="VARCHAR" property="interfacePath" />
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+		<result column="name_create" jdbcType="VARCHAR" property="nameCreate" />
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+		<result column="name_modified" jdbcType="VARCHAR" property="nameModified" />
+		<result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+		type="com.autobot.res.adc.model.Article">
+		<result column="content" jdbcType="LONGVARCHAR" property="content" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		article_id, serve_id, title, `type`, interface_path,
+		gmt_create, name_create,
+		gmt_modified,
+		name_modified, is_deleted
+	</sql>
+	<sql id="Blob_Column_List">
+		content
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from adc_article
+		where article_id = #{articleId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		adc_article
+		where article_id = #{articleId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.autobot.res.adc.model.Article">
+		insert into adc_article
+		(article_id, serve_id, title,
+		`type`, interface_path, gmt_create,
+		name_create, gmt_modified, name_modified,
+		is_deleted, content)
+		values
+		(#{articleId,jdbcType=INTEGER}, #{serveId,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{type,jdbcType=TINYINT},
+		#{interfacePath,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
+		#{nameCreate,jdbcType=VARCHAR}, #{gmtModified,jdbcType=TIMESTAMP},
+		#{nameModified,jdbcType=VARCHAR},
+		#{isDeleted,jdbcType=TINYINT},
+		#{content,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.autobot.res.adc.model.Article">
+		insert into adc_article
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="articleId != null">
+				article_id,
+			</if>
+			<if test="serveId != null">
+				serve_id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="type != null">
+				`type`,
+			</if>
+			<if test="interfacePath != null">
+				interface_path,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="nameCreate != null">
+				name_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="nameModified != null">
+				name_modified,
+			</if>
+			<if test="isDeleted != null">
+				is_deleted,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="articleId != null">
+				#{articleId,jdbcType=INTEGER},
+			</if>
+			<if test="serveId != null">
+				#{serveId,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=TINYINT},
+			</if>
+			<if test="interfacePath != null">
+				#{interfacePath,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nameCreate != null">
+				#{nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nameModified != null">
+				#{nameModified,jdbcType=VARCHAR},
+			</if>
+			<if test="isDeleted != null">
+				#{isDeleted,jdbcType=TINYINT},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.autobot.res.adc.model.Article">
+		update adc_article
+		<set>
+			<if test="serveId != null">
+				serve_id = #{serveId,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				`type` = #{type,jdbcType=TINYINT},
+			</if>
+			<if test="interfacePath != null">
+				interface_path = #{interfacePath,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nameCreate != null">
+				name_create = #{nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nameModified != null">
+				name_modified = #{nameModified,jdbcType=VARCHAR},
+			</if>
+			<if test="isDeleted != null">
+				is_deleted = #{isDeleted,jdbcType=TINYINT},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where article_id = #{articleId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.autobot.res.adc.model.Article">
+		update
+		adc_article
+		set serve_id = #{serveId,jdbcType=INTEGER},
+		title =
+		#{title,jdbcType=VARCHAR},
+		`type` = #{type,jdbcType=TINYINT},
+		interface_path = #{interfacePath,jdbcType=VARCHAR},
+		gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		name_create =
+		#{nameCreate,jdbcType=VARCHAR},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		name_modified =
+		#{nameModified,jdbcType=VARCHAR},
+		is_deleted =
+		#{isDeleted,jdbcType=TINYINT},
+		content =
+		#{content,jdbcType=LONGVARCHAR}
+		where article_id =
+		#{articleId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.autobot.res.adc.model.Article">
+		update adc_article
+		set serve_id = #{serveId,jdbcType=INTEGER},
+		title =
+		#{title,jdbcType=VARCHAR},
+		`type` = #{type,jdbcType=TINYINT},
+		interface_path = #{interfacePath,jdbcType=VARCHAR},
+		gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		name_create =
+		#{nameCreate,jdbcType=VARCHAR},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		name_modified =
+		#{nameModified,jdbcType=VARCHAR},
+		is_deleted =
+		#{isDeleted,jdbcType=TINYINT}
+		where article_id =
+		#{articleId,jdbcType=INTEGER}
+	</update>
+
+	<!-- 手动添加 begin -->
+
+	<!-- 逻辑删除 -->
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		UPDATE adc_article
+		<set>
+			gmt_modified = now(),
+			is_deleted=1
+		</set>
+		<where>
+			article_id = #{articleId,jdbcType=INTEGER}
+		</where>
+	</delete>
+
+	<!-- 分页 -->
+	<select id="listArticle" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from adc_article
+		<where>
+			is_deleted = 0
+			<if test="query.serveId != null">
+				serve_id = #{query.serveId,jdbcType=INTEGER},
+			</if>
+			<if test="query.title != null">
+				title = #{query.title,jdbcType=VARCHAR},
+			</if>
+			<if test="query.type != null">
+				`type` = #{query.type,jdbcType=TINYINT},
+			</if>
+			<if test="query.interfacePath != null">
+				interface_path = #{query.interfacePath,jdbcType=VARCHAR},
+			</if>
+			<if test="query.gmtCreate != null">
+				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.nameCreate != null">
+				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="query.gmtModified != null">
+				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.nameModified != null">
+				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+			</if>
+			<if test="query.content != null">
+				content = #{query.content,jdbcType=LONGVARCHAR},
+			</if>
+		</where>
+		order by gmt_create desc
+		<if test="offset!=null and limit!=null ">
+			LIMIT #{offset} , #{limit}
+		</if>
+	</select>
+
+	<!-- 分页 -->
+	<select id="count" resultType="java.lang.Integer">
+		select
+		count(*)
+		from adc_article
+		<where>
+			is_deleted = 0
+			<if test="query.serveId != null">
+				serve_id = #{query.serveId,jdbcType=INTEGER},
+			</if>
+			<if test="query.title != null">
+				title = #{query.title,jdbcType=VARCHAR},
+			</if>
+			<if test="query.type != null">
+				`type` = #{query.type,jdbcType=TINYINT},
+			</if>
+			<if test="query.interfacePath != null">
+				interface_path = #{query.interfacePath,jdbcType=VARCHAR},
+			</if>
+			<if test="query.gmtCreate != null">
+				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.nameCreate != null">
+				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="query.gmtModified != null">
+				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.nameModified != null">
+				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+			</if>
+			<if test="query.content != null">
+				content = #{query.content,jdbcType=LONGVARCHAR},
+			</if>
+		</where>
+	</select>
+
+
 </mapper>

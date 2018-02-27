@@ -1,142 +1,242 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.autobot.res.adc.dao.ServeMapper">
-  <resultMap id="BaseResultMap" type="com.autobot.res.adc.model.Serve">
-    <id column="serve_id" jdbcType="INTEGER" property="serveId" />
-    <result column="serve_name" jdbcType="VARCHAR" property="serveName" />
-    <result column="serve_addr" jdbcType="VARCHAR" property="serveAddr" />
-    <result column="serve_remark" jdbcType="VARCHAR" property="serveRemark" />
-    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
-    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
-    <result column="name_create" jdbcType="VARCHAR" property="nameCreate" />
-    <result column="name_modified" jdbcType="VARCHAR" property="nameModified" />
-    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    serve_id, serve_name, serve_addr, serve_remark, gmt_create, gmt_modified, name_create, 
-    name_modified, is_deleted
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from adc_serve
-    where serve_id = #{serveId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from adc_serve
-    where serve_id = #{serveId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.autobot.res.adc.model.Serve">
-    insert into adc_serve (serve_id, serve_name, serve_addr, 
-      serve_remark, gmt_create, gmt_modified, 
-      name_create, name_modified, is_deleted
-      )
-    values (#{serveId,jdbcType=INTEGER}, #{serveName,jdbcType=VARCHAR}, #{serveAddr,jdbcType=VARCHAR}, 
-      #{serveRemark,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
-      #{nameCreate,jdbcType=VARCHAR}, #{nameModified,jdbcType=VARCHAR}, #{isDeleted,jdbcType=TINYINT}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.autobot.res.adc.model.Serve">
-    insert into adc_serve
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="serveId != null">
-        serve_id,
-      </if>
-      <if test="serveName != null">
-        serve_name,
-      </if>
-      <if test="serveAddr != null">
-        serve_addr,
-      </if>
-      <if test="serveRemark != null">
-        serve_remark,
-      </if>
-      <if test="gmtCreate != null">
-        gmt_create,
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified,
-      </if>
-      <if test="nameCreate != null">
-        name_create,
-      </if>
-      <if test="nameModified != null">
-        name_modified,
-      </if>
-      <if test="isDeleted != null">
-        is_deleted,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="serveId != null">
-        #{serveId,jdbcType=INTEGER},
-      </if>
-      <if test="serveName != null">
-        #{serveName,jdbcType=VARCHAR},
-      </if>
-      <if test="serveAddr != null">
-        #{serveAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="serveRemark != null">
-        #{serveRemark,jdbcType=VARCHAR},
-      </if>
-      <if test="gmtCreate != null">
-        #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nameCreate != null">
-        #{nameCreate,jdbcType=VARCHAR},
-      </if>
-      <if test="nameModified != null">
-        #{nameModified,jdbcType=VARCHAR},
-      </if>
-      <if test="isDeleted != null">
-        #{isDeleted,jdbcType=TINYINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.autobot.res.adc.model.Serve">
-    update adc_serve
-    <set>
-      <if test="serveName != null">
-        serve_name = #{serveName,jdbcType=VARCHAR},
-      </if>
-      <if test="serveAddr != null">
-        serve_addr = #{serveAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="serveRemark != null">
-        serve_remark = #{serveRemark,jdbcType=VARCHAR},
-      </if>
-      <if test="gmtCreate != null">
-        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nameCreate != null">
-        name_create = #{nameCreate,jdbcType=VARCHAR},
-      </if>
-      <if test="nameModified != null">
-        name_modified = #{nameModified,jdbcType=VARCHAR},
-      </if>
-      <if test="isDeleted != null">
-        is_deleted = #{isDeleted,jdbcType=TINYINT},
-      </if>
-    </set>
-    where serve_id = #{serveId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.autobot.res.adc.model.Serve">
-    update adc_serve
-    set serve_name = #{serveName,jdbcType=VARCHAR},
-      serve_addr = #{serveAddr,jdbcType=VARCHAR},
-      serve_remark = #{serveRemark,jdbcType=VARCHAR},
-      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      name_create = #{nameCreate,jdbcType=VARCHAR},
-      name_modified = #{nameModified,jdbcType=VARCHAR},
-      is_deleted = #{isDeleted,jdbcType=TINYINT}
-    where serve_id = #{serveId,jdbcType=INTEGER}
-  </update>
+	<resultMap id="BaseResultMap" type="com.autobot.res.adc.model.Serve">
+		<id column="serve_id" jdbcType="INTEGER" property="serveId" />
+		<result column="serve_name" jdbcType="VARCHAR" property="serveName" />
+		<result column="serve_addr" jdbcType="VARCHAR" property="serveAddr" />
+		<result column="serve_remark" jdbcType="VARCHAR" property="serveRemark" />
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+		<result column="name_create" jdbcType="VARCHAR" property="nameCreate" />
+		<result column="name_modified" jdbcType="VARCHAR" property="nameModified" />
+		<result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		serve_id, serve_name, serve_addr, serve_remark, gmt_create,
+		gmt_modified,
+		name_create,
+		name_modified, is_deleted
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from adc_serve
+		where serve_id = #{serveId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		adc_serve
+		where serve_id = #{serveId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.autobot.res.adc.model.Serve">
+		insert into adc_serve
+		(serve_id, serve_name, serve_addr,
+		serve_remark, gmt_create,
+		gmt_modified,
+		name_create, name_modified, is_deleted
+		)
+		values
+		(#{serveId,jdbcType=INTEGER}, #{serveName,jdbcType=VARCHAR},
+		#{serveAddr,jdbcType=VARCHAR},
+		#{serveRemark,jdbcType=VARCHAR},
+		#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP},
+		#{nameCreate,jdbcType=VARCHAR}, #{nameModified,jdbcType=VARCHAR},
+		#{isDeleted,jdbcType=TINYINT}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.autobot.res.adc.model.Serve">
+		insert into adc_serve
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="serveId != null">
+				serve_id,
+			</if>
+			<if test="serveName != null">
+				serve_name,
+			</if>
+			<if test="serveAddr != null">
+				serve_addr,
+			</if>
+			<if test="serveRemark != null">
+				serve_remark,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="nameCreate != null">
+				name_create,
+			</if>
+			<if test="nameModified != null">
+				name_modified,
+			</if>
+			<if test="isDeleted != null">
+				is_deleted,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="serveId != null">
+				#{serveId,jdbcType=INTEGER},
+			</if>
+			<if test="serveName != null">
+				#{serveName,jdbcType=VARCHAR},
+			</if>
+			<if test="serveAddr != null">
+				#{serveAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="serveRemark != null">
+				#{serveRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nameCreate != null">
+				#{nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="nameModified != null">
+				#{nameModified,jdbcType=VARCHAR},
+			</if>
+			<if test="isDeleted != null">
+				#{isDeleted,jdbcType=TINYINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.autobot.res.adc.model.Serve">
+		update adc_serve
+		<set>
+			<if test="serveName != null">
+				serve_name = #{serveName,jdbcType=VARCHAR},
+			</if>
+			<if test="serveAddr != null">
+				serve_addr = #{serveAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="serveRemark != null">
+				serve_remark = #{serveRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nameCreate != null">
+				name_create = #{nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="nameModified != null">
+				name_modified = #{nameModified,jdbcType=VARCHAR},
+			</if>
+			<if test="isDeleted != null">
+				is_deleted = #{isDeleted,jdbcType=TINYINT},
+			</if>
+		</set>
+		where serve_id = #{serveId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.autobot.res.adc.model.Serve">
+		update adc_serve
+		set serve_name = #{serveName,jdbcType=VARCHAR},
+		serve_addr =
+		#{serveAddr,jdbcType=VARCHAR},
+		serve_remark =
+		#{serveRemark,jdbcType=VARCHAR},
+		gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		name_create =
+		#{nameCreate,jdbcType=VARCHAR},
+		name_modified =
+		#{nameModified,jdbcType=VARCHAR},
+		is_deleted =
+		#{isDeleted,jdbcType=TINYINT}
+		where serve_id =
+		#{serveId,jdbcType=INTEGER}
+	</update>
+
+	<!-- 手动添加 begin -->
+
+	<!-- 逻辑删除 -->
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		UPDATE adc_serve
+		<set>
+			gmt_modified = now(),
+			is_deleted=1
+		</set>
+		<where>
+			serve_id = #{serveId,jdbcType=INTEGER}
+		</where>
+	</delete>
+
+	<!-- 分页 -->
+	<select id="listServe" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from adc_serve
+		<where>
+			is_deleted = 0
+			<if test="query.serveName != null">
+				serve_name = #{query.serveName,jdbcType=VARCHAR},
+			</if>
+			<if test="query.serveAddr != null">
+				serve_addr = #{query.serveAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="query.serveRemark != null">
+				serve_remark = #{query.serveRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="query.gmtCreate != null">
+				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.gmtModified != null">
+				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.nameCreate != null">
+				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="query.nameModified != null">
+				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+			</if>
+		</where>
+		order by gmt_create desc
+		<if test="offset!=null and limit!=null ">
+			LIMIT #{offset} , #{limit}
+		</if>
+	</select>
+
+	<!-- 分页 -->
+	<select id="count" resultType="java.lang.Integer">
+		select
+		count(*)
+		from adc_serve
+		<where>
+			is_deleted = 0
+			<if test="query.serveName != null">
+				serve_name = #{query.serveName,jdbcType=VARCHAR},
+			</if>
+			<if test="query.serveAddr != null">
+				serve_addr = #{query.serveAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="query.serveRemark != null">
+				serve_remark = #{query.serveRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="query.gmtCreate != null">
+				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.gmtModified != null">
+				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.nameCreate != null">
+				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="query.nameModified != null">
+				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+			</if>
+		</where>
+	</select>
+
+
 </mapper>

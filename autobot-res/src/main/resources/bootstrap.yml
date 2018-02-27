@@ -23,6 +23,15 @@ management:
     enabled: false
 
 debug: true      
+
+logging:
+  level:
+    org: 
+      springframework: WARN
+      spring:
+        springboot:
+          dao: 
+            DEBUG
       
 server:
   port: 8400      

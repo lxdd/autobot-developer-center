@@ -149,17 +149,17 @@ public class TemplateController {
 		// 构建返回对象list
 		List<TemplateBO> boList = new ArrayList<>();
 
-//		int count = templateService.count(query);
-//		if (count > 0) {
-//			List<Template> templateList = templateService.listTemplate(query, current, pageSize);
-//
-//			boList = ListToList.convertTemplateList(templateList);
-//		}
+		int count = templateService.count(query);
+		if (count > 0) {
+			List<Template> templateList = templateService.listTemplate(query, current, pageSize);
+
+			boList = ListToList.convertTemplateList(templateList);
+		}
 
 		result.setData(boList);
 		result.setPageSize(pageSize);
 		result.setCurrent(current);
-//		result.setTotalCount(count);
+		result.setTotalCount(count);
 
 		return result;
 	}

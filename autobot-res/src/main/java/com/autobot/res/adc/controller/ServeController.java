@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.autobot.res.adc.bo.ArticleBO;
 import com.autobot.res.adc.bo.ServeBO;
-import com.autobot.res.adc.bo.TemplateBO;
+import com.autobot.res.adc.common.convert.ListToList;
 import com.autobot.res.adc.model.Serve;
 import com.autobot.res.adc.service.ServeService;
+import com.autobot.res.adc.vo.ServeQuery;
 import com.autobot.res.adc.vo.ServeVO;
 import com.autobot.res.base.support.PageResult;
 import com.autobot.res.base.support.Result;
@@ -59,7 +59,16 @@ public class ServeController {
 		// 构建返回
 		Result<Integer> result = new Result<Integer>();
 
-		result.setData(1);
+		Serve serve = new Serve();
+
+		if (null != serveVO) {
+
+			BeanUtils.copyProperties(serveVO, serve);
+
+			serveService.insert(serve);
+		}
+
+		result.setData(serve.getServeId());
 
 		return result;
 
@@ -69,11 +78,21 @@ public class ServeController {
 	@PutMapping("/{serveId}")
 	public Result<Object> update(
 			@ApiParam(value = "服务方id", required = true) @PathVariable(value = "serveId") Integer serveId,
-			@ApiParam("文档信息") @RequestBody ServeVO serveVO) {
+			@ApiParam("服务方信息") @RequestBody ServeVO serveVO) {
+
 		logger.info("ServeController.update : serveVO={}", serveVO.toString());
 
 		// 构建返回
 		Result<Object> result = new Result<>();
+
+		Serve serve = new Serve();
+
+		if (null != serveId && null != serveVO) {
+
+			BeanUtils.copyProperties(serveVO, serve);
+
+			serveService.update(serve);
+		}
 
 		return result;
 	}
@@ -87,6 +106,10 @@ public class ServeController {
 
 		// 构建返回
 		Result<Object> result = new Result<>();
+
+		if (null != serveId) {
+			serveService.delete(serveId);
+		}
 
 		return result;
 
@@ -118,21 +141,27 @@ public class ServeController {
 
 	@ApiOperation("服务方搜索")
 	@PostMapping("/search")
-	public PageResult<List<ServeBO>> getInquiryBySearch(@RequestBody ServeVO serveVo,
-			@ApiParam(value = "每页显示条数", required = true) @RequestParam("current") Integer current,
-			@ApiParam(value = "页号", required = true) @RequestParam("pageIndex") Integer pageIndex) {
+	public PageResult<List<ServeBO>> getInquiryBySearch(@RequestBody ServeQuery query,
+			@ApiParam(value = "每页显示条数", required = true) @RequestParam("pageSize") Integer pageSize,
+			@ApiParam(value = "页号", required = true) @RequestParam("current") Integer current) {
 
 		// 构建返回
 		PageResult<List<ServeBO>> result = new PageResult<List<ServeBO>>();
 
+		// 构建返回对象list
 		List<ServeBO> boList = new ArrayList<>();
-		ServeBO bo = new ServeBO();
-		boList.add(bo);
+
+		int count = serveService.count(query);
+		if (count > 0) {
+			List<Serve> serveList = serveService.listServe(query, current, pageSize);
+
+			boList = ListToList.convertServeList(serveList);
+		}
 
 		result.setData(boList);
-		result.setPageSize(10);
+		result.setPageSize(pageSize);
 		result.setCurrent(current);
-		result.setTotalCount(1);
+		result.setTotalCount(count);
 
 		return result;
 	}

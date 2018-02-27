@@ -1,164 +1,276 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.autobot.res.adc.dao.AppMapper">
-  <resultMap id="BaseResultMap" type="com.autobot.res.adc.model.App">
-    <id column="app_id" jdbcType="INTEGER" property="appId" />
-    <result column="app_code" jdbcType="VARCHAR" property="appCode" />
-    <result column="app_name" jdbcType="VARCHAR" property="appName" />
-    <result column="app_key" jdbcType="VARCHAR" property="appKey" />
-    <result column="app_secret" jdbcType="VARCHAR" property="appSecret" />
-    <result column="is_auth" jdbcType="TINYINT" property="isAuth" />
-    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
-    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
-    <result column="name_create" jdbcType="VARCHAR" property="nameCreate" />
-    <result column="name_modified" jdbcType="VARCHAR" property="nameModified" />
-    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    app_id, app_code, app_name, app_key, app_secret, is_auth, gmt_create, gmt_modified, 
-    name_create, name_modified, is_deleted
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from adc_app
-    where app_id = #{appId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from adc_app
-    where app_id = #{appId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.autobot.res.adc.model.App">
-    insert into adc_app (app_id, app_code, app_name, 
-      app_key, app_secret, is_auth, 
-      gmt_create, gmt_modified, name_create, 
-      name_modified, is_deleted)
-    values (#{appId,jdbcType=INTEGER}, #{appCode,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR}, 
-      #{appKey,jdbcType=VARCHAR}, #{appSecret,jdbcType=VARCHAR}, #{isAuth,jdbcType=TINYINT}, 
-      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{nameCreate,jdbcType=VARCHAR}, 
-      #{nameModified,jdbcType=VARCHAR}, #{isDeleted,jdbcType=TINYINT})
-  </insert>
-  <insert id="insertSelective" parameterType="com.autobot.res.adc.model.App">
-    insert into adc_app
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="appId != null">
-        app_id,
-      </if>
-      <if test="appCode != null">
-        app_code,
-      </if>
-      <if test="appName != null">
-        app_name,
-      </if>
-      <if test="appKey != null">
-        app_key,
-      </if>
-      <if test="appSecret != null">
-        app_secret,
-      </if>
-      <if test="isAuth != null">
-        is_auth,
-      </if>
-      <if test="gmtCreate != null">
-        gmt_create,
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified,
-      </if>
-      <if test="nameCreate != null">
-        name_create,
-      </if>
-      <if test="nameModified != null">
-        name_modified,
-      </if>
-      <if test="isDeleted != null">
-        is_deleted,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="appId != null">
-        #{appId,jdbcType=INTEGER},
-      </if>
-      <if test="appCode != null">
-        #{appCode,jdbcType=VARCHAR},
-      </if>
-      <if test="appName != null">
-        #{appName,jdbcType=VARCHAR},
-      </if>
-      <if test="appKey != null">
-        #{appKey,jdbcType=VARCHAR},
-      </if>
-      <if test="appSecret != null">
-        #{appSecret,jdbcType=VARCHAR},
-      </if>
-      <if test="isAuth != null">
-        #{isAuth,jdbcType=TINYINT},
-      </if>
-      <if test="gmtCreate != null">
-        #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nameCreate != null">
-        #{nameCreate,jdbcType=VARCHAR},
-      </if>
-      <if test="nameModified != null">
-        #{nameModified,jdbcType=VARCHAR},
-      </if>
-      <if test="isDeleted != null">
-        #{isDeleted,jdbcType=TINYINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.autobot.res.adc.model.App">
-    update adc_app
-    <set>
-      <if test="appCode != null">
-        app_code = #{appCode,jdbcType=VARCHAR},
-      </if>
-      <if test="appName != null">
-        app_name = #{appName,jdbcType=VARCHAR},
-      </if>
-      <if test="appKey != null">
-        app_key = #{appKey,jdbcType=VARCHAR},
-      </if>
-      <if test="appSecret != null">
-        app_secret = #{appSecret,jdbcType=VARCHAR},
-      </if>
-      <if test="isAuth != null">
-        is_auth = #{isAuth,jdbcType=TINYINT},
-      </if>
-      <if test="gmtCreate != null">
-        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nameCreate != null">
-        name_create = #{nameCreate,jdbcType=VARCHAR},
-      </if>
-      <if test="nameModified != null">
-        name_modified = #{nameModified,jdbcType=VARCHAR},
-      </if>
-      <if test="isDeleted != null">
-        is_deleted = #{isDeleted,jdbcType=TINYINT},
-      </if>
-    </set>
-    where app_id = #{appId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.autobot.res.adc.model.App">
-    update adc_app
-    set app_code = #{appCode,jdbcType=VARCHAR},
-      app_name = #{appName,jdbcType=VARCHAR},
-      app_key = #{appKey,jdbcType=VARCHAR},
-      app_secret = #{appSecret,jdbcType=VARCHAR},
-      is_auth = #{isAuth,jdbcType=TINYINT},
-      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      name_create = #{nameCreate,jdbcType=VARCHAR},
-      name_modified = #{nameModified,jdbcType=VARCHAR},
-      is_deleted = #{isDeleted,jdbcType=TINYINT}
-    where app_id = #{appId,jdbcType=INTEGER}
-  </update>
+	<resultMap id="BaseResultMap" type="com.autobot.res.adc.model.App">
+		<id column="app_id" jdbcType="INTEGER" property="appId" />
+		<result column="app_code" jdbcType="VARCHAR" property="appCode" />
+		<result column="app_name" jdbcType="VARCHAR" property="appName" />
+		<result column="app_key" jdbcType="VARCHAR" property="appKey" />
+		<result column="app_secret" jdbcType="VARCHAR" property="appSecret" />
+		<result column="is_auth" jdbcType="TINYINT" property="isAuth" />
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+		<result column="name_create" jdbcType="VARCHAR" property="nameCreate" />
+		<result column="name_modified" jdbcType="VARCHAR" property="nameModified" />
+		<result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		app_id, app_code, app_name, app_key, app_secret, is_auth,
+		gmt_create,
+		gmt_modified,
+		name_create, name_modified, is_deleted
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from adc_app
+		where app_id = #{appId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		adc_app
+		where app_id = #{appId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.autobot.res.adc.model.App">
+		insert into adc_app (app_id,
+		app_code, app_name,
+		app_key, app_secret, is_auth,
+		gmt_create,
+		gmt_modified, name_create,
+		name_modified, is_deleted)
+		values
+		(#{appId,jdbcType=INTEGER}, #{appCode,jdbcType=VARCHAR},
+		#{appName,jdbcType=VARCHAR},
+		#{appKey,jdbcType=VARCHAR},
+		#{appSecret,jdbcType=VARCHAR}, #{isAuth,jdbcType=TINYINT},
+		#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP},
+		#{nameCreate,jdbcType=VARCHAR},
+		#{nameModified,jdbcType=VARCHAR},
+		#{isDeleted,jdbcType=TINYINT})
+	</insert>
+	<insert id="insertSelective" parameterType="com.autobot.res.adc.model.App">
+		insert into adc_app
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="appId != null">
+				app_id,
+			</if>
+			<if test="appCode != null">
+				app_code,
+			</if>
+			<if test="appName != null">
+				app_name,
+			</if>
+			<if test="appKey != null">
+				app_key,
+			</if>
+			<if test="appSecret != null">
+				app_secret,
+			</if>
+			<if test="isAuth != null">
+				is_auth,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+			<if test="nameCreate != null">
+				name_create,
+			</if>
+			<if test="nameModified != null">
+				name_modified,
+			</if>
+			<if test="isDeleted != null">
+				is_deleted,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="appId != null">
+				#{appId,jdbcType=INTEGER},
+			</if>
+			<if test="appCode != null">
+				#{appCode,jdbcType=VARCHAR},
+			</if>
+			<if test="appName != null">
+				#{appName,jdbcType=VARCHAR},
+			</if>
+			<if test="appKey != null">
+				#{appKey,jdbcType=VARCHAR},
+			</if>
+			<if test="appSecret != null">
+				#{appSecret,jdbcType=VARCHAR},
+			</if>
+			<if test="isAuth != null">
+				#{isAuth,jdbcType=TINYINT},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nameCreate != null">
+				#{nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="nameModified != null">
+				#{nameModified,jdbcType=VARCHAR},
+			</if>
+			<if test="isDeleted != null">
+				#{isDeleted,jdbcType=TINYINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.autobot.res.adc.model.App">
+		update adc_app
+		<set>
+			<if test="appCode != null">
+				app_code = #{appCode,jdbcType=VARCHAR},
+			</if>
+			<if test="appName != null">
+				app_name = #{appName,jdbcType=VARCHAR},
+			</if>
+			<if test="appKey != null">
+				app_key = #{appKey,jdbcType=VARCHAR},
+			</if>
+			<if test="appSecret != null">
+				app_secret = #{appSecret,jdbcType=VARCHAR},
+			</if>
+			<if test="isAuth != null">
+				is_auth = #{isAuth,jdbcType=TINYINT},
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nameCreate != null">
+				name_create = #{nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="nameModified != null">
+				name_modified = #{nameModified,jdbcType=VARCHAR},
+			</if>
+			<if test="isDeleted != null">
+				is_deleted = #{isDeleted,jdbcType=TINYINT},
+			</if>
+		</set>
+		where app_id = #{appId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.autobot.res.adc.model.App">
+		update adc_app
+		set
+		app_code = #{appCode,jdbcType=VARCHAR},
+		app_name =
+		#{appName,jdbcType=VARCHAR},
+		app_key = #{appKey,jdbcType=VARCHAR},
+		app_secret = #{appSecret,jdbcType=VARCHAR},
+		is_auth =
+		#{isAuth,jdbcType=TINYINT},
+		gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		name_create =
+		#{nameCreate,jdbcType=VARCHAR},
+		name_modified =
+		#{nameModified,jdbcType=VARCHAR},
+		is_deleted =
+		#{isDeleted,jdbcType=TINYINT}
+		where app_id = #{appId,jdbcType=INTEGER}
+	</update>
+
+
+	<!-- 手动添加 begin -->
+
+	<!-- 逻辑删除 -->
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		UPDATE adc_app
+		<set>
+			gmt_modified = now(),
+			is_deleted=1
+		</set>
+		<where>
+			app_id = #{appId,jdbcType=INTEGER}
+		</where>
+	</delete>
+
+	<!-- 分页 -->
+	<select id="listApp" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from adc_app
+		<where>
+			is_deleted = 0
+			<if test="query.appCode != null">
+				app_code = #{query.appCode,jdbcType=VARCHAR},
+			</if>
+			<if test="query.appName != null">
+				app_name = #{query.appName,jdbcType=VARCHAR},
+			</if>
+			<if test="query.appKey != null">
+				app_key = #{query.appKey,jdbcType=VARCHAR},
+			</if>
+			<if test="query.appSecret != null">
+				app_secret = #{query.appSecret,jdbcType=VARCHAR},
+			</if>
+			<if test="query.isAuth != null">
+				is_auth = #{query.isAuth,jdbcType=TINYINT},
+			</if>
+			<if test="query.gmtCreate != null">
+				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.gmtModified != null">
+				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.nameCreate != null">
+				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="query.nameModified != null">
+				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+			</if>
+		</where>
+		order by gmt_create desc
+		<if test="offset!=null and limit!=null ">
+			LIMIT #{offset} , #{limit}
+		</if>
+	</select>
+
+	<!-- 分页 -->
+	<select id="count" resultType="java.lang.Integer">
+		select
+		count(*)
+		from adc_app
+		<where>
+			is_deleted = 0
+			<if test="query.appCode != null">
+				app_code = #{query.appCode,jdbcType=VARCHAR},
+			</if>
+			<if test="query.appName != null">
+				app_name = #{query.appName,jdbcType=VARCHAR},
+			</if>
+			<if test="query.appKey != null">
+				app_key = #{query.appKey,jdbcType=VARCHAR},
+			</if>
+			<if test="query.appSecret != null">
+				app_secret = #{query.appSecret,jdbcType=VARCHAR},
+			</if>
+			<if test="query.isAuth != null">
+				is_auth = #{query.isAuth,jdbcType=TINYINT},
+			</if>
+			<if test="query.gmtCreate != null">
+				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.gmtModified != null">
+				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="query.nameCreate != null">
+				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+			</if>
+			<if test="query.nameModified != null">
+				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+			</if>
+		</where>
+	</select>
 </mapper>

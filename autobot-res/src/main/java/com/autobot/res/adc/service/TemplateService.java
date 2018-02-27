@@ -75,18 +75,18 @@ public class TemplateService {
 	 * @param query
 	 * @return
 	 */
-//	public List<Template> listTemplate(TemplateQuery query, Integer offset, Integer limit) {
-//		List<Template> templateList = templateMapper.listTemplate(query, offset, limit);
-//		return templateList;
-//	}
+	public List<Template> listTemplate(TemplateQuery query, Integer offset, Integer limit) {
+		List<Template> templateList = templateMapper.listTemplate(query, offset, limit);
+		return templateList;
+	}
 
 	/**
 	 * @param query
 	 * @return
 	 */
-//	public int count(TemplateQuery query) {
-//		int count = templateMapper.count(query);
-//		return count;
-//	}
+	public int count(TemplateQuery query) {
+		int count = templateMapper.count(query);
+		return count;
+	}
 
 }

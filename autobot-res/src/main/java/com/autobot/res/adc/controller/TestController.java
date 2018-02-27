@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("client")
 @Api(value = "应用方类", tags = "应用方接口")
 @RefreshScope
-public class AppClientController {
+public class TestController {
 
 	@Value("${from}")
 	private String from;
