@@ -21,7 +21,8 @@ spring:
 management:
   security:
     enabled: false
-      
+
+debug: true      
       
 server:
   port: 8400      

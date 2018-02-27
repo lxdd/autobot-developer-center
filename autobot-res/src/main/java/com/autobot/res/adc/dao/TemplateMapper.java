@@ -39,12 +39,12 @@ public interface TemplateMapper {
 	 * @param query
 	 * @return
 	 */
-//	List<Template> listTemplate(@Param("query") TemplateQuery query, @Param("offset") Integer offset,
-//			@Param("limit") Integer limit);
+	List<Template> listTemplate(@Param("query") TemplateQuery query, @Param("offset") Integer offset,
+			@Param("limit") Integer limit);
 
 	/**
 	 * 
 	 * @return 总条数
 	 */
-//	int count(@Param("query") TemplateQuery query);
+	int count(@Param("query") TemplateQuery query);
 }

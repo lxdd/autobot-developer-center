@@ -32,7 +32,7 @@
 		from adc_template
 		where id = #{id,jdbcType=INTEGER}
 	</select>
-	<!-- <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		adc_template
 		where id = #{id,jdbcType=INTEGER}
@@ -161,7 +161,8 @@
 		#{isDeleted,jdbcType=TINYINT}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
- -->
+	
+	
 	<!-- 手动添加 begin -->
 
 	<!-- 逻辑删除 -->
@@ -177,7 +178,7 @@
 	</delete>
 
 	<!-- 分页 -->
-	<!-- <select id="listTemplate" resultMap="BaseResultMap">
+	<select id="listTemplate" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from adc_template
@@ -207,10 +208,10 @@
 		<if test="offset!=null and limit!=null ">
 			LIMIT #{offset} , #{limit}
 		</if>
-	</select> -->
+	</select>
 
 	<!-- 分页 -->
-	<!-- <select id="count" resultType="java.lang.Integer">
+	<select id="count" resultType="java.lang.Integer">
 		select
 		count(*)
 		from adc_template
@@ -236,6 +237,6 @@
 				#{query.templateContent,jdbcType=LONGVARCHAR},
 			</if>
 		</where>
-	</select> -->
+	</select>
 
 </mapper>
