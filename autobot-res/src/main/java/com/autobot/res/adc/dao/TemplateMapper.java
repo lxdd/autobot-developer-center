@@ -8,6 +8,11 @@ import org.apache.ibatis.annotations.Param;
 import com.autobot.res.adc.model.Template;
 import com.autobot.res.adc.vo.TemplateQuery;
 
+/**
+ * @Description: TODO
+ * @author li_xiaodong
+ * @date: 2018年2月27日 下午11:14:58 
+ */
 @Mapper
 public interface TemplateMapper {
 

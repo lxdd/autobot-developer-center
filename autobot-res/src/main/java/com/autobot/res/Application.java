@@ -14,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableSwagger2
-@MapperScan("com.autobot.res.adc.dao.*Mapper")
+@MapperScan(basePackages = "com.autobot.res.adc.dao")
 public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
