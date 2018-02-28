@@ -1,6 +1,19 @@
 package com.autobot.res.adc.vo;
 
-public class ArticleQuery {
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * @Description: TODO
+ * @author li_xiaodong
+ * @date: 2018年2月28日 下午7:11:31 
+ */
+public class ArticleQuery implements Serializable {
+
+	/**
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Integer serveId;
 
@@ -12,7 +25,11 @@ public class ArticleQuery {
 
 	private String nameCreate;
 
+	private Date gmtCreate;
+
 	private String nameModified;
+
+	private Date gmtModified;
 
 	private String content;
 
@@ -71,4 +88,28 @@ public class ArticleQuery {
 	public void setContent(String content) {
 		this.content = content == null ? null : content.trim();
 	}
+
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
+
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
+
+	public Date getGmtModified() {
+		return gmtModified;
+	}
+
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
+	}
+
+	@Override
+	public String toString() {
+		return "ArticleQuery [serveId=" + serveId + ", title=" + title + ", type=" + type + ", interfacePath="
+				+ interfacePath + ", nameCreate=" + nameCreate + ", gmtCreate=" + gmtCreate + ", nameModified="
+				+ nameModified + ", gmtModified=" + gmtModified + ", content=" + content + "]";
+	}
+
 }

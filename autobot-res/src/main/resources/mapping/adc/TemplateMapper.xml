@@ -23,6 +23,8 @@
 	<sql id="Blob_Column_List">
 		template_content
 	</sql>
+
+	<!-- 查详情 -->
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
 		resultMap="ResultMapWithBLOBs">
 		select
@@ -30,7 +32,7 @@
 		,
 		<include refid="Blob_Column_List" />
 		from adc_template
-		where id = #{id,jdbcType=INTEGER}
+		where is_deleted = 0 and id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
@@ -50,6 +52,8 @@
 		#{isDeleted,jdbcType=TINYINT},
 		#{templateContent,jdbcType=LONGVARCHAR})
 	</insert>
+	
+	<!-- insert -->
 	<insert id="insertSelective" parameterType="com.autobot.res.adc.model.Template"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into adc_template
@@ -100,17 +104,13 @@
 			</if>
 		</trim>
 	</insert>
+	
+	<!-- update -->
 	<update id="updateByPrimaryKeySelective" parameterType="com.autobot.res.adc.model.Template">
 		update adc_template
 		<set>
 			<if test="templateName != null">
 				template_name = #{templateName,jdbcType=VARCHAR},
-			</if>
-			<if test="gmtCreate != null">
-				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-			</if>
-			<if test="nameCreate != null">
-				name_create = #{nameCreate,jdbcType=VARCHAR},
 			</if>
 			<if test="gmtModified != null">
 				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
@@ -118,13 +118,11 @@
 			<if test="nameModified != null">
 				name_modified = #{nameModified,jdbcType=VARCHAR},
 			</if>
-			<if test="isDeleted != null">
-				is_deleted = #{isDeleted,jdbcType=TINYINT},
-			</if>
 			<if test="templateContent != null">
 				template_content =
 				#{templateContent,jdbcType=LONGVARCHAR},
 			</if>
+			gmt_modified = NOW()
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
@@ -161,8 +159,8 @@
 		#{isDeleted,jdbcType=TINYINT}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	
-	
+
+
 	<!-- 手动添加 begin -->
 
 	<!-- 逻辑删除 -->
@@ -185,23 +183,20 @@
 		<where>
 			is_deleted = 0
 			<if test="query.templateName != null">
-				template_name = #{query.templateName,jdbcType=VARCHAR},
+				AND template_name = #{query.templateName,jdbcType=VARCHAR}
 			</if>
 			<if test="query.gmtCreate != null">
-				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+				AND gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.nameCreate != null">
-				name_create = #{query.nameCreate,jdbcType=VARCHAR},
-			</if>
-			<if test="query.gmtModified != null">
-				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+				AND name_create = #{query.nameCreate,jdbcType=VARCHAR}
 			</if>
 			<if test="query.nameModified != null">
-				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+				AND name_modified = #{query.nameModified,jdbcType=VARCHAR}
 			</if>
 			<if test="query.templateContent != null">
-				template_content =
-				#{query.templateContent,jdbcType=LONGVARCHAR},
+				AND template_content =
+				#{query.templateContent,jdbcType=LONGVARCHAR}
 			</if>
 		</where>
 		order by gmt_create desc
@@ -218,23 +213,20 @@
 		<where>
 			is_deleted = 0
 			<if test="query.templateName != null">
-				template_name = #{query.templateName,jdbcType=VARCHAR},
+				AND template_name = #{query.templateName,jdbcType=VARCHAR}
 			</if>
 			<if test="query.gmtCreate != null">
-				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+				AND gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.nameCreate != null">
-				name_create = #{query.nameCreate,jdbcType=VARCHAR},
-			</if>
-			<if test="query.gmtModified != null">
-				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+				AND name_create = #{query.nameCreate,jdbcType=VARCHAR}
 			</if>
 			<if test="query.nameModified != null">
-				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+				AND name_modified = #{query.nameModified,jdbcType=VARCHAR}
 			</if>
 			<if test="query.templateContent != null">
-				template_content =
-				#{query.templateContent,jdbcType=LONGVARCHAR},
+				AND template_content =
+				#{query.templateContent,jdbcType=LONGVARCHAR}
 			</if>
 		</where>
 	</select>

@@ -1,95 +1,115 @@
 package com.autobot.res.adc.bo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CatalogBO {
-    private Integer id;
+/**
+ * @Description: TODO
+ * @author li_xiaodong
+ * @date: 2018年2月28日 下午7:31:23 
+ */
+public class CatalogBO implements Serializable {
+	
+	/**
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么) 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    private Integer parentId;
+	private Integer id;
 
-    private Integer serveId;
+	private Integer parentId;
 
-    private String url;
+	private Integer serveId;
 
-    private Date gmtCreate;
+	private String url;
 
-    private String nameCreate;
+	private Date gmtCreate;
 
-    private Date gmtModified;
+	private String nameCreate;
 
-    private String nameModified;
+	private Date gmtModified;
 
-    private Integer isDeleted;
+	private String nameModified;
 
-    public Integer getId() {
-        return id;
-    }
+	private Integer isDeleted;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public Integer getParentId() {
-        return parentId;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
+	public Integer getParentId() {
+		return parentId;
+	}
 
-    public Integer getServeId() {
-        return serveId;
-    }
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
 
-    public void setServeId(Integer serveId) {
-        this.serveId = serveId;
-    }
+	public Integer getServeId() {
+		return serveId;
+	}
 
-    public String getUrl() {
-        return url;
-    }
+	public void setServeId(Integer serveId) {
+		this.serveId = serveId;
+	}
 
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
-    }
+	public String getUrl() {
+		return url;
+	}
 
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
+	public void setUrl(String url) {
+		this.url = url == null ? null : url.trim();
+	}
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
 
-    public String getNameCreate() {
-        return nameCreate;
-    }
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
 
-    public void setNameCreate(String nameCreate) {
-        this.nameCreate = nameCreate == null ? null : nameCreate.trim();
-    }
+	public String getNameCreate() {
+		return nameCreate;
+	}
 
-    public Date getGmtModified() {
-        return gmtModified;
-    }
+	public void setNameCreate(String nameCreate) {
+		this.nameCreate = nameCreate == null ? null : nameCreate.trim();
+	}
 
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
-    }
+	public Date getGmtModified() {
+		return gmtModified;
+	}
 
-    public String getNameModified() {
-        return nameModified;
-    }
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
+	}
 
-    public void setNameModified(String nameModified) {
-        this.nameModified = nameModified == null ? null : nameModified.trim();
-    }
+	public String getNameModified() {
+		return nameModified;
+	}
 
-    public Integer getIsDeleted() {
-        return isDeleted;
-    }
+	public void setNameModified(String nameModified) {
+		this.nameModified = nameModified == null ? null : nameModified.trim();
+	}
 
-    public void setIsDeleted(Integer isDeleted) {
-        this.isDeleted = isDeleted;
-    }
+	public Integer getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Integer isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+	@Override
+	public String toString() {
+		return "CatalogBO [id=" + id + ", parentId=" + parentId + ", serveId=" + serveId + ", url=" + url
+				+ ", gmtCreate=" + gmtCreate + ", nameCreate=" + nameCreate + ", gmtModified=" + gmtModified
+				+ ", nameModified=" + nameModified + ", isDeleted=" + isDeleted + "]";
+	}
+
 }

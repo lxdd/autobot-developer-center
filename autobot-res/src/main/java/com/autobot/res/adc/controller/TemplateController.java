@@ -27,6 +27,7 @@ import com.autobot.res.adc.vo.TemplateQuery;
 import com.autobot.res.adc.vo.TemplateVO;
 import com.autobot.res.base.support.PageResult;
 import com.autobot.res.base.support.Result;
+import com.autobot.res.base.util.PageUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,7 +35,7 @@ import io.swagger.annotations.ApiParam;
 
 /**
  * 
- * 文档模板
+ * 模板
  * 
  * 
  * @author li_xiaodong
@@ -42,7 +43,7 @@ import io.swagger.annotations.ApiParam;
  */
 @RestController
 @RequestMapping("res/template")
-@Api(value = "文档模板", tags = "文档模板接口")
+@Api(value = "模板", tags = "模板接口")
 public class TemplateController {
 
 	private static final Logger logger = LoggerFactory.getLogger(TemplateController.class);
@@ -74,6 +75,11 @@ public class TemplateController {
 
 	}
 
+	/**
+	 * @Title: update @Description: TODO 入参vo不应包含createName @param @param
+	 * id @param @param templateVO @param @return 设定文件 @return Result<Object>
+	 * 返回类型 @throws
+	 */
 	@ApiOperation("修改文档模板")
 	@PutMapping("/{id}")
 	public Result<Object> update(@ApiParam(value = "文档模板id", required = true) @PathVariable(value = "id") Integer id,
@@ -88,7 +94,9 @@ public class TemplateController {
 
 		if (null != id && null != templateVO) {
 
+			templateVO.setNameCreate(null);
 			BeanUtils.copyProperties(templateVO, template);
+			template.setId(id);
 
 			templateService.update(template);
 		}
@@ -139,7 +147,7 @@ public class TemplateController {
 
 	@ApiOperation("文档模板搜索")
 	@PostMapping("/search")
-	public PageResult<List<TemplateBO>> getTemplateBySearch(@RequestBody TemplateQuery query,
+	public PageResult<List<TemplateBO>> search(@RequestBody TemplateQuery query,
 			@ApiParam(value = "每页显示条数", required = true) @RequestParam("pageSize") Integer pageSize,
 			@ApiParam(value = "页号", required = true) @RequestParam("current") Integer current) {
 
@@ -151,7 +159,11 @@ public class TemplateController {
 
 		int count = templateService.count(query);
 		if (count > 0) {
-			List<Template> templateList = templateService.listTemplate(query, current, pageSize);
+
+			PageUtil pageUtil = new PageUtil(current, pageSize);
+
+			List<Template> templateList = templateService.listTemplate(query, pageUtil.getOffset(),
+					pageUtil.getPageSize());
 
 			boList = ListToList.convertTemplateList(templateList);
 		}

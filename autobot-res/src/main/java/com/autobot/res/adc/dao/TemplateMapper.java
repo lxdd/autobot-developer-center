@@ -18,16 +18,52 @@ public interface TemplateMapper {
 
 	int deleteByPrimaryKey(Integer id);
 
+	
+	/**  
+	* @Title: insert  
+	* @Description: TODO(这里用一句话描述这个方法的作用)  
+	* @param @param record
+	* @param @return    设定文件  
+	* @return int    返回类型  
+	* @throws  
+	*/ 
+	@Deprecated
 	int insert(Template record);
 
+	/**  
+	* @Title: insertSelective  
+	* @Description: TODO(这里用一句话描述这个方法的作用)  
+	* @param @param record
+	* @param @return    设定文件  
+	* @return int    返回类型  
+	* @throws  
+	*/ 
 	int insertSelective(Template record);
 
 	Template selectByPrimaryKey(Integer id);
 
 	int updateByPrimaryKeySelective(Template record);
 
+	/**  
+	* @Title: updateByPrimaryKeyWithBLOBs  
+	* @Description: TODO(这里用一句话描述这个方法的作用)  
+	* @param @param record
+	* @param @return    设定文件  
+	* @return int    返回类型  
+	* @throws  
+	*/ 
+	@Deprecated
 	int updateByPrimaryKeyWithBLOBs(Template record);
 
+	/**  
+	* @Title: updateByPrimaryKey  
+	* @Description: TODO(这里用一句话描述这个方法的作用)  
+	* @param @param record
+	* @param @return    设定文件  
+	* @return int    返回类型  
+	* @throws  
+	*/ 
+	@Deprecated
 	int updateByPrimaryKey(Template record);
 
 	/**

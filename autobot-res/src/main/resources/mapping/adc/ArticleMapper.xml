@@ -56,12 +56,12 @@
 		#{isDeleted,jdbcType=TINYINT},
 		#{content,jdbcType=LONGVARCHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.autobot.res.adc.model.Article">
+
+	<!-- insert -->
+	<insert id="insertSelective" parameterType="com.autobot.res.adc.model.Article"
+		useGeneratedKeys="true" keyProperty="articleId">
 		insert into adc_article
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="articleId != null">
-				article_id,
-			</if>
 			<if test="serveId != null">
 				serve_id,
 			</if>
@@ -94,9 +94,6 @@
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="articleId != null">
-				#{articleId,jdbcType=INTEGER},
-			</if>
 			<if test="serveId != null">
 				#{serveId,jdbcType=INTEGER},
 			</if>
@@ -129,6 +126,8 @@
 			</if>
 		</trim>
 	</insert>
+
+	<!-- update -->
 	<update id="updateByPrimaryKeySelective" parameterType="com.autobot.res.adc.model.Article">
 		update adc_article
 		<set>
@@ -144,24 +143,16 @@
 			<if test="interfacePath != null">
 				interface_path = #{interfacePath,jdbcType=VARCHAR},
 			</if>
-			<if test="gmtCreate != null">
-				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-			</if>
-			<if test="nameCreate != null">
-				name_create = #{nameCreate,jdbcType=VARCHAR},
-			</if>
 			<if test="gmtModified != null">
 				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
 			</if>
 			<if test="nameModified != null">
 				name_modified = #{nameModified,jdbcType=VARCHAR},
 			</if>
-			<if test="isDeleted != null">
-				is_deleted = #{isDeleted,jdbcType=TINYINT},
-			</if>
 			<if test="content != null">
 				content = #{content,jdbcType=LONGVARCHAR},
 			</if>
+			gmt_modified = NOW()
 		</set>
 		where article_id = #{articleId,jdbcType=INTEGER}
 	</update>
@@ -231,31 +222,31 @@
 		<where>
 			is_deleted = 0
 			<if test="query.serveId != null">
-				serve_id = #{query.serveId,jdbcType=INTEGER},
+				AND serve_id = #{query.serveId,jdbcType=INTEGER}
 			</if>
 			<if test="query.title != null">
-				title = #{query.title,jdbcType=VARCHAR},
+				AND title = #{query.title,jdbcType=VARCHAR}
 			</if>
 			<if test="query.type != null">
-				`type` = #{query.type,jdbcType=TINYINT},
+				AND `type` = #{query.type,jdbcType=TINYINT}
 			</if>
 			<if test="query.interfacePath != null">
-				interface_path = #{query.interfacePath,jdbcType=VARCHAR},
+				AND interface_path = #{query.interfacePath,jdbcType=VARCHAR}
 			</if>
 			<if test="query.gmtCreate != null">
-				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+				AND gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.nameCreate != null">
-				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+				AND name_create = #{query.nameCreate,jdbcType=VARCHAR}
 			</if>
 			<if test="query.gmtModified != null">
-				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+				AND gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.nameModified != null">
-				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+				AND name_modified = #{query.nameModified,jdbcType=VARCHAR}
 			</if>
 			<if test="query.content != null">
-				content = #{query.content,jdbcType=LONGVARCHAR},
+				AND content = #{query.content,jdbcType=LONGVARCHAR}
 			</if>
 		</where>
 		order by gmt_create desc
@@ -272,31 +263,31 @@
 		<where>
 			is_deleted = 0
 			<if test="query.serveId != null">
-				serve_id = #{query.serveId,jdbcType=INTEGER},
+				AND serve_id = #{query.serveId,jdbcType=INTEGER}
 			</if>
 			<if test="query.title != null">
-				title = #{query.title,jdbcType=VARCHAR},
+				AND title = #{query.title,jdbcType=VARCHAR}
 			</if>
 			<if test="query.type != null">
-				`type` = #{query.type,jdbcType=TINYINT},
+				AND `type` = #{query.type,jdbcType=TINYINT}
 			</if>
 			<if test="query.interfacePath != null">
-				interface_path = #{query.interfacePath,jdbcType=VARCHAR},
+				AND interface_path = #{query.interfacePath,jdbcType=VARCHAR}
 			</if>
 			<if test="query.gmtCreate != null">
-				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+				AND gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.nameCreate != null">
-				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+				AND name_create = #{query.nameCreate,jdbcType=VARCHAR}
 			</if>
 			<if test="query.gmtModified != null">
-				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+				AND gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.nameModified != null">
-				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+				AND name_modified = #{query.nameModified,jdbcType=VARCHAR}
 			</if>
 			<if test="query.content != null">
-				content = #{query.content,jdbcType=LONGVARCHAR},
+				AND content = #{query.content,jdbcType=LONGVARCHAR}
 			</if>
 		</where>
 	</select>

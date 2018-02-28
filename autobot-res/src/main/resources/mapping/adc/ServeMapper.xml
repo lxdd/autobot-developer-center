@@ -46,12 +46,12 @@
 		#{isDeleted,jdbcType=TINYINT}
 		)
 	</insert>
-	<insert id="insertSelective" parameterType="com.autobot.res.adc.model.Serve">
+
+	<!-- insert -->
+	<insert id="insertSelective" parameterType="com.autobot.res.adc.model.Serve"
+		useGeneratedKeys="true" keyProperty="serveId">
 		insert into adc_serve
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="serveId != null">
-				serve_id,
-			</if>
 			<if test="serveName != null">
 				serve_name,
 			</if>
@@ -78,9 +78,6 @@
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="serveId != null">
-				#{serveId,jdbcType=INTEGER},
-			</if>
 			<if test="serveName != null">
 				#{serveName,jdbcType=VARCHAR},
 			</if>
@@ -107,6 +104,8 @@
 			</if>
 		</trim>
 	</insert>
+
+	<!-- update -->
 	<update id="updateByPrimaryKeySelective" parameterType="com.autobot.res.adc.model.Serve">
 		update adc_serve
 		<set>
@@ -125,18 +124,14 @@
 			<if test="gmtModified != null">
 				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
 			</if>
-			<if test="nameCreate != null">
-				name_create = #{nameCreate,jdbcType=VARCHAR},
-			</if>
 			<if test="nameModified != null">
 				name_modified = #{nameModified,jdbcType=VARCHAR},
 			</if>
-			<if test="isDeleted != null">
-				is_deleted = #{isDeleted,jdbcType=TINYINT},
-			</if>
+			gmt_modified = NOW()
 		</set>
 		where serve_id = #{serveId,jdbcType=INTEGER}
 	</update>
+
 	<update id="updateByPrimaryKey" parameterType="com.autobot.res.adc.model.Serve">
 		update adc_serve
 		set serve_name = #{serveName,jdbcType=VARCHAR},
@@ -180,25 +175,27 @@
 		<where>
 			is_deleted = 0
 			<if test="query.serveName != null">
-				serve_name = #{query.serveName,jdbcType=VARCHAR},
+				AND serve_name = #{query.serveName,jdbcType=VARCHAR}
 			</if>
 			<if test="query.serveAddr != null">
-				serve_addr = #{query.serveAddr,jdbcType=VARCHAR},
+				AND serve_addr = #{query.serveAddr,jdbcType=VARCHAR}
 			</if>
 			<if test="query.serveRemark != null">
-				serve_remark = #{query.serveRemark,jdbcType=VARCHAR},
+				AND serve_remark = #{query.serveRemark,jdbcType=VARCHAR}
 			</if>
 			<if test="query.gmtCreate != null">
-				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+				AND gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.gmtModified != null">
-				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+				AND gmt_modified =
+				#{query.gmtModified,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.nameCreate != null">
-				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+				AND name_create = #{query.nameCreate,jdbcType=VARCHAR}
 			</if>
 			<if test="query.nameModified != null">
-				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+				AND name_modified =
+				#{query.nameModified,jdbcType=VARCHAR}
 			</if>
 		</where>
 		order by gmt_create desc
@@ -215,25 +212,27 @@
 		<where>
 			is_deleted = 0
 			<if test="query.serveName != null">
-				serve_name = #{query.serveName,jdbcType=VARCHAR},
+				AND serve_name = #{query.serveName,jdbcType=VARCHAR}
 			</if>
 			<if test="query.serveAddr != null">
-				serve_addr = #{query.serveAddr,jdbcType=VARCHAR},
+				AND serve_addr = #{query.serveAddr,jdbcType=VARCHAR}
 			</if>
 			<if test="query.serveRemark != null">
-				serve_remark = #{query.serveRemark,jdbcType=VARCHAR},
+				AND serve_remark = #{query.serveRemark,jdbcType=VARCHAR}
 			</if>
 			<if test="query.gmtCreate != null">
-				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+				AND gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.gmtModified != null">
-				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+				AND gmt_modified =
+				#{query.gmtModified,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.nameCreate != null">
-				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+				AND name_create = #{query.nameCreate,jdbcType=VARCHAR}
 			</if>
 			<if test="query.nameModified != null">
-				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+				AND name_modified =
+				#{query.nameModified,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>

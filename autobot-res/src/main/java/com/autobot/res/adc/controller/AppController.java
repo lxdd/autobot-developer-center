@@ -27,6 +27,7 @@ import com.autobot.res.adc.vo.AppQuery;
 import com.autobot.res.adc.vo.AppVO;
 import com.autobot.res.base.support.PageResult;
 import com.autobot.res.base.support.Result;
+import com.autobot.res.base.util.PageUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -90,7 +91,11 @@ public class AppController {
 
 		if (null != appId && null != appVO) {
 
+			appVO.setNameCreate(null);
+
 			BeanUtils.copyProperties(appVO, app);
+
+			app.setAppId(appId);
 
 			appService.update(app);
 		}
@@ -118,8 +123,7 @@ public class AppController {
 
 	@ApiOperation("通过ID查询应用方详情")
 	@GetMapping("/{appId}")
-	public Result<AppBO> getById(
-			@ApiParam(value = "appId", required = true) @PathVariable("appId") Integer appId) {
+	public Result<AppBO> getById(@ApiParam(value = "appId", required = true) @PathVariable("appId") Integer appId) {
 		logger.info("AppController.getById : appId={}", appId);
 
 		// 构建返回
@@ -142,7 +146,7 @@ public class AppController {
 
 	@ApiOperation("应用方搜索")
 	@PostMapping("/search")
-	public PageResult<List<AppBO>> getInquiryBySearch(@RequestBody AppQuery query,
+	public PageResult<List<AppBO>> search(@RequestBody AppQuery query,
 			@ApiParam(value = "每页显示条数", required = true) @RequestParam("pageSize") Integer pageSize,
 			@ApiParam(value = "页号", required = true) @RequestParam("current") Integer current) {
 
@@ -154,7 +158,10 @@ public class AppController {
 
 		int count = appService.count(query);
 		if (count > 0) {
-			List<App> serveList = appService.listApp(query, current, pageSize);
+
+			PageUtil pageUtil = new PageUtil(current, pageSize);
+
+			List<App> serveList = appService.listApp(query, pageUtil.getOffset(), pageUtil.getPageSize());
 
 			boList = ListToList.convertAppList(serveList);
 		}

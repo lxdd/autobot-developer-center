@@ -65,9 +65,13 @@ public class Result<T> implements Serializable {
 //		this.totalCount = totalCount;
 //	}
 
-	/**
-	 * 设置成功
-	 */
+	/**  
+	* @Title: setSuccess  
+	* @Description: 设置成功
+	* @param     设定文件  
+	* @return void    返回类型  
+	* @throws  
+	*/ 
 	public void setSuccess() {
 		this.setSuccess(ReturnMsg.SUCCESS_MSG);
 	}

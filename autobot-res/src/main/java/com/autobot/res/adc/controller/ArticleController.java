@@ -27,6 +27,7 @@ import com.autobot.res.adc.vo.ArticleQuery;
 import com.autobot.res.adc.vo.ArticleVO;
 import com.autobot.res.base.support.PageResult;
 import com.autobot.res.base.support.Result;
+import com.autobot.res.base.util.PageUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -88,7 +89,11 @@ public class ArticleController {
 
 		if (null != articleId && null != articleVO) {
 
+			articleVO.setNameCreate(null);
+
 			BeanUtils.copyProperties(articleVO, article);
+
+			article.setArticleId(articleId);
 
 			articleService.update(article);
 		}
@@ -142,7 +147,7 @@ public class ArticleController {
 
 	@ApiOperation("文档搜索")
 	@PostMapping("/search")
-	public PageResult<List<ArticleBO>> getInquiryBySearch(@RequestBody ArticleQuery query,
+	public PageResult<List<ArticleBO>> search(@RequestBody ArticleQuery query,
 			@ApiParam(value = "每页显示条数", required = true) @RequestParam("pageSize") Integer pageSize,
 			@ApiParam(value = "页号", required = true) @RequestParam("current") Integer current) {
 
@@ -154,7 +159,10 @@ public class ArticleController {
 
 		int count = articleService.count(query);
 		if (count > 0) {
-			List<Article> articleList = articleService.listArticle(query, current, pageSize);
+
+			PageUtil pageUtil = new PageUtil(current, pageSize);
+
+			List<Article> articleList = articleService.listArticle(query, pageUtil.getOffset(), pageUtil.getPageSize());
 
 			boList = ListToList.convertArticleList(articleList);
 		}

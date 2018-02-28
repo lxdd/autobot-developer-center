@@ -1,6 +1,18 @@
 package com.autobot.res.adc.vo;
 
-public class ArticleVO {
+import java.io.Serializable;
+
+/**
+ * @Description: TODO
+ * @author li_xiaodong
+ * @date: 2018年2月28日 下午7:39:06
+ */
+public class ArticleVO implements Serializable {
+
+	/**
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Integer serveId;
 
@@ -71,4 +83,12 @@ public class ArticleVO {
 	public void setContent(String content) {
 		this.content = content == null ? null : content.trim();
 	}
+
+	@Override
+	public String toString() {
+		return "ArticleVO [serveId=" + serveId + ", title=" + title + ", type=" + type + ", interfacePath="
+				+ interfacePath + ", nameCreate=" + nameCreate + ", nameModified=" + nameModified + ", content="
+				+ content + "]";
+	}
+
 }

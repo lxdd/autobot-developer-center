@@ -49,12 +49,12 @@
 		#{nameModified,jdbcType=VARCHAR},
 		#{isDeleted,jdbcType=TINYINT})
 	</insert>
-	<insert id="insertSelective" parameterType="com.autobot.res.adc.model.App">
+
+	<!-- insert -->
+	<insert id="insertSelective" parameterType="com.autobot.res.adc.model.App"
+		useGeneratedKeys="true" keyProperty="appId">
 		insert into adc_app
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="appId != null">
-				app_id,
-			</if>
 			<if test="appCode != null">
 				app_code,
 			</if>
@@ -87,9 +87,6 @@
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="appId != null">
-				#{appId,jdbcType=INTEGER},
-			</if>
 			<if test="appCode != null">
 				#{appCode,jdbcType=VARCHAR},
 			</if>
@@ -122,6 +119,8 @@
 			</if>
 		</trim>
 	</insert>
+	
+	<!-- update -->
 	<update id="updateByPrimaryKeySelective" parameterType="com.autobot.res.adc.model.App">
 		update adc_app
 		<set>
@@ -155,6 +154,7 @@
 			<if test="isDeleted != null">
 				is_deleted = #{isDeleted,jdbcType=TINYINT},
 			</if>
+			gmt_modified = NOW()
 		</set>
 		where app_id = #{appId,jdbcType=INTEGER}
 	</update>
@@ -204,31 +204,31 @@
 		<where>
 			is_deleted = 0
 			<if test="query.appCode != null">
-				app_code = #{query.appCode,jdbcType=VARCHAR},
+				AND app_code = #{query.appCode,jdbcType=VARCHAR}
 			</if>
 			<if test="query.appName != null">
-				app_name = #{query.appName,jdbcType=VARCHAR},
+				AND app_name = #{query.appName,jdbcType=VARCHAR}
 			</if>
 			<if test="query.appKey != null">
-				app_key = #{query.appKey,jdbcType=VARCHAR},
+				AND app_key = #{query.appKey,jdbcType=VARCHAR}
 			</if>
 			<if test="query.appSecret != null">
-				app_secret = #{query.appSecret,jdbcType=VARCHAR},
+				AND app_secret = #{query.appSecret,jdbcType=VARCHAR}
 			</if>
 			<if test="query.isAuth != null">
-				is_auth = #{query.isAuth,jdbcType=TINYINT},
+				AND is_auth = #{query.isAuth,jdbcType=TINYINT}
 			</if>
 			<if test="query.gmtCreate != null">
-				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+				AND gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.gmtModified != null">
-				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+				AND gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.nameCreate != null">
-				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+				AND name_create = #{query.nameCreate,jdbcType=VARCHAR}
 			</if>
 			<if test="query.nameModified != null">
-				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+				AND name_modified = #{query.nameModified,jdbcType=VARCHAR}
 			</if>
 		</where>
 		order by gmt_create desc
@@ -245,31 +245,31 @@
 		<where>
 			is_deleted = 0
 			<if test="query.appCode != null">
-				app_code = #{query.appCode,jdbcType=VARCHAR},
+				AND app_code = #{query.appCode,jdbcType=VARCHAR}
 			</if>
 			<if test="query.appName != null">
-				app_name = #{query.appName,jdbcType=VARCHAR},
+				AND app_name = #{query.appName,jdbcType=VARCHAR}
 			</if>
 			<if test="query.appKey != null">
-				app_key = #{query.appKey,jdbcType=VARCHAR},
+				AND app_key = #{query.appKey,jdbcType=VARCHAR}
 			</if>
 			<if test="query.appSecret != null">
-				app_secret = #{query.appSecret,jdbcType=VARCHAR},
+				AND app_secret = #{query.appSecret,jdbcType=VARCHAR}
 			</if>
 			<if test="query.isAuth != null">
-				is_auth = #{query.isAuth,jdbcType=TINYINT},
+				AND is_auth = #{query.isAuth,jdbcType=TINYINT}
 			</if>
 			<if test="query.gmtCreate != null">
-				gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP},
+				AND gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.gmtModified != null">
-				gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP},
+				AND gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP}
 			</if>
 			<if test="query.nameCreate != null">
-				name_create = #{query.nameCreate,jdbcType=VARCHAR},
+				AND name_create = #{query.nameCreate,jdbcType=VARCHAR}
 			</if>
 			<if test="query.nameModified != null">
-				name_modified = #{query.nameModified,jdbcType=VARCHAR},
+				AND name_modified = #{query.nameModified,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>

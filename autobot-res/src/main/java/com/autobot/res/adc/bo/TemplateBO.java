@@ -1,86 +1,95 @@
 package com.autobot.res.adc.bo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TemplateBO {
-	
-    private Integer id;
+/**
+ * @Description: 模板业务数据
+ * @author li_xiaodong
+ * @date: 2018年2月28日 上午11:54:19
+ */
+public class TemplateBO implements Serializable {
 
-    private String templateName;
+	/**
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+	 */
+	private static final long serialVersionUID = 1L;
 
-    private Date gmtCreate;
+	private Integer id;
 
-    private String nameCreate;
+	private String templateName;
 
-    private Date gmtModified;
+	private Date gmtCreate;
 
-    private String nameModified;
+	private String nameCreate;
 
-    private Integer isDeleted;
+	private Date gmtModified;
 
-    private String templateContent;
+	private String nameModified;
 
-    public Integer getId() {
-        return id;
-    }
+	private String templateContent;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getTemplateName() {
-        return templateName;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setTemplateName(String templateName) {
-        this.templateName = templateName == null ? null : templateName.trim();
-    }
+	public String getTemplateName() {
+		return templateName;
+	}
 
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
+	public void setTemplateName(String templateName) {
+		this.templateName = templateName == null ? null : templateName.trim();
+	}
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
 
-    public String getNameCreate() {
-        return nameCreate;
-    }
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
 
-    public void setNameCreate(String nameCreate) {
-        this.nameCreate = nameCreate == null ? null : nameCreate.trim();
-    }
+	public String getNameCreate() {
+		return nameCreate;
+	}
 
-    public Date getGmtModified() {
-        return gmtModified;
-    }
+	public void setNameCreate(String nameCreate) {
+		this.nameCreate = nameCreate == null ? null : nameCreate.trim();
+	}
 
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
-    }
+	public Date getGmtModified() {
+		return gmtModified;
+	}
 
-    public String getNameModified() {
-        return nameModified;
-    }
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
+	}
 
-    public void setNameModified(String nameModified) {
-        this.nameModified = nameModified == null ? null : nameModified.trim();
-    }
+	public String getNameModified() {
+		return nameModified;
+	}
 
-    public Integer getIsDeleted() {
-        return isDeleted;
-    }
+	public void setNameModified(String nameModified) {
+		this.nameModified = nameModified == null ? null : nameModified.trim();
+	}
 
-    public void setIsDeleted(Integer isDeleted) {
-        this.isDeleted = isDeleted;
-    }
+	public String getTemplateContent() {
+		return templateContent;
+	}
 
-    public String getTemplateContent() {
-        return templateContent;
-    }
+	public void setTemplateContent(String templateContent) {
+		this.templateContent = templateContent == null ? null : templateContent.trim();
+	}
 
-    public void setTemplateContent(String templateContent) {
-        this.templateContent = templateContent == null ? null : templateContent.trim();
-    }
+	@Override
+	public String toString() {
+		return "TemplateBO [id=" + id + ", templateName=" + templateName + ", gmtCreate=" + gmtCreate + ", nameCreate="
+				+ nameCreate + ", gmtModified=" + gmtModified + ", nameModified=" + nameModified + ", templateContent="
+				+ templateContent + "]";
+	}
+
 }

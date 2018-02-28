@@ -1,115 +1,124 @@
 package com.autobot.res.adc.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AppQuery {
-    private Integer appId;
+/**
+ * @Description: TODO
+ * @author li_xiaodong
+ * @date: 2018年2月28日 下午7:25:53
+ */
+public class AppQuery implements Serializable {
+	/**
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+	 */
+	private static final long serialVersionUID = 1L;
 
-    private String appCode;
+	private Integer appId;
 
-    private String appName;
+	private String appCode;
 
-    private String appKey;
+	private String appName;
 
-    private String appSecret;
+	private String appKey;
 
-    private Integer isAuth;
+	private String appSecret;
 
-    private Date gmtCreate;
+	private Integer isAuth;
 
-    private Date gmtModified;
+	private Date gmtCreate;
 
-    private String nameCreate;
+	private Date gmtModified;
 
-    private String nameModified;
+	private String nameCreate;
 
-    private Integer isDeleted;
+	private String nameModified;
 
-    public Integer getAppId() {
-        return appId;
-    }
+	public Integer getAppId() {
+		return appId;
+	}
 
-    public void setAppId(Integer appId) {
-        this.appId = appId;
-    }
+	public void setAppId(Integer appId) {
+		this.appId = appId;
+	}
 
-    public String getAppCode() {
-        return appCode;
-    }
+	public String getAppCode() {
+		return appCode;
+	}
 
-    public void setAppCode(String appCode) {
-        this.appCode = appCode == null ? null : appCode.trim();
-    }
+	public void setAppCode(String appCode) {
+		this.appCode = appCode == null ? null : appCode.trim();
+	}
 
-    public String getAppName() {
-        return appName;
-    }
+	public String getAppName() {
+		return appName;
+	}
 
-    public void setAppName(String appName) {
-        this.appName = appName == null ? null : appName.trim();
-    }
+	public void setAppName(String appName) {
+		this.appName = appName == null ? null : appName.trim();
+	}
 
-    public String getAppKey() {
-        return appKey;
-    }
+	public String getAppKey() {
+		return appKey;
+	}
 
-    public void setAppKey(String appKey) {
-        this.appKey = appKey == null ? null : appKey.trim();
-    }
+	public void setAppKey(String appKey) {
+		this.appKey = appKey == null ? null : appKey.trim();
+	}
 
-    public String getAppSecret() {
-        return appSecret;
-    }
+	public String getAppSecret() {
+		return appSecret;
+	}
 
-    public void setAppSecret(String appSecret) {
-        this.appSecret = appSecret == null ? null : appSecret.trim();
-    }
+	public void setAppSecret(String appSecret) {
+		this.appSecret = appSecret == null ? null : appSecret.trim();
+	}
 
-    public Integer getIsAuth() {
-        return isAuth;
-    }
+	public Integer getIsAuth() {
+		return isAuth;
+	}
 
-    public void setIsAuth(Integer isAuth) {
-        this.isAuth = isAuth;
-    }
+	public void setIsAuth(Integer isAuth) {
+		this.isAuth = isAuth;
+	}
 
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
 
-    public Date getGmtModified() {
-        return gmtModified;
-    }
+	public Date getGmtModified() {
+		return gmtModified;
+	}
 
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
-    }
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
+	}
 
-    public String getNameCreate() {
-        return nameCreate;
-    }
+	public String getNameCreate() {
+		return nameCreate;
+	}
 
-    public void setNameCreate(String nameCreate) {
-        this.nameCreate = nameCreate == null ? null : nameCreate.trim();
-    }
+	public void setNameCreate(String nameCreate) {
+		this.nameCreate = nameCreate == null ? null : nameCreate.trim();
+	}
 
-    public String getNameModified() {
-        return nameModified;
-    }
+	public String getNameModified() {
+		return nameModified;
+	}
 
-    public void setNameModified(String nameModified) {
-        this.nameModified = nameModified == null ? null : nameModified.trim();
-    }
+	public void setNameModified(String nameModified) {
+		this.nameModified = nameModified == null ? null : nameModified.trim();
+	}
 
-    public Integer getIsDeleted() {
-        return isDeleted;
-    }
+	@Override
+	public String toString() {
+		return "AppQuery [appId=" + appId + ", appCode=" + appCode + ", appName=" + appName + ", appKey=" + appKey
+				+ ", appSecret=" + appSecret + ", isAuth=" + isAuth + ", gmtCreate=" + gmtCreate + ", gmtModified="
+				+ gmtModified + ", nameCreate=" + nameCreate + ", nameModified=" + nameModified + "]";
+	}
 
-    public void setIsDeleted(Integer isDeleted) {
-        this.isDeleted = isDeleted;
-    }
 }

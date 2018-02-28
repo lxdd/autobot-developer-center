@@ -1,9 +1,15 @@
 package com.autobot.res.adc.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AppArticle {
-    private Integer id;
+public class AppArticle  implements Serializable {
+    /**
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么) 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer appId;
 
@@ -62,4 +68,5 @@ public class AppArticle {
     public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
+    
 }

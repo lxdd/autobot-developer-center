@@ -27,6 +27,7 @@ import com.autobot.res.adc.vo.ServeQuery;
 import com.autobot.res.adc.vo.ServeVO;
 import com.autobot.res.base.support.PageResult;
 import com.autobot.res.base.support.Result;
+import com.autobot.res.base.util.PageUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -89,7 +90,11 @@ public class ServeController {
 
 		if (null != serveId && null != serveVO) {
 
+			serveVO.setNameCreate(null);
+
 			BeanUtils.copyProperties(serveVO, serve);
+
+			serve.setServeId(serveId);
 
 			serveService.update(serve);
 		}
@@ -141,7 +146,7 @@ public class ServeController {
 
 	@ApiOperation("服务方搜索")
 	@PostMapping("/search")
-	public PageResult<List<ServeBO>> getInquiryBySearch(@RequestBody ServeQuery query,
+	public PageResult<List<ServeBO>> search(@RequestBody ServeQuery query,
 			@ApiParam(value = "每页显示条数", required = true) @RequestParam("pageSize") Integer pageSize,
 			@ApiParam(value = "页号", required = true) @RequestParam("current") Integer current) {
 
@@ -153,7 +158,9 @@ public class ServeController {
 
 		int count = serveService.count(query);
 		if (count > 0) {
-			List<Serve> serveList = serveService.listServe(query, current, pageSize);
+
+			PageUtil pageUtil = new PageUtil(current, pageSize);
+			List<Serve> serveList = serveService.listServe(query, pageUtil.getOffset(), pageUtil.getPageSize());
 
 			boList = ListToList.convertServeList(serveList);
 		}

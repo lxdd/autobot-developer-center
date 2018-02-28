@@ -1,95 +1,115 @@
 package com.autobot.res.adc.bo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ServeBO {
-    private Integer serveId;
+/**
+ * @Description: TODO
+ * @author li_xiaodong
+ * @date: 2018年2月28日 下午7:28:50 
+ */
+public class ServeBO implements Serializable {
 
-    private String serveName;
+	/**
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+	 */
+	private static final long serialVersionUID = 1L;
 
-    private String serveAddr;
+	private Integer serveId;
 
-    private String serveRemark;
+	private String serveName;
 
-    private Date gmtCreate;
+	private String serveAddr;
 
-    private Date gmtModified;
+	private String serveRemark;
 
-    private String nameCreate;
+	private Date gmtCreate;
 
-    private String nameModified;
+	private Date gmtModified;
 
-    private Integer isDeleted;
+	private String nameCreate;
 
-    public Integer getServeId() {
-        return serveId;
-    }
+	private String nameModified;
 
-    public void setServeId(Integer serveId) {
-        this.serveId = serveId;
-    }
+	private Integer isDeleted;
 
-    public String getServeName() {
-        return serveName;
-    }
+	public Integer getServeId() {
+		return serveId;
+	}
 
-    public void setServeName(String serveName) {
-        this.serveName = serveName == null ? null : serveName.trim();
-    }
+	public void setServeId(Integer serveId) {
+		this.serveId = serveId;
+	}
 
-    public String getServeAddr() {
-        return serveAddr;
-    }
+	public String getServeName() {
+		return serveName;
+	}
 
-    public void setServeAddr(String serveAddr) {
-        this.serveAddr = serveAddr == null ? null : serveAddr.trim();
-    }
+	public void setServeName(String serveName) {
+		this.serveName = serveName == null ? null : serveName.trim();
+	}
 
-    public String getServeRemark() {
-        return serveRemark;
-    }
+	public String getServeAddr() {
+		return serveAddr;
+	}
 
-    public void setServeRemark(String serveRemark) {
-        this.serveRemark = serveRemark == null ? null : serveRemark.trim();
-    }
+	public void setServeAddr(String serveAddr) {
+		this.serveAddr = serveAddr == null ? null : serveAddr.trim();
+	}
 
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
+	public String getServeRemark() {
+		return serveRemark;
+	}
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
+	public void setServeRemark(String serveRemark) {
+		this.serveRemark = serveRemark == null ? null : serveRemark.trim();
+	}
 
-    public Date getGmtModified() {
-        return gmtModified;
-    }
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
 
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
-    }
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
 
-    public String getNameCreate() {
-        return nameCreate;
-    }
+	public Date getGmtModified() {
+		return gmtModified;
+	}
 
-    public void setNameCreate(String nameCreate) {
-        this.nameCreate = nameCreate == null ? null : nameCreate.trim();
-    }
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
+	}
 
-    public String getNameModified() {
-        return nameModified;
-    }
+	public String getNameCreate() {
+		return nameCreate;
+	}
 
-    public void setNameModified(String nameModified) {
-        this.nameModified = nameModified == null ? null : nameModified.trim();
-    }
+	public void setNameCreate(String nameCreate) {
+		this.nameCreate = nameCreate == null ? null : nameCreate.trim();
+	}
 
-    public Integer getIsDeleted() {
-        return isDeleted;
-    }
+	public String getNameModified() {
+		return nameModified;
+	}
 
-    public void setIsDeleted(Integer isDeleted) {
-        this.isDeleted = isDeleted;
-    }
+	public void setNameModified(String nameModified) {
+		this.nameModified = nameModified == null ? null : nameModified.trim();
+	}
+
+	public Integer getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Integer isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+	@Override
+	public String toString() {
+		return "ServeBO [serveId=" + serveId + ", serveName=" + serveName + ", serveAddr=" + serveAddr
+				+ ", serveRemark=" + serveRemark + ", gmtCreate=" + gmtCreate + ", gmtModified=" + gmtModified
+				+ ", nameCreate=" + nameCreate + ", nameModified=" + nameModified + ", isDeleted=" + isDeleted + "]";
+	}
+
 }

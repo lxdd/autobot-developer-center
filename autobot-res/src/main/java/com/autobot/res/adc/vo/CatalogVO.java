@@ -1,6 +1,18 @@
 package com.autobot.res.adc.vo;
 
-public class CatalogVO {
+import java.io.Serializable;
+
+/**
+ * @Description: TODO
+ * @author li_xiaodong
+ * @date: 2018年2月28日 下午7:38:50
+ */
+public class CatalogVO implements Serializable {
+
+	/**
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Integer parentId;
 
@@ -61,4 +73,11 @@ public class CatalogVO {
 	public void setIsDeleted(Integer isDeleted) {
 		this.isDeleted = isDeleted;
 	}
+
+	@Override
+	public String toString() {
+		return "CatalogVO [parentId=" + parentId + ", serveId=" + serveId + ", url=" + url + ", nameCreate="
+				+ nameCreate + ", nameModified=" + nameModified + ", isDeleted=" + isDeleted + "]";
+	}
+
 }
