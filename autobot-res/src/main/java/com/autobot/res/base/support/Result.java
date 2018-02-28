@@ -25,8 +25,6 @@ public class Result<T> implements Serializable {
 
 	// Extension拓展字段，供分页用
 
-	// ** 总条数 *//*
-//	private String totalCount;
 
 	public Result() {
 		// 实例化默认设置成功

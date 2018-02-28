@@ -2,6 +2,11 @@ package com.autobot.res.adc.vo;
 
 import java.io.Serializable;
 
+/**
+ * @Description: TODO
+ * @author li_xiaodong
+ * @date: 2018年2月28日 下午7:41:36 
+ */
 public class ServeVO  implements Serializable {
 
 	/**
@@ -57,6 +62,12 @@ public class ServeVO  implements Serializable {
 
 	public void setNameModified(String nameModified) {
 		this.nameModified = nameModified == null ? null : nameModified.trim();
+	}
+
+	@Override
+	public String toString() {
+		return "ServeVO [serveName=" + serveName + ", serveAddr=" + serveAddr + ", serveRemark=" + serveRemark
+				+ ", nameCreate=" + nameCreate + ", nameModified=" + nameModified + "]";
 	}
 
 }
