@@ -38,12 +38,16 @@ public interface TemplateMapper {
 	 */
 	int deleteById(Integer id);
 
-	/**
-	 * 列表查询
-	 * 
-	 * @param query
-	 * @return
-	 */
+	/**  
+	* @Title: listTemplate  
+	* @Description: 列表查询 
+	* @param @param query
+	* @param @param offset
+	* @param @param limit
+	* @param @return    设定文件  
+	* @return List<Template>    返回类型  
+	* @throws  
+	*/ 
 	List<Template> listTemplate(@Param("query") TemplateQuery query, @Param("offset") Integer offset,
 			@Param("limit") Integer limit);
 
