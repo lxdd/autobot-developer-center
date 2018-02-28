@@ -1,8 +1,11 @@
 package com.autobot.res.adc.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.autobot.res.adc.model.Catalog;
+import com.autobot.res.adc.vo.CatalogQuery;
 
 /**
  * Catalog
@@ -54,4 +57,13 @@ public interface CatalogMapper {
 	* @throws  
 	*/ 
 	int deleteById(Integer id);
+	
+	/**  
+	* @Description: TODO(这里用一句话描述这个方法的作用)  
+	* @param query
+	* @return
+	* List<Catalog>
+	* @throws  
+	*/ 
+	List<Catalog> listCatalog(CatalogQuery query);
 }

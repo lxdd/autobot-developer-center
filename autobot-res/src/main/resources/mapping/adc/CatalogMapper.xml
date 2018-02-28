@@ -13,11 +13,12 @@
 		<result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, parent_id, serve_id, url, gmt_create, name_create, gmt_modified,
+		id, parent_id, serve_id, url, gmt_create, name_create,
+		gmt_modified,
 		name_modified,
 		is_deleted
 	</sql>
-	
+
 	<!-- 查详情 -->
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">
@@ -26,20 +27,26 @@
 		from adc_catalog
 		where is_deleted = 0 and id = #{id,jdbcType=INTEGER}
 	</select>
-	
+
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from adc_catalog
+		delete from
+		adc_catalog
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.autobot.res.adc.model.Catalog">
-		insert into adc_catalog (id, parent_id, serve_id,
+		insert into adc_catalog (id,
+		parent_id, serve_id,
 		url, gmt_create, name_create,
-		gmt_modified, name_modified, is_deleted
+		gmt_modified,
+		name_modified, is_deleted
 		)
-		values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER},
+		values (#{id,jdbcType=INTEGER},
+		#{parentId,jdbcType=INTEGER},
 		#{serveId,jdbcType=INTEGER},
-		#{url,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{nameCreate,jdbcType=VARCHAR},
-		#{gmtModified,jdbcType=TIMESTAMP}, #{nameModified,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
+		#{nameCreate,jdbcType=VARCHAR},
+		#{gmtModified,jdbcType=TIMESTAMP},
+		#{nameModified,jdbcType=VARCHAR},
 		#{isDeleted,jdbcType=TINYINT}
 		)
 	</insert>
@@ -101,7 +108,7 @@
 			</if>
 		</trim>
 	</insert>
-	
+
 	<!-- update -->
 	<update id="updateByPrimaryKeySelective" parameterType="com.autobot.res.adc.model.Catalog">
 		update adc_catalog
@@ -125,20 +132,26 @@
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	
+
 	<update id="updateByPrimaryKey" parameterType="com.autobot.res.adc.model.Catalog">
 		update adc_catalog
 		set parent_id = #{parentId,jdbcType=INTEGER},
-		serve_id = #{serveId,jdbcType=INTEGER},
+		serve_id =
+		#{serveId,jdbcType=INTEGER},
 		url = #{url,jdbcType=VARCHAR},
-		gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-		name_create = #{nameCreate,jdbcType=VARCHAR},
-		gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-		name_modified = #{nameModified,jdbcType=VARCHAR},
-		is_deleted = #{isDeleted,jdbcType=TINYINT}
+		gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		name_create =
+		#{nameCreate,jdbcType=VARCHAR},
+		gmt_modified =
+		#{gmtModified,jdbcType=TIMESTAMP},
+		name_modified =
+		#{nameModified,jdbcType=VARCHAR},
+		is_deleted =
+		#{isDeleted,jdbcType=TINYINT}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	
+
 	<!-- 手动添加 begin -->
 
 	<!-- 逻辑删除 -->
@@ -152,5 +165,34 @@
 			id = #{id,jdbcType=INTEGER}
 		</where>
 	</delete>
-	
+
+	<!-- 查详情 -->
+	<select id="listCatalog" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from adc_catalog
+		<where>
+			is_deleted = 0
+			<if test="id != null">
+				AND id = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="parent_id != null">
+				AND parent_id = #{parentId,jdbcType=INTEGER}
+			</if>
+			<if test="serveId != null">
+				AND serve_id = #{serveId,jdbcType=INTEGER},
+			</if>
+			<if test="url != null">
+				AND url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtModified != null">
+				AND gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nameModified != null">
+				AND name_modified = #{nameModified,jdbcType=VARCHAR},
+			</if>
+		</where>
+		order by gmt_create desc
+	</select>
+
 </mapper>
