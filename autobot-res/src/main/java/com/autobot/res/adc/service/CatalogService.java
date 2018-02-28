@@ -1,6 +1,13 @@
 package com.autobot.res.adc.service;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
+import com.autobot.res.adc.dao.CatalogMapper;
+import com.autobot.res.adc.model.Catalog;
+import com.autobot.res.adc.model.Serve;
+import com.autobot.res.adc.model.Template;
 
 /**
  * @Description: 目录服务层
@@ -10,4 +17,55 @@ import org.springframework.stereotype.Service;
 @Service("catalogService")
 public class CatalogService {
 
+	@Resource
+	private CatalogMapper catalogMapper;
+	
+	/**
+	 * 创建
+	 * 
+	 * @param param
+	 * @return
+	 */
+
+	public int insert(Catalog catalog) {
+		int count = catalogMapper.insertSelective(catalog);
+		return count;
+	}
+	
+	/**
+	 * 更新
+	 * 
+	 * @param param
+	 * @return
+	 */
+
+	public int update(Catalog catalog) {
+		int count = catalogMapper.updateByPrimaryKeySelective(catalog);
+		return count;
+	}
+	
+	/**
+	 * 删除
+	 * 
+	 * @param id
+	 * @return
+	 */
+
+	public int delete(int id) {
+		int count = catalogMapper.deleteById(id);
+		return count;
+	}
+	
+	/**
+	 * 查看
+	 * 
+	 * @param id
+	 * @return
+	 */
+
+	public Catalog getById(int id) {
+		Catalog catalog = catalogMapper.selectByPrimaryKey(id);
+		return catalog;
+	}
+	
 }

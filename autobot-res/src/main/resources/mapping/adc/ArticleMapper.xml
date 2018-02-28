@@ -33,13 +33,9 @@
 		,
 		<include refid="Blob_Column_List" />
 		from adc_article
-		where article_id = #{articleId,jdbcType=INTEGER}
+		where is_deleted = 0 and article_id = #{articleId,jdbcType=INTEGER}
 	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from
-		adc_article
-		where article_id = #{articleId,jdbcType=INTEGER}
-	</delete>
+	
 	<insert id="insert" parameterType="com.autobot.res.adc.model.Article">
 		insert into adc_article
 		(article_id, serve_id, title,

@@ -23,7 +23,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from adc_serve
-		where serve_id = #{serveId,jdbcType=INTEGER}
+		where is_deleted = 0 and serve_id = #{serveId,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from

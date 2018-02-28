@@ -76,9 +76,8 @@ public class TemplateController {
 	}
 
 	/**
-	 * @Title: update @Description: TODO 入参vo不应包含createName @param @param
-	 * id @param @param templateVO @param @return 设定文件 @return Result<Object>
-	 * 返回类型 @throws
+	 * @Description: update @param @param id @param @param templateVO @param @return
+	 * 设定文件 @return Result<Object> 返回类型 @throws
 	 */
 	@ApiOperation("修改文档模板")
 	@PutMapping("/{id}")

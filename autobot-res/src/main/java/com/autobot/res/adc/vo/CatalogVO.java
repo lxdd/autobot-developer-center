@@ -3,14 +3,14 @@ package com.autobot.res.adc.vo;
 import java.io.Serializable;
 
 /**
- * @Description: TODO
+ * 目录VO
  * @author li_xiaodong
  * @date: 2018年2月28日 下午7:38:50
  */
 public class CatalogVO implements Serializable {
 
 	/**
-	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+	 * @Fields serialVersionUID : Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -23,8 +23,6 @@ public class CatalogVO implements Serializable {
 	private String nameCreate;
 
 	private String nameModified;
-
-	private Integer isDeleted;
 
 	public Integer getParentId() {
 		return parentId;
@@ -66,18 +64,10 @@ public class CatalogVO implements Serializable {
 		this.nameModified = nameModified == null ? null : nameModified.trim();
 	}
 
-	public Integer getIsDeleted() {
-		return isDeleted;
-	}
-
-	public void setIsDeleted(Integer isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-
 	@Override
 	public String toString() {
 		return "CatalogVO [parentId=" + parentId + ", serveId=" + serveId + ", url=" + url + ", nameCreate="
-				+ nameCreate + ", nameModified=" + nameModified + ", isDeleted=" + isDeleted + "]";
+				+ nameCreate + ", nameModified=" + nameModified + "]";
 	}
 
 }

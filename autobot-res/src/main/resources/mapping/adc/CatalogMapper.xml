@@ -17,13 +17,16 @@
 		name_modified,
 		is_deleted
 	</sql>
+	
+	<!-- 查详情 -->
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from adc_catalog
-		where id = #{id,jdbcType=INTEGER}
+		where is_deleted = 0 and id = #{id,jdbcType=INTEGER}
 	</select>
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from adc_catalog
 		where id = #{id,jdbcType=INTEGER}
@@ -98,6 +101,8 @@
 			</if>
 		</trim>
 	</insert>
+	
+	<!-- update -->
 	<update id="updateByPrimaryKeySelective" parameterType="com.autobot.res.adc.model.Catalog">
 		update adc_catalog
 		<set>
@@ -110,25 +115,17 @@
 			<if test="url != null">
 				url = #{url,jdbcType=VARCHAR},
 			</if>
-			<if test="gmtCreate != null">
-				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-			</if>
-			<if test="nameCreate != null">
-				name_create = #{nameCreate,jdbcType=VARCHAR},
-			</if>
 			<if test="gmtModified != null">
 				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
 			</if>
 			<if test="nameModified != null">
 				name_modified = #{nameModified,jdbcType=VARCHAR},
 			</if>
-			<if test="isDeleted != null">
-				is_deleted = #{isDeleted,jdbcType=TINYINT},
-			</if>
 			gmt_modified = NOW()
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
+	
 	<update id="updateByPrimaryKey" parameterType="com.autobot.res.adc.model.Catalog">
 		update adc_catalog
 		set parent_id = #{parentId,jdbcType=INTEGER},
@@ -141,4 +138,19 @@
 		is_deleted = #{isDeleted,jdbcType=TINYINT}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
+	
+	<!-- 手动添加 begin -->
+
+	<!-- 逻辑删除 -->
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		UPDATE adc_catalog
+		<set>
+			gmt_modified = now(),
+			is_deleted=1
+		</set>
+		<where>
+			id = #{id,jdbcType=INTEGER}
+		</where>
+	</delete>
+	
 </mapper>
