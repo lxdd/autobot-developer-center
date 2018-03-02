@@ -173,23 +173,23 @@
 		from adc_catalog
 		<where>
 			is_deleted = 0
-			<if test="id != null">
-				AND id = #{id,jdbcType=INTEGER}
+			<if test="query.id != null">
+				AND id = #{query.id,jdbcType=INTEGER}
 			</if>
-			<if test="parent_id != null">
-				AND parent_id = #{parentId,jdbcType=INTEGER}
+			<if test="query.parentId != null">
+				AND parent_id = #{query.parentId,jdbcType=INTEGER}
 			</if>
-			<if test="serveId != null">
-				AND serve_id = #{serveId,jdbcType=INTEGER},
+			<if test="query.serveId != null">
+				AND serve_id = #{query.serveId,jdbcType=INTEGER},
 			</if>
-			<if test="url != null">
-				AND url = #{url,jdbcType=VARCHAR},
+			<if test="query.url != null">
+				AND url = #{query.url,jdbcType=VARCHAR},
 			</if>
-			<if test="gmtModified != null">
-				AND gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			<if test="query.nameCreate != null">
+				AND name_create = #{query.nameCreate,jdbcType=VARCHAR},
 			</if>
-			<if test="nameModified != null">
-				AND name_modified = #{nameModified,jdbcType=VARCHAR},
+			<if test="query.nameModified != null">
+				AND name_modified = #{query.nameModified,jdbcType=VARCHAR},
 			</if>
 		</where>
 		order by gmt_create desc

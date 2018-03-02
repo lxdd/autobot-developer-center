@@ -3,6 +3,7 @@ package com.autobot.res.adc.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.autobot.res.adc.model.Catalog;
 import com.autobot.res.adc.vo.CatalogQuery;
@@ -65,5 +66,5 @@ public interface CatalogMapper {
 	* List<Catalog>
 	* @throws  
 	*/ 
-	List<Catalog> listCatalog(CatalogQuery query);
+	List<Catalog> listCatalog(@Param("query") CatalogQuery query);
 }

@@ -10,7 +10,8 @@ import com.netflix.zuul.context.RequestContext;
 
 /**
  * 
- * 
+ * 它实现了在请求被路由之前检查 HttpServletReque江中是否有 accessToken 参数， 若有就进行路由， 若没有就拒绝 访问， 返回
+ * 401 Unauthorized 错误。
  * 
  * @author li_xiaodong
  *
@@ -24,8 +25,7 @@ public class AccessFilter extends ZuulFilter {
 	 * ctx.setResponseStatusCode (401)设置了其返回的错误码， 当然也可以进 一步优化我们的返回， 比如， 通
 	 * 过ctx.setResponseBody(body)对返回的body内容进行编辑等
 	 * 
-	 * 过滤器的具体逻辑。 在该函数中， 我们可以实现自定义的过滤逻辑， 来确定 是否要拦截当前的请求， 不对其进行后续的路由，
-	 *  或是在请求路由返回结果之后，
+	 * 过滤器的具体逻辑。 在该函数中， 我们可以实现自定义的过滤逻辑， 来确定 是否要拦截当前的请求， 不对其进行后续的路由， 或是在请求路由返回结果之后，
 	 * 对处理结果做一些加工等
 	 * 
 	 * @see com.netflix.zuul.IZuulFilter#run()
@@ -47,8 +47,7 @@ public class AccessFilter extends ZuulFilter {
 	}
 
 	/*
-	 * 判断该过滤器是否需要被执行。 这里我们直接返回了true, 因 此该过滤器对所有请求都会生效。 
-	 * 实际运用中我们可以利用该函数来指定过滤器的 有效范围
+	 * 判断该过滤器是否需要被执行。 这里我们直接返回了true, 因 此该过滤器对所有请求都会生效。 实际运用中我们可以利用该函数来指定过滤器的 有效范围
 	 * 
 	 * @see com.netflix.zuul.IZuulFilter#shouldFilter()
 	 */

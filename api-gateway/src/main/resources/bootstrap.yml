@@ -23,4 +23,7 @@ management:
   security:
     enabled: false
 
-         
+eureka:
+  client:
+    service-url:
+      defaultZone: http://www.lxdyun.com:7100/eureka/         

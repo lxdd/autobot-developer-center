@@ -7,10 +7,12 @@ import org.springframework.beans.BeanUtils;
 
 import com.autobot.res.adc.bo.AppBO;
 import com.autobot.res.adc.bo.ArticleBO;
+import com.autobot.res.adc.bo.CatalogBO;
 import com.autobot.res.adc.bo.ServeBO;
 import com.autobot.res.adc.bo.TemplateBO;
 import com.autobot.res.adc.model.App;
 import com.autobot.res.adc.model.Article;
+import com.autobot.res.adc.model.Catalog;
 import com.autobot.res.adc.model.Serve;
 import com.autobot.res.adc.model.Template;
 
@@ -95,6 +97,26 @@ public class ListToList {
 			AppBO bo = null;
 			for (App mo : moList) {
 				bo = new AppBO();
+				BeanUtils.copyProperties(mo, bo);
+				boList.add(bo);
+			}
+		}
+		return boList;
+	}
+	
+	/**
+	 * 对象转换DO--BO
+	 * 
+	 * @param moList
+	 * @return
+	 */
+	public static List<CatalogBO> convertCatalogList(List<Catalog> moList) {
+		List<CatalogBO> boList = new ArrayList<CatalogBO>();
+
+		if (null != moList && !moList.isEmpty()) {
+			CatalogBO bo = null;
+			for (Catalog mo : moList) {
+				bo = new CatalogBO();
 				BeanUtils.copyProperties(mo, bo);
 				boList.add(bo);
 			}

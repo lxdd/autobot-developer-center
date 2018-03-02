@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.autobot.res.adc.bo.ArticleBO;
+import com.autobot.res.adc.bo.ServeBO;
 import com.autobot.res.adc.common.convert.ListToList;
 import com.autobot.res.adc.model.Article;
 import com.autobot.res.adc.service.ArticleService;
@@ -131,6 +132,10 @@ public class ArticleController {
 		Result<ArticleBO> result = new Result<ArticleBO>();
 
 		ArticleBO bo = new ArticleBO();
+		
+		List<ServeBO> serveList = new ArrayList<>();
+		serveList.add(new ServeBO());
+		bo.setServeList(serveList);
 
 		if (null != articleId) {
 			Article article = articleService.getById(articleId);

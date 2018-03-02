@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * 目录VO
+ * 
  * @author li_xiaodong
  * @date: 2018年2月28日 下午7:38:50
  */
@@ -14,6 +15,8 @@ public class CatalogQuery implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private Integer id;
+
 	private Integer parentId;
 
 	private Integer serveId;
@@ -23,6 +26,14 @@ public class CatalogQuery implements Serializable {
 	private String nameCreate;
 
 	private String nameModified;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public Integer getParentId() {
 		return parentId;
@@ -66,8 +77,8 @@ public class CatalogQuery implements Serializable {
 
 	@Override
 	public String toString() {
-		return "CatalogVO [parentId=" + parentId + ", serveId=" + serveId + ", url=" + url + ", nameCreate="
-				+ nameCreate + ", nameModified=" + nameModified + "]";
+		return "CatalogQuery [id=" + id + ", parentId=" + parentId + ", serveId=" + serveId + ", url=" + url
+				+ ", nameCreate=" + nameCreate + ", nameModified=" + nameModified + "]";
 	}
 
 }

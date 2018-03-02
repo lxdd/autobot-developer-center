@@ -1,5 +1,8 @@
 package com.autobot.res.adc.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -16,10 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.autobot.res.adc.bo.CatalogBO;
+import com.autobot.res.adc.common.convert.ListToList;
+import com.autobot.res.adc.common.util.MenuTreeUtil;
 import com.autobot.res.adc.model.Catalog;
 import com.autobot.res.adc.service.CatalogService;
+import com.autobot.res.adc.vo.CatalogQuery;
 import com.autobot.res.adc.vo.CatalogVO;
 import com.autobot.res.base.support.Result;
+import com.autobot.res.base.util.JsonUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -67,31 +74,6 @@ public class CatalogController {
 
 	}
 
-	@ApiOperation("修改目录")
-	@PutMapping("/{id}")
-	public Result<Object> update(@ApiParam(value = "目录id", required = true) @PathVariable(value = "id") Integer id,
-			@ApiParam("目录信息") @RequestBody CatalogVO catalogVO) {
-
-		logger.info("CatalogController.update : catalogVO={}", catalogVO.toString());
-
-		// 构建返回
-		Result<Object> result = new Result<>();
-
-		Catalog catalog = new Catalog();
-
-		if (null != id && null != catalogVO) {
-
-			catalogVO.setNameCreate(null);
-			BeanUtils.copyProperties(catalogVO, catalog);
-			catalog.setId(id);
-
-			catalogService.update(catalog);
-		}
-
-		return result;
-
-	}
-
 	@ApiOperation("删除目录")
 	@DeleteMapping("/{id}")
 	public Result<Object> delete(@ApiParam(value = "目录id", required = true) @PathVariable(value = "id") Integer id) {
@@ -109,24 +91,57 @@ public class CatalogController {
 
 	}
 
-	@ApiOperation("通过ID查询目录详情")
-	@GetMapping("/{id}")
-	public Result<CatalogBO> getById(@ApiParam(value = "id", required = true) @PathVariable("id") Integer id) {
-		logger.info("InquiryController.getById : id={}", id);
+	@ApiOperation("目录列表")
+	@GetMapping("/list")
+	public Result<List<Object>> listCatalog() {
+
+		logger.info("InquiryController.listCatalog");
 
 		// 构建返回
-		Result<CatalogBO> result = new Result<CatalogBO>();
+		Result<List<Object>> result = new Result<>();
 
-		CatalogBO bo = new CatalogBO();
+		// 构建返回对象list
+		List<CatalogBO> boList = new ArrayList<>();
 
-		if (null != id) {
-			Catalog catalog = catalogService.getById(id);
-			if (null != catalog) {
-				BeanUtils.copyProperties(catalog, bo);
-			}
+		// 获取目录list
+		List<Catalog> listCatalog = catalogService.listCatalog(new CatalogQuery());
+		if (null != listCatalog && !listCatalog.isEmpty()) {
+
+			boList = ListToList.convertCatalogList(listCatalog);
+
+			MenuTreeUtil menuTree = new MenuTreeUtil();
+			
+			result.setData(menuTree.toMenuList(boList));
+
 		}
 
-		result.setData(bo);
+		return result;
+
+	}
+
+	@ApiOperation("修改服务方目录")
+	@PutMapping("/{serveId}")
+	public Result<Object> updateByServeId(
+			@ApiParam(value = "服务方id", required = true) @PathVariable(value = "serveId") Integer serveId,
+			@ApiParam("目录信息") @RequestBody String jsonStr) {
+
+		logger.info("CatalogController.updateByServeId : jsonStr={}", jsonStr);
+
+		// 构建返回
+		Result<Object> result = new Result<>();
+
+		Catalog catalog = new Catalog();
+
+		// TODO 1.删除该服务方的所有目录； 2、新建该服务方目录（反向解析Tree型数据结构，转为list；批量创建目录）
+		
+		//1.删除该服务方的所有目录
+		
+		//2、反向解析Tree型数据结构，转为list
+		MenuTreeUtil menuTree = new MenuTreeUtil();
+		List<CatalogBO> boList = menuTree.menuToList(jsonStr);
+		
+		//3、批量创建改服务方目录
+		
 
 		return result;
 

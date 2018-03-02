@@ -14,4 +14,4 @@ zuul:
   routes:
     service-auto: 
       path: /api-auto/**
-      service-id: auto-res
+      service-id: autobot-res
