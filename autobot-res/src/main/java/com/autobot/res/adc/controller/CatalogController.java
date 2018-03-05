@@ -26,7 +26,6 @@ import com.autobot.res.adc.service.CatalogService;
 import com.autobot.res.adc.vo.CatalogQuery;
 import com.autobot.res.adc.vo.CatalogVO;
 import com.autobot.res.base.support.Result;
-import com.autobot.res.base.util.JsonUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

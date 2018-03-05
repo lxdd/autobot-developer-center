@@ -24,8 +24,10 @@ import org.apache.commons.io.IOUtils;
 public class ReqestUtil {
 
 	/**
-	 * @Description: get request headersInfo @param request @return
-	 *               Map<String,String> @throws
+	 * @Description: get request headersInfo 
+	 * @param request 
+	 * @return  Map<String,String> 
+	 * @throws
 	 */
 	public static Map<String, String> getHeadersInfo(HttpServletRequest request) {
 		Map<String, String> map = new HashMap<String, String>();
@@ -39,8 +41,10 @@ public class ReqestUtil {
 	}
 
 	/**
-	 * @Description: get request headersInfo @param request @return
-	 *               Map<String,String> @throws
+	 * @Description: get request headersInfo 
+	 * @param request 
+	 * @return  Map<String,String> 
+	 * @throws
 	 */
 	public static Map<String, Object> getParamsInfo(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<>();
@@ -65,6 +69,13 @@ public class ReqestUtil {
 		return map;
 	}
 
+
+	/**  
+	* @Description: 获取request bodyInfo
+	* @param request
+	* @return 
+	* @throws  
+	*/ 
 	public static Map<String, Object> getBodyInfo(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<>();
 
@@ -77,12 +88,10 @@ public class ReqestUtil {
 			e.printStackTrace();
 		}
 
-//		map = getBodyInfo(contentStr);
 		String strr = null;
 		try {
 			strr = URLDecoder.decode(contentStr, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		map = JsonUtil.parseToObject(strr, Map.class);
@@ -90,12 +99,14 @@ public class ReqestUtil {
 		return map;
 	}
 
+	@Deprecated
 	private static Map<String, Object> getBodyInfo(String bodyInfo) {
 		Map<String, Object> map = new HashMap<>();
 		bodyInfoProcessing(map, bodyInfo);
 		return map;
 	}
 
+	@Deprecated
 	private static String bodyInfoProcessing(Map<String, Object> map, String bodyInfo) {
 		int length = bodyInfo.length();
 		int index1 = bodyInfo.indexOf("=");
