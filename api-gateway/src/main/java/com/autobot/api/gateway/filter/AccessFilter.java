@@ -1,10 +1,16 @@
 package com.autobot.api.gateway.filter;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpMethod;
 
+import com.autobot.api.gateway.comom.util.AuthUtil;
+import com.autobot.api.gateway.comom.util.ReqestUtil;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
@@ -34,7 +40,70 @@ public class AccessFilter extends ZuulFilter {
 	public Object run() {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
-		log.info("send {} request to{}", request.getMethod(), request.getRequestURL().toString());
+		log.info("send {} request to {}", request.getMethod(), request.getRequestURL().toString());
+
+		Map<String, String> headerInfoMap = ReqestUtil.getHeadersInfo(request);
+
+		// TOP分配给应用的AppKey
+		String appKey = headerInfoMap.get("app_key");
+		if (StringUtils.isEmpty(appKey)) {
+			log.warn("access appKey is empty");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			return null;
+		}
+
+		// 参数签名结果
+		String signed = headerInfoMap.get("sign");
+		if (StringUtils.isEmpty(signed)) {
+			log.warn("access sign is empty");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			return null;
+		}
+
+		// 时间戳，格式为yyyy-MM-dd HH:mm:ss，时区为GMT+8，例如：2015-01-01
+		// 12:00:00。API服务端允许客户端请求最大时间误差为10分钟。
+		String timestamp = headerInfoMap.get("timestamp");
+		if (StringUtils.isEmpty(timestamp)) {
+			log.warn("access timestamp is empty");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			return null;
+		}
+
+		// API接口名称
+		String method = headerInfoMap.get("method");
+		if (StringUtils.isEmpty(method)) {
+			log.warn("access method is empty");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			return null;
+		}
+
+		String sign = null;
+
+		// 请求的 httpMethod
+		String httpMethod = request.getMethod();
+
+		if (HttpMethod.GET.name().equals(httpMethod)) {
+
+		} else if (HttpMethod.POST.name().equals(httpMethod)) {
+
+			Map<String, Object> map = ReqestUtil.getBodyInfo(request);
+			System.out.println(map);
+			// 查出appSecret,根据APPKey.
+			String appSecret = null;
+
+			try {
+				sign = AuthUtil.signTopRequest(map, appSecret);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		// // 获取post携带数据流
 		Object accessToken = request.getParameter("accessToken");
 		if (accessToken == null) {
 			log.warn("access token is empty");
@@ -42,6 +111,17 @@ public class AccessFilter extends ZuulFilter {
 			ctx.setResponseStatusCode(401);
 			return null;
 		}
+
+		// 三：参数完整性sign验证
+
+		if (!sign.equals(signed)) {
+			// 记录日志step1
+			log.warn("access signed sign is not same");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			return null;
+		}
+
 		log.info("access token ok");
 		return null;
 	}
