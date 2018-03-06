@@ -7,7 +7,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.autobot.res.adc.dao.ArticleMapper;
+import com.autobot.res.adc.dao.ServeArticleMapper;
 import com.autobot.res.adc.model.Article;
+import com.autobot.res.adc.model.ServeArticle;
 import com.autobot.res.adc.vo.ArticleQuery;
 
 /**
@@ -20,6 +22,9 @@ public class ArticleService {
 
 	@Resource
 	private ArticleMapper articleMapper;
+	
+	@Resource
+	private ServeArticleMapper serveArticleMapper;
 
 	/**
 	 * 查看
@@ -88,5 +93,30 @@ public class ArticleService {
 		int count = articleMapper.count(query);
 		return count;
 	}
+	
+	/**
+	 * 批量创建文章服务关系
+	 * 
+	 * @param param
+	 * @return
+	 */
 
+	public int bathInsertArticleServeMapping(List<ServeArticle> serveArticle) {
+		int count = serveArticleMapper.batchInsertSelective(serveArticle);
+		return count;
+	}
+
+	/**
+	 * 删除文章服务关系
+	 * 
+	 * @param param
+	 * @return
+	 */
+
+	public int deleteArticleServeMapping(Integer articleId) {
+		int count = serveArticleMapper.deleteByArticleId(articleId);
+		return count;
+	}
+	
+	
 }

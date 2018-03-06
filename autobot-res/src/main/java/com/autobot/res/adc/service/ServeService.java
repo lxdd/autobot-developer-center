@@ -44,7 +44,7 @@ public class ServeService {
 		int count = serveMapper.insertSelective(serve);
 		return count;
 	}
-	
+
 	/**
 	 * 更新
 	 * 
@@ -87,6 +87,15 @@ public class ServeService {
 	public int count(ServeQuery query) {
 		int count = serveMapper.count(query);
 		return count;
+	}
+
+	/**
+	 * @Description: 获取服务list，根据文档Id @param articleId @return @throws
+	 */
+	public List<Serve> getServeListByArticleId(Integer articleId) {
+
+		List<Serve> serveList = serveMapper.getServeListByArticleId(articleId);
+		return serveList;
 	}
 
 }

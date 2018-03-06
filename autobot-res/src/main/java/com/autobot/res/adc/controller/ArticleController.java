@@ -23,7 +23,10 @@ import com.autobot.res.adc.bo.ArticleBO;
 import com.autobot.res.adc.bo.ServeBO;
 import com.autobot.res.adc.common.convert.ListToList;
 import com.autobot.res.adc.model.Article;
+import com.autobot.res.adc.model.Serve;
+import com.autobot.res.adc.model.ServeArticle;
 import com.autobot.res.adc.service.ArticleService;
+import com.autobot.res.adc.service.ServeService;
 import com.autobot.res.adc.vo.ArticleQuery;
 import com.autobot.res.adc.vo.ArticleVO;
 import com.autobot.res.base.support.PageResult;
@@ -51,6 +54,9 @@ public class ArticleController {
 
 	@Autowired
 	private ArticleService articleService;
+	
+	@Autowired
+	private ServeService serveService;
 
 	@ApiOperation("新增文档")
 	@PostMapping("")
@@ -68,10 +74,10 @@ public class ArticleController {
 			BeanUtils.copyProperties(articleVO, article);
 
 			articleService.insert(article);
-			
-			
-			articleVO.getServeIdList();
-			
+
+			// 批量插入服务文章关系表
+			bathInsertArticleServe(articleVO, article.getArticleId());
+
 		}
 
 		result.setData(article.getArticleId());
@@ -79,6 +85,8 @@ public class ArticleController {
 		return result;
 
 	}
+
+	
 
 	@ApiOperation("修改文档")
 	@PutMapping("/{articleId}")
@@ -101,6 +109,14 @@ public class ArticleController {
 			article.setArticleId(articleId);
 
 			articleService.update(article);
+
+			// 变更文章服务关系表
+			// 1、先删除文章服务关系表
+			articleService.deleteArticleServeMapping(articleId);
+			// 2、重建文章服务关系
+			// 批量插入服务文章关系表
+			bathInsertArticleServe(articleVO, article.getArticleId());
+
 		}
 
 		return result;
@@ -136,15 +152,16 @@ public class ArticleController {
 		Result<ArticleBO> result = new Result<ArticleBO>();
 
 		ArticleBO bo = new ArticleBO();
-		
-		List<ServeBO> serveList = new ArrayList<>();
-		serveList.add(new ServeBO());
-		bo.setServeList(serveList);
 
 		if (null != articleId) {
 			Article article = articleService.getById(articleId);
 			if (null != article) {
 				BeanUtils.copyProperties(article, bo);
+
+				// 根据文章ID获取所属服务信息
+				List<Serve> moList = serveService.getServeListByArticleId(articleId);
+				List<ServeBO> serveList = ListToList.convertServeList(moList);
+				bo.setServeList(serveList);
 			}
 		}
 
@@ -174,6 +191,9 @@ public class ArticleController {
 			List<Article> articleList = articleService.listArticle(query, pageUtil.getOffset(), pageUtil.getPageSize());
 
 			boList = ListToList.convertArticleList(articleList);
+
+			// TODO 处理文章所属服务
+
 		}
 
 		result.setData(boList);
@@ -182,6 +202,29 @@ public class ArticleController {
 		result.setTotalCount(count);
 
 		return result;
+	}
+	
+	/**  
+	* @Description: 批量新增文档服务关系
+	* @param articleVO
+	* @param articleId
+	* @throws  
+	*/ 
+	private void bathInsertArticleServe(ArticleVO articleVO, Integer articleId) {
+		List<Integer> serveIdList = articleVO.getServeIdList();
+		if (null != serveIdList && !serveIdList.isEmpty()) {
+			List<ServeArticle> serveArticleList = new ArrayList<>();
+			ServeArticle serveArticle = null;
+			for (Integer serveId : serveIdList) {
+
+				serveArticle = new ServeArticle();
+				serveArticle.setArticleId(articleId);
+				serveArticle.setServeId(serveId);
+				serveArticleList.add(serveArticle);
+			}
+
+			articleService.bathInsertArticleServeMapping(serveArticleList);
+		}
 	}
 
 }

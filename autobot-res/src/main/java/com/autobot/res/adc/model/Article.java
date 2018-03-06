@@ -2,114 +2,110 @@ package com.autobot.res.adc.model;
 
 import java.util.Date;
 
+/**
+ * @Description: TODO
+ * @author li_xiaodong
+ * @date: 2018年3月6日 下午10:53:19
+ */
 public class Article {
-    private Integer articleId;
 
-    private Integer serveId;
+	private Integer articleId;
 
-    private String title;
+	private String title;
 
-    private Integer type;
+	private Integer type;
 
-    private String interfacePath;
+	private String interfacePath;
 
-    private Date gmtCreate;
+	private Date gmtCreate;
 
-    private String nameCreate;
+	private String nameCreate;
 
-    private Date gmtModified;
+	private Date gmtModified;
 
-    private String nameModified;
+	private String nameModified;
 
-    private Integer isDeleted;
+	private Integer isDeleted;
 
-    private String content;
+	private String content;
 
-    public Integer getArticleId() {
-        return articleId;
-    }
+	public Integer getArticleId() {
+		return articleId;
+	}
 
-    public void setArticleId(Integer articleId) {
-        this.articleId = articleId;
-    }
+	public void setArticleId(Integer articleId) {
+		this.articleId = articleId;
+	}
 
-    public Integer getServeId() {
-        return serveId;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setServeId(Integer serveId) {
-        this.serveId = serveId;
-    }
+	public void setTitle(String title) {
+		this.title = title == null ? null : title.trim();
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public Integer getType() {
+		return type;
+	}
 
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
+	public void setType(Integer type) {
+		this.type = type;
+	}
 
-    public Integer getType() {
-        return type;
-    }
+	public String getInterfacePath() {
+		return interfacePath;
+	}
 
-    public void setType(Integer type) {
-        this.type = type;
-    }
+	public void setInterfacePath(String interfacePath) {
+		this.interfacePath = interfacePath == null ? null : interfacePath.trim();
+	}
 
-    public String getInterfacePath() {
-        return interfacePath;
-    }
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
 
-    public void setInterfacePath(String interfacePath) {
-        this.interfacePath = interfacePath == null ? null : interfacePath.trim();
-    }
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
 
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
+	public String getNameCreate() {
+		return nameCreate;
+	}
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
+	public void setNameCreate(String nameCreate) {
+		this.nameCreate = nameCreate == null ? null : nameCreate.trim();
+	}
 
-    public String getNameCreate() {
-        return nameCreate;
-    }
+	public Date getGmtModified() {
+		return gmtModified;
+	}
 
-    public void setNameCreate(String nameCreate) {
-        this.nameCreate = nameCreate == null ? null : nameCreate.trim();
-    }
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
+	}
 
-    public Date getGmtModified() {
-        return gmtModified;
-    }
+	public String getNameModified() {
+		return nameModified;
+	}
 
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
-    }
+	public void setNameModified(String nameModified) {
+		this.nameModified = nameModified == null ? null : nameModified.trim();
+	}
 
-    public String getNameModified() {
-        return nameModified;
-    }
+	public Integer getIsDeleted() {
+		return isDeleted;
+	}
 
-    public void setNameModified(String nameModified) {
-        this.nameModified = nameModified == null ? null : nameModified.trim();
-    }
+	public void setIsDeleted(Integer isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 
-    public Integer getIsDeleted() {
-        return isDeleted;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public void setIsDeleted(Integer isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
-    }
+	public void setContent(String content) {
+		this.content = content == null ? null : content.trim();
+	}
 }

@@ -44,4 +44,14 @@ public interface ServeMapper {
 	 * @return 总条数
 	 */
 	int count(@Param("query") ServeQuery query);
+	
+	
+	/**  
+	* @Description: 获取服务list，根据文档Id 
+	* @param articleId
+	* @return
+	* @throws  
+	*/ 
+	List<Serve> getServeListByArticleId(Integer articleId);
+	
 }

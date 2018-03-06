@@ -1,11 +1,11 @@
-package com.autobot.res.adc.bo;
+package com.autobot.res.adc.model;
 
 import java.util.Date;
 
-public class AppArticle {
+public class ServeArticle {
     private Integer id;
 
-    private Integer appId;
+    private Integer serveId;
 
     private Integer articleId;
 
@@ -23,12 +23,12 @@ public class AppArticle {
         this.id = id;
     }
 
-    public Integer getAppId() {
-        return appId;
+    public Integer getServeId() {
+        return serveId;
     }
 
-    public void setAppId(Integer appId) {
-        this.appId = appId;
+    public void setServeId(Integer serveId) {
+        this.serveId = serveId;
     }
 
     public Integer getArticleId() {

@@ -3,7 +3,6 @@
 <mapper namespace="com.autobot.res.adc.dao.ArticleMapper">
 	<resultMap id="BaseResultMap" type="com.autobot.res.adc.model.Article">
 		<id column="article_id" jdbcType="INTEGER" property="articleId" />
-		<result column="serve_id" jdbcType="INTEGER" property="serveId" />
 		<result column="title" jdbcType="VARCHAR" property="title" />
 		<result column="type" jdbcType="TINYINT" property="type" />
 		<result column="interface_path" jdbcType="VARCHAR" property="interfacePath" />
@@ -38,12 +37,12 @@
 	
 	<insert id="insert" parameterType="com.autobot.res.adc.model.Article">
 		insert into adc_article
-		(article_id, serve_id, title,
+		(article_id, title,
 		`type`, interface_path, gmt_create,
 		name_create, gmt_modified, name_modified,
 		is_deleted, content)
 		values
-		(#{articleId,jdbcType=INTEGER}, #{serveId,jdbcType=INTEGER},
+		(#{articleId,jdbcType=INTEGER},
 		#{title,jdbcType=VARCHAR},
 		#{type,jdbcType=TINYINT},
 		#{interfacePath,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
@@ -58,9 +57,6 @@
 		useGeneratedKeys="true" keyProperty="articleId">
 		insert into adc_article
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="serveId != null">
-				serve_id,
-			</if>
 			<if test="title != null">
 				title,
 			</if>
@@ -90,9 +86,6 @@
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="serveId != null">
-				#{serveId,jdbcType=INTEGER},
-			</if>
 			<if test="title != null">
 				#{title,jdbcType=VARCHAR},
 			</if>
@@ -127,9 +120,6 @@
 	<update id="updateByPrimaryKeySelective" parameterType="com.autobot.res.adc.model.Article">
 		update adc_article
 		<set>
-			<if test="serveId != null">
-				serve_id = #{serveId,jdbcType=INTEGER},
-			</if>
 			<if test="title != null">
 				title = #{title,jdbcType=VARCHAR},
 			</if>
@@ -155,7 +145,7 @@
 	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.autobot.res.adc.model.Article">
 		update
 		adc_article
-		set serve_id = #{serveId,jdbcType=INTEGER},
+		set 
 		title =
 		#{title,jdbcType=VARCHAR},
 		`type` = #{type,jdbcType=TINYINT},
@@ -177,7 +167,7 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.autobot.res.adc.model.Article">
 		update adc_article
-		set serve_id = #{serveId,jdbcType=INTEGER},
+		set 
 		title =
 		#{title,jdbcType=VARCHAR},
 		`type` = #{type,jdbcType=TINYINT},
@@ -217,9 +207,6 @@
 		from adc_article
 		<where>
 			is_deleted = 0
-			<if test="query.serveId != null">
-				AND serve_id = #{query.serveId,jdbcType=INTEGER}
-			</if>
 			<if test="query.title != null">
 				AND title = #{query.title,jdbcType=VARCHAR}
 			</if>
@@ -258,9 +245,6 @@
 		from adc_article
 		<where>
 			is_deleted = 0
-			<if test="query.serveId != null">
-				AND serve_id = #{query.serveId,jdbcType=INTEGER}
-			</if>
 			<if test="query.title != null">
 				AND title = #{query.title,jdbcType=VARCHAR}
 			</if>
