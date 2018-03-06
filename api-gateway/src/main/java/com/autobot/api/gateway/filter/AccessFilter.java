@@ -39,6 +39,7 @@ public class AccessFilter extends ZuulFilter {
 	 */
 	@Override
 	public Object run() {
+		
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 		log.info("send {} request to {}", request.getMethod(), request.getRequestURL().toString());

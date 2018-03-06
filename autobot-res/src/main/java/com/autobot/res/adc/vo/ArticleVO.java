@@ -1,6 +1,7 @@
 package com.autobot.res.adc.vo;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Description: TODO
@@ -14,7 +15,7 @@ public class ArticleVO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Integer serveId;
+	private List<Integer> serveIdList;
 
 	private String title;
 
@@ -28,12 +29,12 @@ public class ArticleVO implements Serializable {
 
 	private String content;
 
-	public Integer getServeId() {
-		return serveId;
+	public List<Integer> getServeIdList() {
+		return serveIdList;
 	}
 
-	public void setServeId(Integer serveId) {
-		this.serveId = serveId;
+	public void setServeIdList(List<Integer> serveIdList) {
+		this.serveIdList = serveIdList;
 	}
 
 	public String getTitle() {
@@ -86,7 +87,7 @@ public class ArticleVO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ArticleVO [serveId=" + serveId + ", title=" + title + ", type=" + type + ", interfacePath="
+		return "ArticleVO [serveIdList=" + serveIdList + ", title=" + title + ", type=" + type + ", interfacePath="
 				+ interfacePath + ", nameCreate=" + nameCreate + ", nameModified=" + nameModified + ", content="
 				+ content + "]";
 	}

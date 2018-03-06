@@ -68,6 +68,10 @@ public class ArticleController {
 			BeanUtils.copyProperties(articleVO, article);
 
 			articleService.insert(article);
+			
+			
+			articleVO.getServeIdList();
+			
 		}
 
 		result.setData(article.getArticleId());

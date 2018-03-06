@@ -2,11 +2,12 @@ package com.autobot.res.adc.vo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Description: TODO
  * @author li_xiaodong
- * @date: 2018年2月28日 下午7:11:31 
+ * @date: 2018年2月28日 下午7:11:31
  */
 public class ArticleQuery implements Serializable {
 
@@ -15,7 +16,9 @@ public class ArticleQuery implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Integer serveId;
+	private List<Integer> serveIdList;
+
+	private Integer articleId;
 
 	private String title;
 
@@ -33,12 +36,20 @@ public class ArticleQuery implements Serializable {
 
 	private String content;
 
-	public Integer getServeId() {
-		return serveId;
+	public Integer getArticleId() {
+		return articleId;
 	}
 
-	public void setServeId(Integer serveId) {
-		this.serveId = serveId;
+	public void setArticleId(Integer articleId) {
+		this.articleId = articleId;
+	}
+
+	public List<Integer> getServeIdList() {
+		return serveIdList;
+	}
+
+	public void setServeIdList(List<Integer> serveIdList) {
+		this.serveIdList = serveIdList;
 	}
 
 	public String getTitle() {
@@ -107,9 +118,9 @@ public class ArticleQuery implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ArticleQuery [serveId=" + serveId + ", title=" + title + ", type=" + type + ", interfacePath="
-				+ interfacePath + ", nameCreate=" + nameCreate + ", gmtCreate=" + gmtCreate + ", nameModified="
-				+ nameModified + ", gmtModified=" + gmtModified + ", content=" + content + "]";
+		return "ArticleQuery [serveIdList=" + serveIdList + ", articleId=" + articleId + ", title=" + title + ", type="
+				+ type + ", interfacePath=" + interfacePath + ", nameCreate=" + nameCreate + ", gmtCreate=" + gmtCreate
+				+ ", nameModified=" + nameModified + ", gmtModified=" + gmtModified + ", content=" + content + "]";
 	}
 
 }
