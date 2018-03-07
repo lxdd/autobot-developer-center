@@ -123,4 +123,24 @@ public class ListToList {
 		}
 		return boList;
 	}
+	
+	/**
+	 * 对象转换DO--BO
+	 * 
+	 * @param moList
+	 * @return
+	 */
+	public static List<Catalog> convertCatalogMoList(List<CatalogBO> boList) {
+		List<Catalog> moList = new ArrayList<Catalog>();
+
+		if (null != boList && !boList.isEmpty()) {
+			Catalog mo = null;
+			for (CatalogBO bo : boList) {
+				mo = new Catalog();
+				BeanUtils.copyProperties(bo, mo);
+				moList.add(mo);
+			}
+		}
+		return moList;
+	}
 }

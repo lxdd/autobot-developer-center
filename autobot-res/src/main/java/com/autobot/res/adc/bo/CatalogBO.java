@@ -6,18 +6,18 @@ import java.util.Date;
 /**
  * @Description: TODO
  * @author li_xiaodong
- * @date: 2018年2月28日 下午7:31:23 
+ * @date: 2018年2月28日 下午7:31:23
  */
 public class CatalogBO implements Serializable {
-	
+
 	/**
-	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么) 
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;
+	private String id;
 
-	private Integer parentId;
+	private String parentId;
 
 	private Integer serveId;
 
@@ -31,21 +31,19 @@ public class CatalogBO implements Serializable {
 
 	private String nameModified;
 
-	private Integer isDeleted;
-
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public Integer getParentId() {
+	public String getParentId() {
 		return parentId;
 	}
 
-	public void setParentId(Integer parentId) {
+	public void setParentId(String parentId) {
 		this.parentId = parentId;
 	}
 
@@ -97,19 +95,11 @@ public class CatalogBO implements Serializable {
 		this.nameModified = nameModified == null ? null : nameModified.trim();
 	}
 
-	public Integer getIsDeleted() {
-		return isDeleted;
-	}
-
-	public void setIsDeleted(Integer isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-
 	@Override
 	public String toString() {
 		return "CatalogBO [id=" + id + ", parentId=" + parentId + ", serveId=" + serveId + ", url=" + url
 				+ ", gmtCreate=" + gmtCreate + ", nameCreate=" + nameCreate + ", gmtModified=" + gmtModified
-				+ ", nameModified=" + nameModified + ", isDeleted=" + isDeleted + "]";
+				+ ", nameModified=" + nameModified + "]";
 	}
 
 }

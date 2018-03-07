@@ -51,12 +51,13 @@ public class CatalogController {
 
 	@ApiOperation("新增目录")
 	@PostMapping("")
-	public Result<Integer> create(@Valid @ApiParam("目录信息") @RequestBody CatalogVO catalogVO) {
+	@Deprecated
+	public Result<String> create(@Valid @ApiParam("目录信息") @RequestBody CatalogVO catalogVO) {
 
 		logger.info("CatalogController.create : catalogVO={}", catalogVO.toString());
 
 		// 构建返回
-		Result<Integer> result = new Result<Integer>();
+		Result<String> result = new Result<>();
 
 		Catalog catalog = new Catalog();
 
@@ -75,6 +76,7 @@ public class CatalogController {
 
 	@ApiOperation("删除目录")
 	@DeleteMapping("/{id}")
+	@Deprecated
 	public Result<Object> delete(@ApiParam(value = "目录id", required = true) @PathVariable(value = "id") Integer id) {
 
 		logger.info("CatalogController.delete : id={}", id);
@@ -129,18 +131,19 @@ public class CatalogController {
 		// 构建返回
 		Result<Object> result = new Result<>();
 
-		Catalog catalog = new Catalog();
-
-		// TODO 1.删除该服务方的所有目录； 2、新建该服务方目录（反向解析Tree型数据结构，转为list；批量创建目录）
+		//1.删除该服务方的所有目录； 2、新建该服务方目录（反向解析Tree型数据结构，转为list)；3、批量创建目录
 		
 		//1.删除该服务方的所有目录
+		catalogService.deleteByServeId(serveId);
 		
-		//2、反向解析Tree型数据结构，转为list
+		//2、反向解析Tree型数据结构，组装转为list
 		MenuTreeUtil menuTree = new MenuTreeUtil();
 		List<CatalogBO> boList = menuTree.menuToList(jsonStr);
 		
 		//3、批量创建改服务方目录
-		
+		if(null != boList && !boList.isEmpty()) {
+			catalogService.batchInsert(ListToList.convertCatalogMoList(boList));
+		}
 
 		return result;
 

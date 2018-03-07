@@ -1,9 +1,12 @@
 package com.autobot.res.adc.common.util;
 
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withUnauthorizedRequest;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import com.autobot.base.util.JsonUtil;
 import com.autobot.res.adc.bo.CatalogBO;
@@ -34,7 +37,7 @@ public class MenuTreeUtil {
 		// 逻辑处理
 		for (CatalogBO bo : boList) {
 
-			if (bo.getParentId() == 0) {
+			if ("0".equals(bo.getParentId())) {
 				// 临时变量
 				mapArr = new LinkedHashMap<String, Object>();
 				mapArr.put("id", bo.getId());
@@ -54,7 +57,7 @@ public class MenuTreeUtil {
 	/**
 	 * @Description: 子节点处理 @param id @return List<?> @throws
 	 */
-	private List<?> menuChild(Integer id) {
+	private List<?> menuChild(String id) {
 
 		// 构建返回 子目录List
 		List<Object> childList = new ArrayList<Object>();
@@ -65,7 +68,7 @@ public class MenuTreeUtil {
 		// 循环逻辑
 		for (CatalogBO bo : doList) {
 
-			if (bo.getParentId() == id) {
+			if (bo.getParentId().equals(id)) {
 
 				// 临时变量
 				childArray = new LinkedHashMap<String, Object>();
@@ -85,47 +88,70 @@ public class MenuTreeUtil {
 	}
 
 	/**
-	 * [{"id":1,"parentId":0,"serveId":1,"url":"http://www.baidu.com","gmtCreate":"2018-02-28 20:27:08","nameCreate":"lixiaodong","childList":[{"id":4,"parentId":1,"serveId":1,"url":"www.lxdyun.com","gmtCreate":"2018-03-01 13:07:20","nameCreate":"lixiaodong","childList":[{"id":5,"parentId":4,"serveId":1,"url":"www.lxdyun.com","gmtCreate":"2018-03-01 13:07:46","nameCreate":"lixiaodong","childList":[{"id":6,"parentId":5,"serveId":1,"url":"www.lxdyun.com","gmtCreate":"2018-03-01 13:07:51","nameCreate":"lixiaodong","childList":[]}]}]}]}]
+	 * [{"id":1,"parentId":0,"serveId":1,"url":"http://www.baidu.com","gmtCreate":"2018-02-28
+	 * 20:27:08","nameCreate":"lixiaodong","childList":[{"id":4,"parentId":1,"serveId":1,"url":"www.lxdyun.com","gmtCreate":"2018-03-01
+	 * 13:07:20","nameCreate":"lixiaodong","childList":[{"id":5,"parentId":4,"serveId":1,"url":"www.lxdyun.com","gmtCreate":"2018-03-01
+	 * 13:07:46","nameCreate":"lixiaodong","childList":[{"id":6,"parentId":5,"serveId":1,"url":"www.lxdyun.com","gmtCreate":"2018-03-01
+	 * 13:07:51","nameCreate":"lixiaodong","childList":[]}]}]}]}]
+	 * 
 	 * @Description: 树形结构 转为 List @param menu @return List<Object> @throws
 	 */
 	public List<CatalogBO> menuToList(String jsonStr) {
 
 		// 构建返回对象list
 		List<CatalogBO> boList = new ArrayList<>();
-		
-		//对象
+
+		// 对象
 		Object obj = JsonUtil.parseToObject(jsonStr, Object.class);
-		
-		List<?> list = new ArrayList<>();
-		list = (List<?>) obj;
-		
-		Map map = menuChildToList(list);
-		
-		
-		map.get("childList");
-		
-		System.out.println(list);
-		
-		
-		
-		
-		
+
+//		List<?> list = new ArrayList<>();
+//		list = (List<?>) obj;
+
+		// 单个服务方
+		Map map = (Map) obj;
+
+		CatalogBO bo = new CatalogBO();
+
+		// 生成UUID
+		String fistId = UUID.randomUUID().toString();
+		bo.setId(fistId);
+		bo.setParentId("0");
+		bo.setServeId((Integer) map.get("serveId"));
+		bo.setNameCreate((String) map.get("nameCreate"));
+		bo.setNameModified((String) map.get("nameCreate"));
+		bo.setUrl((String) map.get("url"));
+
+		boList.add(bo);
+
+		menuChildToList(boList, (List) map.get("childList"), fistId);
 
 		return boList;
 
 	}
 
-	private Map menuChildToList(List<?> list) {
-		
-		Map map = (Map) list.get(0);
-		
-		CatalogBO bo = new CatalogBO();
-		
-		bo.setServeId((Integer)map.get("serveId"));
-		bo.setNameCreate((String)map.get("nameCreate"));
-		bo.setNameModified((String)map.get("nameCreate"));
-		bo.setUrl((String)map.get("url"));
-		return map;
+	private void menuChildToList(List<CatalogBO> boList, List<?> list, String parentId) {
+
+		if (null != list && !list.isEmpty()) {
+
+			for (int i = 0; i < list.size(); i++) {
+				Map map = (Map) list.get(i);
+
+				String childId = UUID.randomUUID().toString();
+
+				CatalogBO bo = new CatalogBO();
+				bo.setId(childId);
+				bo.setParentId(parentId);
+				bo.setServeId((Integer) map.get("serveId"));
+				bo.setNameCreate((String) map.get("nameCreate"));
+				bo.setNameModified((String) map.get("nameCreate"));
+				bo.setUrl((String) map.get("url"));
+				boList.add(bo);
+
+				menuChildToList(boList, (List) map.get("childList"), childId);
+			}
+
+		}
+
 	}
 
 }

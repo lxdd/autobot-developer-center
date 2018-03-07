@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.autobot.res.adc.dao.CatalogMapper;
 import com.autobot.res.adc.model.Catalog;
+import com.autobot.res.adc.model.ServeArticle;
 import com.autobot.res.adc.vo.CatalogQuery;
 
 /**
@@ -79,6 +80,30 @@ public class CatalogService {
 	public List<Catalog> listCatalog(CatalogQuery query) {
 		List<Catalog> catalogList = catalogMapper.listCatalog(query);
 		return catalogList;
+	}
+	
+	/**
+	 * 批量创建文章服务关系
+	 * 
+	 * @param param
+	 * @return
+	 */
+
+	public int batchInsert(List<Catalog> catalogList) {
+		int count = catalogMapper.batchInsert(catalogList);
+		return count;
+	}
+	
+	/**
+	 * 删除
+	 * 
+	 * @param id
+	 * @return
+	 */
+
+	public int deleteByServeId(int serveId) {
+		int count = catalogMapper.deleteByServeId(serveId);
+		return count;
 	}
 
 }
