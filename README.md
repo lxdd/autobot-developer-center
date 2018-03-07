@@ -68,6 +68,20 @@ http://localhost:8400/swagger-ui.html
 5、调用次数限流 等 （）
 
 #TODO
+
+一、文档
+1、ADC接入 签名方式约定
+
+2、非ADC接口接入 签名方式约定
+
+二、项目接入改造，具备HTTP访问能力，demo
+1、blueone car-manage
+
+2、bcar-car-manage
+
+3、vin码
+
+三、
 1、文档与服务多对多，文章接口改造；（OK）
 2、ADC过滤器签名验证逻辑（OK）
 3、过滤器取 APP 信息加入签名验证 并出签名文档。（OK）
@@ -78,9 +92,6 @@ http://localhost:8400/swagger-ui.html
 8、文档管理根据serveId查询文档列表
 9、文档管理 删除文档时一并删除关系表
 10、文档列表接口优化改造
-
-
-
 
 
 
