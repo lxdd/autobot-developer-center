@@ -1,4 +1,4 @@
-package com.autobot.res.base.support;
+package com.autobot.base.support;
 
 /**   
 * 共同返回-Code

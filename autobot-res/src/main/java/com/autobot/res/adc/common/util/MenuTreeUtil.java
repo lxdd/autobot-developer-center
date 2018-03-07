@@ -5,8 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.autobot.base.util.JsonUtil;
 import com.autobot.res.adc.bo.CatalogBO;
-import com.autobot.res.base.util.JsonUtil;
 
 /**
  * @Description: 递归构造树型结构

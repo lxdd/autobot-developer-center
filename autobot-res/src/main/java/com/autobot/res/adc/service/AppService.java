@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.autobot.base.adc.dto.AppGateQuery;
 import com.autobot.res.adc.dao.AppMapper;
 import com.autobot.res.adc.model.App;
 import com.autobot.res.adc.vo.AppQuery;
@@ -96,7 +97,7 @@ public class AppService {
 	 * @return
 	 */
 
-	public App query(AppQuery query) {
+	public App query(AppGateQuery query) {
 		App app = appMapper.query(query);
 		return app;
 	}

@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
 
+import com.autobot.base.util.JsonUtil;
+
 /**
  * @Description: HttpServletRequest帮助类
  * @author li_xiaodong

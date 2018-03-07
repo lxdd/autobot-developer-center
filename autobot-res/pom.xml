@@ -79,5 +79,13 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
+		
+		<!-- 引入基础及公共包 -->
+		<dependency>
+			<groupId>com.autobot</groupId>
+			<artifactId>autobot-base</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 	</dependencies>
 </project>

@@ -110,10 +110,12 @@
 
 	<modules>
 		<module>eureka-server</module>
+		<module>autobot-base</module>
 		<module>autobot-res</module>
 		<module>autobot</module>
 		<module>api-gateway</module>
 		<module>config-server</module>
 		<module>zipkin-server</module>
+		
 	</modules>
 </project>

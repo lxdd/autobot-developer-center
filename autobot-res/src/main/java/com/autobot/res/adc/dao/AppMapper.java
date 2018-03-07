@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.autobot.base.adc.dto.AppGateQuery;
 import com.autobot.res.adc.model.App;
 import com.autobot.res.adc.vo.AppQuery;
 
@@ -57,5 +58,5 @@ public interface AppMapper {
 	* @return
 	* @throws  
 	*/ 
-	App query(@Param("query") AppQuery query);
+	App query(@Param("query") AppGateQuery query);
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.autobot.base.support.Result;
 import com.autobot.res.adc.bo.CatalogBO;
 import com.autobot.res.adc.common.convert.ListToList;
 import com.autobot.res.adc.common.util.MenuTreeUtil;
@@ -25,7 +26,6 @@ import com.autobot.res.adc.model.Catalog;
 import com.autobot.res.adc.service.CatalogService;
 import com.autobot.res.adc.vo.CatalogQuery;
 import com.autobot.res.adc.vo.CatalogVO;
-import com.autobot.res.base.support.Result;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

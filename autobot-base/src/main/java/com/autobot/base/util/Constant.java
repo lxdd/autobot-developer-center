@@ -2,7 +2,7 @@
  * @author: li_xiaodong  
  * @date: 2018年3月4日 下午10:45:18
  */
-package com.autobot.api.gateway.comom.util;
+package com.autobot.base.util;
 
 /**
  * (常量接口)

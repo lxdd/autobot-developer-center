@@ -1,8 +1,8 @@
-package com.autobot.res.base.support;
+package com.autobot.base.support;
 
 import java.io.Serializable;
 
-import com.autobot.res.base.util.JsonUtil;
+import com.autobot.base.util.JsonUtil;
 
 /**
  * Rest服务 返回 结果类

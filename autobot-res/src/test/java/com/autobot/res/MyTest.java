@@ -6,14 +6,9 @@ package com.autobot.res;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringEscapeUtils;
-
-import com.autobot.res.base.util.JsonUtil;
+import com.autobot.base.util.JsonUtil;
 
 /**
  * @Description: TODO

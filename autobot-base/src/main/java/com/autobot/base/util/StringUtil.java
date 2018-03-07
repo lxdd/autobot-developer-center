@@ -2,7 +2,7 @@
  * @author: li_xiaodong  
  * @date: 2018年3月4日 下午10:47:53
  */
-package com.autobot.api.gateway.comom.util;
+package com.autobot.base.util;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;

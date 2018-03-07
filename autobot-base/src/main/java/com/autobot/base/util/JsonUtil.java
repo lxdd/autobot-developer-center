@@ -1,4 +1,4 @@
-package com.autobot.api.gateway.comom.util;
+package com.autobot.base.util;
 
 import java.text.SimpleDateFormat;
 

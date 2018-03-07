@@ -19,15 +19,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.autobot.base.adc.bo.AppGateBO;
+import com.autobot.base.adc.dto.AppGateQuery;
+import com.autobot.base.support.PageResult;
+import com.autobot.base.support.Result;
+import com.autobot.base.util.PageUtil;
 import com.autobot.res.adc.bo.AppBO;
 import com.autobot.res.adc.common.convert.ListToList;
 import com.autobot.res.adc.model.App;
 import com.autobot.res.adc.service.AppService;
 import com.autobot.res.adc.vo.AppQuery;
 import com.autobot.res.adc.vo.AppVO;
-import com.autobot.res.base.support.PageResult;
-import com.autobot.res.base.support.Result;
-import com.autobot.res.base.util.PageUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -176,13 +178,13 @@ public class AppController {
 	
 	@ApiOperation("查询使用方详情")
 	@PostMapping("/query")
-	public Result<AppBO> query(@RequestBody AppQuery query) {
+	public Result<AppGateBO> query(@RequestBody AppGateQuery query) {
 		logger.info("AppController.query : query={}", query);
 
 		// 构建返回
-		Result<AppBO> result = new Result<AppBO>();
+		Result<AppGateBO> result = new Result<>();
 
-		AppBO bo = new AppBO();
+		AppGateBO bo = new AppGateBO();
 
 		if (null != query) {
 			App app = appService.query(query);

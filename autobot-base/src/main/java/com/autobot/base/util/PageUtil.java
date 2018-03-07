@@ -1,4 +1,4 @@
-package com.autobot.res.base.util;
+package com.autobot.base.util;
 
 import java.io.Serializable;
 

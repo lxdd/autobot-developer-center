@@ -19,15 +19,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.autobot.base.support.PageResult;
+import com.autobot.base.support.Result;
+import com.autobot.base.util.PageUtil;
 import com.autobot.res.adc.bo.ServeBO;
 import com.autobot.res.adc.common.convert.ListToList;
 import com.autobot.res.adc.model.Serve;
 import com.autobot.res.adc.service.ServeService;
 import com.autobot.res.adc.vo.ServeQuery;
 import com.autobot.res.adc.vo.ServeVO;
-import com.autobot.res.base.support.PageResult;
-import com.autobot.res.base.support.Result;
-import com.autobot.res.base.util.PageUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

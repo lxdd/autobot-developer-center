@@ -9,8 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 
-import com.autobot.api.gateway.comom.util.AuthUtil;
 import com.autobot.api.gateway.comom.util.ReqestUtil;
+import com.autobot.base.util.AuthUtil;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 

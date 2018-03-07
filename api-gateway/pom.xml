@@ -43,6 +43,12 @@
 		</dependency>
 
 
+		<!-- 引入基础及公共包 -->
+		<dependency>
+			<groupId>com.autobot</groupId>
+			<artifactId>autobot-base</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 	</dependencies>
 
