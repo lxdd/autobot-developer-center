@@ -4,6 +4,8 @@
  */
 package com.autobot.api.gateway.adc.service;
 
+import org.springframework.stereotype.Component;
+
 import com.autobot.base.adc.bo.AppGateBO;
 import com.autobot.base.adc.dto.AppGateQuery;
 import com.autobot.base.support.Result;
@@ -13,6 +15,7 @@ import com.autobot.base.support.Result;
  * @author li_xiaodong
  * @date: 2018年3月7日 上午11:21:43 
  */
+@Component
 public class AppFallbackService implements AppService {
 
 	/* (non Javadoc) 

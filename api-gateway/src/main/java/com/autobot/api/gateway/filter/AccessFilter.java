@@ -5,11 +5,18 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 
+import com.autobot.api.gateway.adc.service.AppService;
 import com.autobot.api.gateway.comom.util.ReqestUtil;
+import com.autobot.base.adc.bo.AppGateBO;
+import com.autobot.base.adc.dto.AppGateQuery;
+import com.autobot.base.support.Result;
+import com.autobot.base.support.ReturnCode;
 import com.autobot.base.util.AuthUtil;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -26,6 +33,9 @@ public class AccessFilter extends ZuulFilter {
 
 	private static Logger log = LoggerFactory.getLogger(AccessFilter.class);
 
+	@Autowired
+	private AppService appService;
+
 	/*
 	 * 过滤器的具体逻辑。 这里我们通过ctx.setSendZuulResponse(false) 令zuul过滤该请求， 不对其进行路由， 然后通过
 	 * ctx.setResponseStatusCode (401)设置了其返回的错误码， 当然也可以进 一步优化我们的返回， 比如， 通
@@ -38,7 +48,7 @@ public class AccessFilter extends ZuulFilter {
 	 */
 	@Override
 	public Object run() {
-		
+
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 		log.info("send {} request to {}", request.getMethod(), request.getRequestURL().toString());
@@ -56,50 +66,66 @@ public class AccessFilter extends ZuulFilter {
 
 		// TOP分配给应用的AppKey
 		String appKey = headerInfoMap.get("app_key");
-		// if (StringUtils.isEmpty(appKey)) {
-		// log.warn("access appKey is empty");
-		// ctx.setSendZuulResponse(false);
-		// ctx.setResponseStatusCode(401);
-		// return null;
-		// }
+		if (StringUtils.isEmpty(appKey)) {
+			log.warn("access appKey is empty");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			return null;
+		}
 
 		// 参数签名结果
 		String signed = headerInfoMap.get("sign");
-		// if (StringUtils.isEmpty(signed)) {
-		// log.warn("access sign is empty");
-		// ctx.setSendZuulResponse(false);
-		// ctx.setResponseStatusCode(401);
-		// return null;
-		// }
+		if (StringUtils.isEmpty(signed)) {
+			log.warn("access sign is empty");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			return null;
+		}
 
 		// 时间戳，格式为yyyy-MM-dd HH:mm:ss，时区为GMT+8，例如：2015-01-01
 		// 12:00:00。API服务端允许客户端请求最大时间误差为10分钟。
 		String timestamp = headerInfoMap.get("timestamp");
-		// if (StringUtils.isEmpty(timestamp)) {
-		// log.warn("access timestamp is empty");
-		// ctx.setSendZuulResponse(false);
-		// ctx.setResponseStatusCode(401);
-		// return null;
-		// }
+		if (StringUtils.isEmpty(timestamp)) {
+			log.warn("access timestamp is empty");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			return null;
+		}
 
 		// API接口名称
 		String method = headerInfoMap.get("method");
-		// if (StringUtils.isEmpty(method)) {
-		// log.warn("access method is empty");
-		// ctx.setSendZuulResponse(false);
-		// ctx.setResponseStatusCode(401);
-		// return null;
-		// }
-		
-		//TODO 1、根据APPKEY或APPCODE，拿到APP表信息; 2、如果method不为null则拿出改app对应的接口地址
-		
-		
-		
-		
+		if (StringUtils.isEmpty(method) && !"auto-web".equals(appKey)) {
+			log.warn("access method is empty");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			return null;
+		}
 
+		// TODO 1、根据APPKEY或APPCODE，拿到APP表信息; 2、如果method不为null则拿出改app对应的接口地址
+		AppGateQuery query = new AppGateQuery();
+		// query.setAppCode("auto-web");
+		query.setAppKey(appKey);
+		Result<AppGateBO> appGateBOResult = appService.query(query);
+		if (null == appGateBOResult || null == appGateBOResult.getCode() || null == appGateBOResult.getData()
+				|| !ReturnCode.SUCCESS.equals(appGateBOResult.getCode())) {
+
+			log.warn("access appkey is not exist");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			return null;
+		}
+
+		AppGateBO bo = appGateBOResult.getData();
+
+		// 是否需要授权后门 0 否 1是
+		if (1 == bo.getIsAuth()) {
+
+		}
+
+		// 临时变量，new sign
 		String sign = null;
 		// 查出appSecret,根据APPKey.
-		String appSecret = "111111";
+		String appSecret = bo.getAppSecret();
 
 		// 请求的 httpMethod
 		String httpMethod = request.getMethod();
@@ -114,10 +140,10 @@ public class AccessFilter extends ZuulFilter {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (HttpMethod.PUT.name().equals(httpMethod)){
+		} else if (HttpMethod.PUT.name().equals(httpMethod)) {
 
 			String requestURI = request.getRequestURI();
-			
+
 			Map<String, Object> map = ReqestUtil.getBodyInfo(request);
 			map.put("requestURI", requestURI);
 			map.put("httpMethod", request.getMethod());
@@ -143,7 +169,7 @@ public class AccessFilter extends ZuulFilter {
 		}
 
 		// 三：参数完整性sign验证
-		if (!sign.equals(signed)) {
+		if (null == sign || !sign.equals(signed)) {
 			// 记录日志step1
 			log.warn("access signed sign is not same");
 			ctx.setSendZuulResponse(false);
@@ -152,6 +178,7 @@ public class AccessFilter extends ZuulFilter {
 		}
 
 		log.info("access token ok");
+
 		return null;
 	}
 
