@@ -273,4 +273,42 @@
 			</if>
 		</where>
 	</select>
+	
+	<!-- 分页 -->
+	<select id="query" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from adc_app
+		<where>
+			is_deleted = 0
+			<if test="query.appCode != null">
+				AND app_code = #{query.appCode,jdbcType=VARCHAR}
+			</if>
+			<if test="query.appName != null">
+				AND app_name = #{query.appName,jdbcType=VARCHAR}
+			</if>
+			<if test="query.appKey != null">
+				AND app_key = #{query.appKey,jdbcType=VARCHAR}
+			</if>
+			<if test="query.appSecret != null">
+				AND app_secret = #{query.appSecret,jdbcType=VARCHAR}
+			</if>
+			<if test="query.isAuth != null">
+				AND is_auth = #{query.isAuth,jdbcType=TINYINT}
+			</if>
+			<if test="query.gmtCreate != null">
+				AND gmt_create = #{query.gmtCreate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="query.gmtModified != null">
+				AND gmt_modified = #{query.gmtModified,jdbcType=TIMESTAMP}
+			</if>
+			<if test="query.nameCreate != null">
+				AND name_create = #{query.nameCreate,jdbcType=VARCHAR}
+			</if>
+			<if test="query.nameModified != null">
+				AND name_modified = #{query.nameModified,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	
 </mapper>

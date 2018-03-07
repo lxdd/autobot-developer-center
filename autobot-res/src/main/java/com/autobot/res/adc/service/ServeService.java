@@ -97,5 +97,14 @@ public class ServeService {
 		List<Serve> serveList = serveMapper.getServeListByArticleId(articleId);
 		return serveList;
 	}
+	
+	/**
+	 * @Description: 获取服务list，根据文档Id @param articleId @return @throws
+	 */
+	public List<Serve> getServeListByArticleIdlist(List<Integer> articleIdList) {
+
+		List<Serve> serveList = serveMapper.getServeListByArticleIdList(articleIdList);
+		return serveList;
+	}
 
 }

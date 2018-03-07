@@ -173,5 +173,28 @@ public class AppController {
 
 		return result;
 	}
+	
+	@ApiOperation("查询使用方详情")
+	@PostMapping("/query")
+	public Result<AppBO> query(@RequestBody AppQuery query) {
+		logger.info("AppController.query : query={}", query);
+
+		// 构建返回
+		Result<AppBO> result = new Result<AppBO>();
+
+		AppBO bo = new AppBO();
+
+		if (null != query) {
+			App app = appService.query(query);
+			if (null != app) {
+				BeanUtils.copyProperties(app, bo);
+			}
+		}
+
+		result.setData(bo);
+
+		return result;
+
+	}
 
 }

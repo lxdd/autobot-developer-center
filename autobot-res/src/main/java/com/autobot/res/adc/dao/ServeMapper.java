@@ -54,4 +54,12 @@ public interface ServeMapper {
 	*/ 
 	List<Serve> getServeListByArticleId(Integer articleId);
 	
+	/**  
+	* @Description: 获取服务list，根据文档Id 
+	* @param articleId
+	* @return
+	* @throws  
+	*/ 
+	List<Serve> getServeListByArticleIdList(List<Integer> articleIdList);
+	
 }

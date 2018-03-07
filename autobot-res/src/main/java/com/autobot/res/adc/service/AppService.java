@@ -88,5 +88,17 @@ public class AppService {
 		int count = appMapper.count(query);
 		return count;
 	}
+	
+	/**
+	 * 查看
+	 * 
+	 * @param id
+	 * @return
+	 */
+
+	public App query(AppQuery query) {
+		App app = appMapper.query(query);
+		return app;
+	}
 
 }

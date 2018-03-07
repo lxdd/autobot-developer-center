@@ -54,7 +54,7 @@ public class ArticleController {
 
 	@Autowired
 	private ArticleService articleService;
-	
+
 	@Autowired
 	private ServeService serveService;
 
@@ -85,8 +85,6 @@ public class ArticleController {
 		return result;
 
 	}
-
-	
 
 	@ApiOperation("修改文档")
 	@PutMapping("/{articleId}")
@@ -192,7 +190,13 @@ public class ArticleController {
 
 			boList = ListToList.convertArticleList(articleList);
 
-			// TODO 处理文章所属服务
+			// TODO 此处待优化  处理文章所属服务
+			for (ArticleBO articleBO : boList) {
+
+				List<Serve> serveList = serveService.getServeListByArticleId(articleBO.getArticleId());
+				List<ServeBO> serveBOList = ListToList.convertServeList(serveList);
+				articleBO.setServeList(serveBOList);
+			}
 
 		}
 
@@ -203,13 +207,10 @@ public class ArticleController {
 
 		return result;
 	}
-	
-	/**  
-	* @Description: 批量新增文档服务关系
-	* @param articleVO
-	* @param articleId
-	* @throws  
-	*/ 
+
+	/**
+	 * @Description: 批量新增文档服务关系 @param articleVO @param articleId @throws
+	 */
 	private void bathInsertArticleServe(ArticleVO articleVO, Integer articleId) {
 		List<Integer> serveIdList = articleVO.getServeIdList();
 		if (null != serveIdList && !serveIdList.isEmpty()) {

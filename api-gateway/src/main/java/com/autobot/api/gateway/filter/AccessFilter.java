@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
@@ -91,6 +90,12 @@ public class AccessFilter extends ZuulFilter {
 		// ctx.setResponseStatusCode(401);
 		// return null;
 		// }
+		
+		//TODO 1、根据APPKEY或APPCODE，拿到APP表信息; 2、如果method不为null则拿出改app对应的接口地址
+		
+		
+		
+		
 
 		String sign = null;
 		// 查出appSecret,根据APPKey.

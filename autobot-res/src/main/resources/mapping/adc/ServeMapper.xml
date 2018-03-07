@@ -256,8 +256,25 @@
 		m.`serve_id`= s.`serve_id`
 		<where>
 			m.is_deleted = 0 and s.is_deleted = 0
-			AND m.article_id = #{articleId,jdbcType=INTEGER}
+			AND m.article_id =
+			#{articleId,jdbcType=INTEGER}
 		</where>
+	</select>
 
+	<!-- 根据articleId获取所属服务List -->
+	<select id="getServeListByArticleIdList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List_q" />
+		from adc_serve_article_mapping as m LEFT JOIN `adc_serve` AS s ON
+		m.`serve_id`= s.`serve_id`
+		<where>
+			m.is_deleted = 0 and s.is_deleted = 0
+			AND m.article_id in
+			<foreach collection="list" item="articleId" index="index"
+				open="(" close=")" separator=",">
+				#{articleId,jdbcType=INTEGER}
+			</foreach>
+		</where>
+	</select>
 
 </mapper>

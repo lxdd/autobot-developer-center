@@ -8,8 +8,14 @@ import org.apache.ibatis.annotations.Param;
 import com.autobot.res.adc.model.App;
 import com.autobot.res.adc.vo.AppQuery;
 
+/**
+ * @Description: TODO
+ * @author li_xiaodong
+ * @date: 2018年3月7日 上午11:10:53 
+ */
 @Mapper
 public interface AppMapper {
+	
     int deleteByPrimaryKey(Integer appId);
 
     int insert(App record);
@@ -44,4 +50,12 @@ public interface AppMapper {
 	 * @return 总条数
 	 */
 	int count(@Param("query") AppQuery query);
+	
+	/**  
+	* @Description: TODO(这里用一句话描述这个方法的作用)  
+	* @param query
+	* @return
+	* @throws  
+	*/ 
+	App query(@Param("query") AppQuery query);
 }

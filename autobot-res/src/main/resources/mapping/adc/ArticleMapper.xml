@@ -17,7 +17,7 @@
 		<result column="content" jdbcType="LONGVARCHAR" property="content" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		article_id, serve_id, title, `type`, interface_path,
+		article_id, title, `type`, interface_path,
 		gmt_create, name_create,
 		gmt_modified,
 		name_modified, is_deleted
