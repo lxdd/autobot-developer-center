@@ -3,25 +3,16 @@ spring:
     name: eureka-server
     
 server:
-  port: 7100
+  port: 8404
   
 eureka:
   instance:
-    hostname: localhost
+    hostname: eureka1
   server:
     enable-self-preservation: false  
   client:
     register-with-eureka: false #代表不向注册中心注册自己。
     fetch-registry: false #它并不需要去检索服务
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-  
-  
-  
-#    register-with-eureka: false
-#    fetch-registry: false
-#    service-url:
-#      defaultZone: http://localhost:8072/eureka/,http://localhost:8073/eureka/  
-
-
+       defaultZone: http://eureka2:8405/eureka/
 

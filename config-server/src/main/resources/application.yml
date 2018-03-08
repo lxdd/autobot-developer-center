@@ -61,4 +61,4 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://www.lxdyun.com:7100/eureka/
+      defaultZone: http://lxdyun.com:8404/eureka/,http://lxdyun.com:8405/eureka/

@@ -15,7 +15,7 @@ spring:
       username: user
       password: 37cc5635-559b-4e6f-b633-7e932b813f73
   zipkin:
-    base-url: http://localhost:9411/
+    base-url: http://lxdyun.com:9411
     enabled: true    
       
 management:
@@ -37,4 +37,4 @@ logging:
 eureka:
   client:
     service-url:
-      defaultZone: http://www.lxdyun.com:7100/eureka/
+      defaultZone: http://lxdyun.com:8404/eureka/,http://lxdyun.com:8405/eureka/
