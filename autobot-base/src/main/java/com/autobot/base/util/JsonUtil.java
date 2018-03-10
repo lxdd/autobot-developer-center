@@ -2,7 +2,7 @@ package com.autobot.base.util;
 
 import java.text.SimpleDateFormat;
 
-import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 * @author (li_xiaodong)
 * @date 2015年10月14日 下午7:50:03
 */
-@Component
+//@Component
 public class JsonUtil
 {
     private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";

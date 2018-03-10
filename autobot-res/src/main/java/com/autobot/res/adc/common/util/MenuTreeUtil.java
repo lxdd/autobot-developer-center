@@ -1,7 +1,5 @@
 package com.autobot.res.adc.common.util;
 
-import static org.springframework.test.web.client.response.MockRestResponseCreators.withUnauthorizedRequest;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;

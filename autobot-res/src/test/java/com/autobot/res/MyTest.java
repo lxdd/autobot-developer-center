@@ -6,9 +6,6 @@ package com.autobot.res;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.Map;
-
-import com.autobot.base.util.JsonUtil;
 
 /**
  * @Description: TODO
@@ -29,9 +26,9 @@ public class MyTest {
 		try {
 			strr = URLDecoder.decode(str,"UTF-8");
 			
-			Map map = JsonUtil.parseToObject(strr, Map.class);
-			
-			System.out.println(map);
+//			Map map = JsonUtil.parseToObject(strr, Map.class);
+//			
+//			System.out.println(map);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

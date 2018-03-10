@@ -26,9 +26,6 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * 字符串工具类
  * 
@@ -36,7 +33,6 @@ import org.slf4j.LoggerFactory;
  * @date 2015年10月21日 下午1:58:28
  */
 public class StringUtil {
-	private static final Logger log = LoggerFactory.getLogger(StringUtil.class);
 
 	// ===========================================================================
 
@@ -888,9 +884,8 @@ public class StringUtil {
 		try {
 			dateString = sdf.parse(dateDate);
 		} catch (ParseException e) {
-			if (log.isDebugEnabled()) {
-				log.debug("检测到数据转换错误,StringUtil.dateToStringToStr");
-			}
+
+			System.out.println(e);
 		}
 		if (null != dateString) {
 			if (StringUtil.isNotEmpty(format)) {

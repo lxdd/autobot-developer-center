@@ -24,14 +24,14 @@ management:
 
 #debug: true      
 
-logging:
-  level:
-    org: 
-      springframework: WARN
-      spring:
-        springboot:
-          dao: 
-            DEBUG
+#logging:
+#  level:
+#    org: 
+#      springframework: WARN
+#      spring:
+#        springboot:
+#          dao: 
+#            DEBUG
       
     
 eureka:

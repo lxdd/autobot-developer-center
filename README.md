@@ -132,6 +132,16 @@ http://lxdyun.com:8405/
 nohup java -jar config-server-0.0.1-SNAPSHOT.jar & 
 
 
+mvn clean install
+mvn clean deploy
+mvn package
+
+本地仓库 的更新
+mvn clean package install 
+远程 仓库 的更新
+mvn clean package deploy
+
+
 
 
 **工程名**	**描述**	**端口**

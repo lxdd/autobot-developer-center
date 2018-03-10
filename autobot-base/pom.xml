@@ -1,19 +1,43 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.autobot</groupId>
-    <artifactId>autobot-developer-center</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <groupId>com.autobot</groupId>
-  <artifactId>autobot-base</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>autobot-base</name>
-  <url>http://maven.apache.org</url>
- 
- 
- 
- 
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.autobot</groupId>
+		<artifactId>autobot-developer-center</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+
+	<groupId>com.autobot</groupId>
+	<artifactId>autobot-base</artifactId>
+	<version>0.0.3-SNAPSHOT</version>
+	<name>autobot-base</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<!-- <build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					利用classifier分离代码包和依赖包 .. 只需要自己写的代码打包，依赖的包不能打进来
+					<classifier>exec</classifier>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build> -->
+
 </project>
