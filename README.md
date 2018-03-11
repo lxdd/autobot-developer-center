@@ -103,11 +103,8 @@ spring-cloud 微服务组件demo
 8、OGNL表达式、Spring EL ; 
 9、html5（HTML5规范要求⽤户⾃定义属性以data-前缀开头） ； 
 10、java Bean、EJB、POJO；11、PO； 12、VO、13、DTO；
-13、xmls阿里云不挂断运行命令 nohup java -jar XXX.jar & 
-1. 查看端口号占用情况：netstat -apn|grep 80 (ESTABLISHED6426/lighttpd)
-2. 确定进程号: ps -aux|grep <进程号> 
-3. 
-3. 杀掉该进程 : kill -9 
+
+
 
 发布流程：
 一、Spring Cloud Eureka 注册中心
@@ -117,8 +114,8 @@ spring-cloud 微服务组件demo
 127.0.0.1	eureka2
 3、上传Linux
 4、执行 spring boot启动命令：
-nohup java -jar eureka-server-0.0.1-SNAPSHOT.jar --spring.profiles.active=eureka1 & 
-nohup java -jar eureka-server-0.0.1-SNAPSHOT.jar --spring.profiles.active=eureka2 & 
+nohup java -jar eureka-server-1.0.0-SNAPSHOT.jar --spring.profiles.active=eureka1 & 
+nohup java -jar eureka-server-1.0.0-SNAPSHOT.jar --spring.profiles.active=eureka2 & 
 5、查看启动端口
 netstat -apn|grep 80 (ESTABLISHED6426/lighttpd)
 6、查看发布
@@ -141,20 +138,21 @@ mvn clean package install
 远程 仓库 的更新
 mvn clean package deploy
 
+将parent工程： -x-X表示强制从远程库更新dependency
+mvn -X clean install
 
 
+xmls阿里云不挂断运行命令 nohup java -jar XXX.jar & 
+1. 查看端口号占用情况：netstat -apn|grep 80 (ESTABLISHED6426/lighttpd)
+2. 确定进程号: ps -aux|grep <进程号> 
+3. 杀掉该进程 : kill -9 
 
 **工程名**	**描述**	**端口**
-config-server	配置管理中心	7200
-eureka-server	服务发现与注册中心	7100
-hystrix-dashboard	监控	7300
-gateway-api	服务网关	7500
-web-lovehome	房Web lovehome	8100
-service-housing	房源服务 lovehome	8200
-ervice-customer	客源服务 lovehome
+zipkin-server 链路追踪 9411
+config-server	配置管理中心	8402
+eureka-server	服务发现与注册中心	8404
+hystrix-dashboard	监控	
 
-autobot ： 8403
-autobot-res : 8400
-api-gateway : 8401
-config-server: 8402
-eureka-service：8404
+api-gateway	服务网关	8401
+autobot-res	ADC 	8400
+
