@@ -2,7 +2,7 @@ spring:
   application:
     name: autobot-res
   datasource:
-    url: jdbc:mysql://rm-uf6p1li8923139633o.mysql.rds.aliyuncs.com:3306/autobot?useSSL=true
+    url: jdbc:mysql://rm-uf6p1li8923139633.mysql.rds.aliyuncs.com:3306/autobot?useSSL=true
     username: root
     password: lxd0701@
     #password: '{cipher}AQAelpzn/tGihbTOaBticSBtfGWU5ryBmwQVSHCAk/FTVWlmhSY6Zewnt1MNUOBK5ZdHfVHmiCFvGnGzpxpotl4pr5QlcfI53LhWf2vT/In6beHaY5/CK5zGywTEWZdADpufVPS+EeXcUBgmYzwbRPDQtLmKyJ05S9jXtbKU4HtFaHSggaM15tJMo83sHpMG/+rxECWPTgjYzimUqm2aubqIi4qd2ejv7bcDB3kCUT4PnQ7v5f+ndqKn97eqRHGVHwVg5r5v7ZkVD6fFxXHfe02B5svBoDFe8O7cyrNau/LrCNqewPN0g1l4Hz3eM1hFkSuz+zrVFJojT3Jj3LV2L/WGi56MYZG8Q9NQAYJzBzKalGBfdD9U0usVdVe7tc8nDls='
