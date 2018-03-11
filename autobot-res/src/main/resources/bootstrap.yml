@@ -10,7 +10,7 @@ spring:
         service-id: config-server #来指定Config Server 注册的服务名
       profile: dev #对应配置文件规则中的 {profile} 部分
       label: master #对应配置文件规则中的 {label} 部分
-#      uri: http://localhost:8402/ #配置中心 config-server 的地址
+#      uri: http://lxdyun.com:8402/ #配置中心 config-server 的地址
       # 由于我们已经为 config-server 设置了安全保护.需要通过配置的方式在客户端中加入安全信息来通过校验
       username: user
       password: 37cc5635-559b-4e6f-b633-7e932b813f73
@@ -37,4 +37,4 @@ management:
 eureka:
   client:
     service-url:
-      defaultZone: http://lxdyun.com:8404/eureka/,http://lxdyun.com:8405/eureka/
+      defaultZone: http://lxdyun.com:8404/eureka/
