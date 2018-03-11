@@ -104,7 +104,27 @@ spring-cloud 微服务组件demo
 9、html5（HTML5规范要求⽤户⾃定义属性以data-前缀开头） ； 
 10、java Bean、EJB、POJO；11、PO； 12、VO、13、DTO；
 
+**工程名**	**描述**	**端口**
+zipkin-server 链路追踪 9411
+config-server	配置管理中心	8402
+eureka-server	服务发现与注册中心	8404
+hystrix-dashboard	监控	
 
+api-gateway	服务网关	8401
+autobot-res	ADC 	8400
+
+常用命令：
+本地仓库 的更新
+mvn -X  clean package install 
+远程 仓库 的更新
+mvn clean package deploy
+打包
+mvn package
+
+xmls阿里云不挂断运行命令 nohup java -jar XXX.jar & 
+1. 查看端口号占用情况：netstat -apn|grep 80 (ESTABLISHED6426/lighttpd)
+2. 确定进程号: ps -aux|grep <进程号> 
+3. 杀掉该进程 : kill -9 
 
 发布流程：
 一、Spring Cloud Eureka 注册中心
@@ -127,32 +147,11 @@ http://lxdyun.com:8405/
 2、上传
 3、启动
 nohup java -jar config-server-0.0.1-SNAPSHOT.jar & 
+4、查看发布
+http://lxdyun.com:8402/autobot-res/dev/
 
+三、Spring Cloud zipkin
+http://lxdyun.com:9411
 
-mvn clean install
-mvn clean deploy
-mvn package
-
-本地仓库 的更新
-mvn clean package install 
-远程 仓库 的更新
-mvn clean package deploy
-
-将parent工程： -x-X表示强制从远程库更新dependency
-mvn -X clean install
-
-
-xmls阿里云不挂断运行命令 nohup java -jar XXX.jar & 
-1. 查看端口号占用情况：netstat -apn|grep 80 (ESTABLISHED6426/lighttpd)
-2. 确定进程号: ps -aux|grep <进程号> 
-3. 杀掉该进程 : kill -9 
-
-**工程名**	**描述**	**端口**
-zipkin-server 链路追踪 9411
-config-server	配置管理中心	8402
-eureka-server	服务发现与注册中心	8404
-hystrix-dashboard	监控	
-
-api-gateway	服务网关	8401
-autobot-res	ADC 	8400
-
+四、业务微服务ADC
+http://lxdyun.com:8400/swagger-ui.html

@@ -109,7 +109,7 @@
 
 	</dependencies>
 
-	<build>
+	<!-- <build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -117,11 +117,11 @@
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
-					<fork>true</fork><!-- 如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart -->
+					<fork>true</fork>如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart
 				</configuration>
 				<executions>
 					<execution>
-						<goals> <!-- 创建一个自动可执行的jar或war文件 -->
+						<goals> 创建一个自动可执行的jar或war文件
 							<goal>repackage</goal>
 						</goals>
 					</execution>
@@ -141,7 +141,19 @@
 
 		</plugins>
 	</build>
-
+ -->
+ 
+ <build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork><!-- 如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart -->
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 
 </project>
