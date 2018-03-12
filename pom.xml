@@ -53,15 +53,5 @@
 
 
 	<!--定义snapshots库和releases库的nexus地址 -->
-	<distributionManagement>
-		<repository>
-			<id>central</id>
-			<url>http://artifactory.intra.xiaojukeji.com:80/artifactory/libs-release</url>
-		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<url>http://artifactory.intra.xiaojukeji.com:80/artifactory/libs-snapshot</url>
-		</snapshotRepository>
-
-	</distributionManagement>
+	
 </project>
